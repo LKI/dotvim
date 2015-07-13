@@ -24,6 +24,7 @@ map ,/   <Esc>*:vimgrep /<C-R>// **/*<CR>
 nmap ,a  :w!<CR>:!python %<CR>
 nmap ,c  :w!<CR>:!perl -c %<CR>
 nmap ,d  :w!<CR>:bd<CR>
+nmap ,e  :TlistOpen<CR>
 nmap ,n  :w!<CR>:bn<CR>
 nmap ,v  :tabedit ~/.vimrc<CR>
 nmap ,w  :w !sudo tee %<CR>
