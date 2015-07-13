@@ -1,3 +1,6 @@
 [submodule "modules/powerline"]
 	path = modules/powerline
 	url = https://github.com/powerline/powerline.git
+[submodule "modules/fugitive"]
+	path = modules/fugitive
+	url = https://github.com/tpope/vim-fugitive.git
