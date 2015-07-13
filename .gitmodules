@@ -1,0 +1,3 @@
+[submodule "modules/powerline"]
+	path = modules/powerline
+	url = https://github.com/powerline/powerline.git

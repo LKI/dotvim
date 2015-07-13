@@ -3,6 +3,14 @@ execute pathogen#infect('modules/{}')
 syntax on
 filetype plugin indent on
 
+" Load powerline plugin
+set laststatus=2
+if has("unix")
+    set runtimepath+=~/.vim/modules/powerline/powerline/bindings/vim
+elseif has("win32")
+    set runtimepath+=~\vimfiles\modules\powerline\powerline\bindings\vim
+endif
+
 " Set default vim setting
 set sw=4
 set ts=4
