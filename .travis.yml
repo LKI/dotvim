@@ -1,0 +1,12 @@
+language:
+    bash
+
+install:
+    git clone --recurse-submodules git://github.com/LKI/dotvim.git ~/.vim;
+    ln -s ~/.vim/vimrc ~/.vimrc
+
+script:
+    vim -c quit
+
+notifications:
+    email: false
