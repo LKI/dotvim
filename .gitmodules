@@ -7,3 +7,6 @@
 [submodule "modules/commentary"]
 	path = modules/commentary
 	url = https://github.com/tpope/vim-commentary.git
+[submodule "modules/tabular"]
+	path = modules/tabular
+	url = https://github.com/godlygeek/tabular.git

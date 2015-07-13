@@ -29,3 +29,7 @@ nmap ,v  :tabedit ~/.vimrc<CR>
 nmap ,w  :w !sudo tee %<CR>
 vmap ,r  :w !sh<CR>
 
+" Mappings for Tabular
+vmap ,= :Tab /=<CR>
+vmap ,T :Tab /=><CR>
+
