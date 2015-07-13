@@ -10,3 +10,6 @@
 [submodule "modules/tabular"]
 	path = modules/tabular
 	url = https://github.com/godlygeek/tabular.git
+[submodule "modules/supertab"]
+	path = modules/supertab
+	url = https://github.com/ervandew/supertab.git
