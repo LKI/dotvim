@@ -34,3 +34,10 @@ vmap ,r  :w !sh<CR>
 vmap ,= :Tab /=<CR>
 vmap ,T :Tab /=><CR>
 
+" Dbext settings
+let g:dbext_default_SQLITE_bin = 'sqlite3'
+let g:dbext_default_profile_sqlite = 'type=SQLITE:dbname=~/sqlite.db'
+" #--dbext:profile=sqlite
+let g:dbext_default_MYSQL_bin = 'mysql'
+let g:dbext_default_profile_mysql_local = 'type=MYSQL:user=lirian:dbname=db'
+" #--dbext:profile=mysql
