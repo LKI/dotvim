@@ -1,7 +1,7 @@
 " Enable Pathogen
 execute pathogen#infect('modules/{}')
-syntax on
 filetype plugin indent on
+syntax on
 
 " Load powerline plugin
 set laststatus=2
@@ -44,3 +44,7 @@ let g:dbext_default_profile_sqlite = 'type=SQLITE:dbname=~/sqlite.db'
 let g:dbext_default_MYSQL_bin = 'mysql'
 let g:dbext_default_profile_mysql= 'type=MYSQL:user=lirian:dbname=db'
 " #--dbext:profile=mysql
+
+" csv.vim
+let b:csv_headerline=0
+let g:csv_delim='|'

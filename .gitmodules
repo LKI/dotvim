@@ -19,3 +19,6 @@
 [submodule "modules/dbext"]
 	path = modules/dbext
 	url = https://github.com/vim-scripts/dbext.vim.git
+[submodule "modules/csv.vim"]
+	path = modules/csv.vim
+	url = https://github.com/chrisbra/csv.vim.git
