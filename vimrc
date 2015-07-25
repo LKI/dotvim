@@ -8,10 +8,20 @@ set laststatus=2
 if has("unix")
     set runtimepath+=~/.vim/modules/powerline/powerline/bindings/vim
 elseif has("win32")
-    set encoding=utf-8
     source $VIM/_vimrc
-    set runtimepath+=~\vimfiles\modules\powerline\powerline\bindings\vim
-    set guifont=Inconsolata\ for\ Powerline:h12,Fixedsys:h12,Consolas:h12
+    set langmenu=en_US
+    let $LANG='en_US'
+    if has("gui_win32") || has("gui_win32s")
+        set runtimepath+=~\vimfiles\modules\powerline\powerline\bindings\vim
+        set guifont=Inconsolata\ for\ Powerline:h12,Fixedsys:h12,Consolas:h12
+    endif
+endif
+
+if has("gui_running")
+    "Enable solarized color scheme
+    set background=dark
+    colorscheme solarized
+    call togglebg#map("<F5>")
 endif
 
 " Set default vim setting

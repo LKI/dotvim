@@ -22,3 +22,6 @@
 [submodule "modules/csv.vim"]
 	path = modules/csv.vim
 	url = https://github.com/chrisbra/csv.vim.git
+[submodule "modules/solarized"]
+	path = modules/solarized
+	url = https://github.com/altercation/vim-colors-solarized.git
