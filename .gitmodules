@@ -25,3 +25,6 @@
 [submodule "modules/solarized"]
 	path = modules/solarized
 	url = https://github.com/altercation/vim-colors-solarized.git
+[submodule "modules/unimpaired"]
+	path = modules/unimpaired
+	url = https://github.com/tpope/vim-unimpaired

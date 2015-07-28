@@ -25,6 +25,9 @@ if has("gui_running")
     call togglebg#map("<F5>")
 endif
 
+" Autocmd to markdown
+autocmd BufNewFile,BufRead *.md set filetype=markdown
+
 " Set default vim setting
 set sw=4
 set ts=4
