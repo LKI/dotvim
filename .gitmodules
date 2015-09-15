@@ -28,3 +28,6 @@
 [submodule "modules/unimpaired"]
 	path = modules/unimpaired
 	url = https://github.com/tpope/vim-unimpaired
+[submodule "modules/surround"]
+	path = modules/surround
+	url = https://github.com/tpope/vim-surround.git
