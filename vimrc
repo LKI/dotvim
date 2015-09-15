@@ -28,6 +28,10 @@ endif
 " Autocmd to markdown
 autocmd BufNewFile,BufRead *.md set filetype=markdown
 
+" Vim folding
+set foldmethod=indent
+autocmd BufWinEnter * normal zR
+
 " Set default vim setting
 set sw=4
 set ts=4
@@ -62,3 +66,5 @@ let g:dbext_default_profile_mysql= 'type=MYSQL:user=lirian:dbname=db'
 " csv.vim
 let b:csv_headerline=0
 let g:csv_delim='|'
+hi CSVColumnEven ctermbg=0
+hi CSVColumnOdd  ctermbg=0
