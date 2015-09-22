@@ -40,20 +40,21 @@ set hlsearch
 set incsearch
 
 " Mappings
-map ,t   <Esc>:w!<CR>:!perl -d %<CR>
-map ,/   <Esc>*:vimgrep /<C-R>// **/*<CR>
-nmap ,a  :w!<CR>:!python %<CR>
-nmap ,c  :w!<CR>:!perl -c %<CR>
-nmap ,d  :w!<CR>:bd<CR>
-nmap ,e  :TlistOpen<CR>
-nmap ,n  :w!<CR>:bn<CR>
-nmap ,v  :tabedit $MYVIMRC<CR>
-nmap ,w  :w !sudo tee %<CR>
-vmap ,r  :w !sh<CR>
+let mapleader="\<Space>"
+map <Leader>t   <Esc>:w!<CR>:!perl -d %<CR>
+map <Leader>/   <Esc>*:vimgrep /<C-R>// **/*<CR>
+nmap <Leader>a  :w!<CR>:!python %<CR>
+nmap <Leader>c  :w!<CR>:!perl -c %<CR>
+nmap <Leader>d  :w!<CR>:bd<CR>
+nmap <Leader>e  :TlistOpen<CR>
+nmap <Leader>n  :w!<CR>:bn<CR>
+nmap <Leader>v  :tabedit $MYVIMRC<CR>
+nmap <Leader>w  :w !sudo tee %<CR>
+vmap <Leader>r  :w !sh<CR>
 
 " Mappings for Tabular
-vmap ,= :Tab /=<CR>
-vmap ,T :Tab /=><CR>
+vmap <Leader>= :Tab /=<CR>
+vmap <Leader>T :Tab /=><CR>
 
 " Dbext settings
 let g:dbext_default_SQLITE_bin = 'sqlite3'
