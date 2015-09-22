@@ -31,3 +31,6 @@
 [submodule "modules/surround"]
 	path = modules/surround
 	url = https://github.com/tpope/vim-surround.git
+[submodule "modules/vim-expand-region"]
+	path = modules/vim-expand-region
+	url = https://github.com/terryma/vim-expand-region
