@@ -52,6 +52,10 @@ nmap <Leader>v  :tabedit $MYVIMRC<CR>
 nmap <Leader>w  :w !sudo tee %<CR>
 vmap <Leader>r  :w !sh<CR>
 
+" Mappings inspired by @sheerun
+nnoremap <CR> G
+nnoremap <BS> gg
+
 " Mappings for Tabular
 vmap <Leader>= :Tab /=<CR>
 vmap <Leader>T :Tab /=><CR>
