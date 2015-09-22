@@ -60,6 +60,10 @@ nnoremap <BS> gg
 vmap <Leader>= :Tab /=<CR>
 vmap <Leader>T :Tab /=><CR>
 
+" Mappings for vim-expand-region
+vmap v <Plug>(expand_region_expand)
+vmap V <Plug>(expand_region_shrink)
+
 " Dbext settings
 let g:dbext_default_SQLITE_bin = 'sqlite3'
 let g:dbext_default_profile_sqlite = 'type=SQLITE:dbname=~/sqlite.db'
