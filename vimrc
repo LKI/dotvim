@@ -15,6 +15,8 @@ elseif has("win32")
     if has("gui_win32") || has("gui_win32s")
         set runtimepath+=~\vimfiles\modules\powerline\powerline\bindings\vim
         set guifont=Inconsolata\ for\ Powerline:h12,Fixedsys:h12,Consolas:h12
+        set guioptions-=m
+        set guioptions-=T
     endif
 endif
 
