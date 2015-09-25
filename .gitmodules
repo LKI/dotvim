@@ -27,10 +27,10 @@
 	url = https://github.com/altercation/vim-colors-solarized.git
 [submodule "modules/unimpaired"]
 	path = modules/unimpaired
-	url = https://github.com/tpope/vim-unimpaired
+	url = https://github.com/tpope/vim-unimpaired.git
 [submodule "modules/surround"]
 	path = modules/surround
 	url = https://github.com/tpope/vim-surround.git
 [submodule "modules/vim-expand-region"]
 	path = modules/vim-expand-region
-	url = https://github.com/terryma/vim-expand-region
+	url = https://github.com/terryma/vim-expand-region.git
