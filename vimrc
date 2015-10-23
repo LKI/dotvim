@@ -30,10 +30,6 @@ endif
 " Autocmd to markdown
 autocmd BufNewFile,BufRead *.md set filetype=markdown
 
-" Vim folding
-set foldmethod=indent
-autocmd BufWinEnter * normal zR
-
 " Set default vim setting
 set sw=4
 set ts=4
@@ -44,6 +40,7 @@ set incsearch
 " Mappings
 let mapleader="\<Space>"
 map <Leader>t   <Esc>:w!<CR>:!perl -d %<CR>
+map <Leader>q   <Esc>:w!<CR>:!perl %<CR>
 map <Leader>/   <Esc>*:vimgrep /<C-R>// **/*<CR>
 nmap <Leader>a  :w!<CR>:!python %<CR>
 nmap <Leader>c  :w!<CR>:!perl -c %<CR>
