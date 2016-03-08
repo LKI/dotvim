@@ -42,6 +42,7 @@ let mapleader="\<Space>"
 map <Leader>t   <Esc>:w!<CR>:!perl -d %<CR>
 map <Leader>q   <Esc>:w!<CR>:!perl %<CR>
 map <Leader>/   <Esc>*:vimgrep /<C-R>// **/*<CR>
+map <Leader>fj  :%!python -m json.tool<CR>
 nmap <Leader>a  :w!<CR>:!python %<CR>
 nmap <Leader>c  :w!<CR>:!perl -c %<CR>
 nmap <Leader>d  :w!<CR>:bd<CR>
