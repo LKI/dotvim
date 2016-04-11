@@ -36,6 +36,11 @@ set ts=4
 set expandtab
 set hlsearch
 set incsearch
+set vb t_vb=
+
+" Set html shift width
+au FileType html,vim,javascript setl shiftwidth=2
+au FileType html,vim,javascript setl tabstop=2
 
 " Mappings
 let mapleader="\<Space>"
