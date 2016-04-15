@@ -1,5 +1,10 @@
 " Enable Pathogen
 execute pathogen#infect('modules/{}')
+
+" FileType On
+filetype on
+filetype indent on
+filetype plugin on
 filetype plugin indent on
 syntax on
 
@@ -30,12 +35,26 @@ endif
 " Autocmd to markdown
 autocmd BufNewFile,BufRead *.md set filetype=markdown
 
-" Set default vim setting
+" Some text settings
 set sw=4
 set ts=4
 set expandtab
 set hlsearch
 set incsearch
+set wildmenu
+set smartindent
+set cindent
+
+" Match parentheses, 1matchtime = 1/10s
+set showmatch
+set matchtime=5
+
+" No backup and swap file
+set nobackup
+set noswapfile
+
+" Some editing settings
+set backspace=2
 
 " Disable annoying bell
 set noeb vb t_vb=
