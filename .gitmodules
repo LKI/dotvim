@@ -34,3 +34,6 @@
 [submodule "modules/vim-expand-region"]
 	path = modules/vim-expand-region
 	url = https://github.com/terryma/vim-expand-region.git
+[submodule "modules/emmet"]
+	path = modules/emmet
+	url = https://github.com/mattn/emmet-vim
