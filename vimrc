@@ -36,7 +36,10 @@ set ts=4
 set expandtab
 set hlsearch
 set incsearch
-set vb t_vb=
+
+" Disable annoying bell
+set noeb vb t_vb=
+autocmd GUIEnter * set vb t_vb=
 
 " Set html shift width
 au FileType html,vim,javascript setl shiftwidth=2
