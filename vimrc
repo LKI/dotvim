@@ -104,3 +104,7 @@ let b:csv_headerline=0
 let g:csv_delim='|'
 hi CSVColumnEven ctermbg=0
 hi CSVColumnOdd  ctermbg=0
+
+" emmet settings
+let g:user_emmet_install_global = 0
+autocmd FileType html,css EmmetInstall
