@@ -67,6 +67,10 @@ Useful Shortcuts
 
 `VVVV` : Shrink visual selection
 
+* [mattn/emmet][emmet] is used for HTML editing
+
+`div.button.primary#submit<C-Y>,` will create a button with class _button,primary_ and id _submit_.
+
 
 For more details, you may read [my vimrc](/vimrc) and submodules under [module dir](/modules).
 
