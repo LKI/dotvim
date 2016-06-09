@@ -94,4 +94,5 @@ Inspired by [schnell18/dotvim][dotvim_justin]
 [unimpaired]:    https://github.com/tpope/vim-unimpaired
 [tabular]:       https://github.com/godlygeek/tabular
 [expand_region]: https://github.com/terryma/vim-expand-region
+[emmet]:         https://github.com/mattn/emmet-vim
 [dotvim_justin]: https://github.com/schnell18/dotvim
