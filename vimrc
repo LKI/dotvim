@@ -11,26 +11,25 @@ syntax on
 " Load powerline plugin
 set laststatus=2
 if has("unix")
-    set runtimepath+=~/.vim/modules/powerline/powerline/bindings/vim
+  set t_Co=256
+  set runtimepath+=~/.vim/modules/powerline/powerline/bindings/vim
 elseif has("win32")
-    source $VIM/_vimrc
-    set langmenu=en_US
-    set encoding=utf-8
-    let $LANG='en_US'
-    if has("gui_win32") || has("gui_win32s")
-        set runtimepath+=~\vimfiles\modules\powerline\powerline\bindings\vim
-        set guifont=Inconsolata\ for\ Powerline:h12,Fixedsys:h12,Consolas:h12
-        set guioptions-=m
-        set guioptions-=T
-    endif
+  source $VIM/_vimrc
+  set langmenu=en_US
+  set encoding=utf-8
+  let $LANG='en_US'
+  if has("gui_win32") || has("gui_win32s")
+    set runtimepath+=~\vimfiles\modules\powerline\powerline\bindings\vim
+    set guifont=Inconsolata\ for\ Powerline:h12,Fixedsys:h12,Consolas:h12
+    set guioptions-=m
+    set guioptions-=T
+  endif
 endif
 
-if has("gui_running")
-    "Enable solarized color scheme
-    set background=dark
-    colorscheme solarized
-    call togglebg#map("<F5>")
-endif
+"Set desert as default color scheme
+set background=light
+colorscheme desert
+call togglebg#map("<F5>")
 
 " Autocmd to markdown
 autocmd BufNewFile,BufRead *.md set filetype=markdown
