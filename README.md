@@ -77,6 +77,9 @@ For more details, you may read [my vimrc](/vimrc) and submodules under [module d
 Others
 ------
 
+My dotvim require python in system path.
+If you're using gvim in windows, make sure python and vim are both 32bit or both 64bit.
+
 If you're a beginner, just clone and use it for weeks.
 
 Feel free to fork your own dotvim repository, make changes and send a pull request.
