@@ -1,13 +1,5 @@
 [![Build Status](https://travis-ci.org/LKI/dotvim.svg)](https://travis-ci.org/LKI/dotvim)
 
-Pre-requires
-------------
-Powerline requires [python 2.6, 2.7 or 3.0 above][1] in your path
-
-Ctags requires [ctags][2] in your path
-
-I use [Inconsolata-font][3] for theme
-
 Linux/Unix Installation
 -----------------------
 Run the following command to make the dotvim effective:
@@ -24,6 +16,14 @@ Run the following command to make the dotvim effective:
 
     git clone --recurse-submodules git://github.com/LKI/dotvim.git ~/vimfiles
     copy ~/vimfiles/vimrc ~/_vimrc
+
+Pre-requires
+------------
+Powerline requires [python 2.6, 2.7 or 3.0 above][1] in your path
+
+Ctags requires [ctags][2] in your path
+
+I use [Inconsolata-font][3] for theme
 
 Useful Shortcuts
 ----------------
@@ -84,6 +84,8 @@ If you're a beginner, just clone and use it for weeks.
 
 Feel free to fork your own dotvim repository, make changes and send a pull request.
 
+I'm considering to use [Vundle][vundle], let's make it rock!
+
 Inspired by [schnell18/dotvim][dotvim_justin]
 
 
@@ -99,3 +101,4 @@ Inspired by [schnell18/dotvim][dotvim_justin]
 [expand_region]: https://github.com/terryma/vim-expand-region
 [emmet]:         https://github.com/mattn/emmet-vim
 [dotvim_justin]: https://github.com/schnell18/dotvim
+[vundle]:        https://github.com/VundleVim/Vundle.vim
