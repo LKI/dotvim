@@ -2,8 +2,7 @@ language:
     bash
 
 install:
-    git clone --recurse-submodules git://github.com/LKI/dotvim.git ~/.vim;
-    ln -s ~/.vim/vimrc ~/.vimrc
+    curl -s https://raw.githubusercontent.com/LKI/dotvim/master/install.sh | sh
 
 script:
     vim -c quit

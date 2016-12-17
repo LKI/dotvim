@@ -1,5 +1,27 @@
-" Enable Pathogen
-execute pathogen#infect('modules/{}')
+" enable vundle
+set nocompatible
+filetype off
+" set the runtime path to include Vundle and initialize
+set rtp+=~/.vim/vundle
+call vundle#begin('~/.vim/modules')
+
+" plugins
+Plugin 'VundleVim/Vundle.vim'
+Plugin 'altercation/vim-colors-solarized'
+Plugin 'chrisbra/csv.vim'
+Plugin 'ervandew/supertab'
+Plugin 'godlygeek/tabular'
+Plugin 'mattn/emmet-vim'
+Plugin 'powerline/powerline'
+Plugin 'terryma/vim-expand-region'
+Plugin 'tpope/vim-commentary'
+Plugin 'tpope/vim-fugitive'
+Plugin 'tpope/vim-surround'
+Plugin 'tpope/vim-unimpaired'
+Plugin 'vim-scripts/dbext.vim'
+Plugin 'vim-scripts/taglist.vim'
+
+call vundle#end()
 
 " FileType On
 filetype on
@@ -12,14 +34,14 @@ syntax on
 set laststatus=2
 if has("unix")
   set t_Co=256
-  set runtimepath+=~/.vim/modules/powerline/powerline/bindings/vim
+  set rtp+=~/.vim/modules/powerline/powerline/bindings/vim
 elseif has("win32")
   source $VIM/_vimrc
   set langmenu=en_US
   set encoding=utf-8
   let $LANG='en_US'
   if has("gui_win32") || has("gui_win32s")
-    set runtimepath+=~\vimfiles\modules\powerline\powerline\bindings\vim
+    set rtp+=~\vimfiles\modules\powerline\powerline\bindings\vim
     set guifont=Inconsolata\ for\ Powerline:h12,Fixedsys:h12,Consolas:h12
     set guioptions-=m
     set guioptions-=T
@@ -29,7 +51,7 @@ endif
 "Set desert as default color scheme
 set background=light
 colorscheme desert
-call togglebg#map("<F5>")
+"call togglebg#map("<F5>")
 
 " Autocmd to markdown
 autocmd BufNewFile,BufRead *.md set filetype=markdown
