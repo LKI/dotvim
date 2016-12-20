@@ -64,7 +64,6 @@ set hlsearch
 set incsearch
 set wildmenu
 set smartindent
-set cindent
 
 " Match parentheses, 1matchtime = 1/10s
 set showmatch
@@ -87,15 +86,16 @@ au FileType html,vim,javascript setl tabstop=2
 
 " Mappings
 let mapleader="\<Space>"
-map <Leader>t   <Esc>:w!<CR>:!perl -d %<CR>
-map <Leader>q   <Esc>:w!<CR>:!perl %<CR>
 map <Leader>/   <Esc>*:vimgrep /<C-R>// **/*<CR>
 map <Leader>fj  :%!python -c "import json,sys;reload(sys);sys.setdefaultencoding('utf-8');print json.dumps(json.load(sys.stdin), ensure_ascii=False, indent=4)"<CR><CR>
+map <Leader>q   <Esc>:w!<CR>:!perl %<CR>
+map <Leader>t   <Esc>:w!<CR>:!perl -d %<CR>
 nmap <Leader>a  :w!<CR>:!python %<CR>
 nmap <Leader>c  :w!<CR>:!perl -c %<CR>
 nmap <Leader>d  :w!<CR>:bd<CR>
 nmap <Leader>e  :TlistOpen<CR>
 nmap <Leader>n  :w!<CR>:bn<CR>
+nmap <Leader>sp :set paste!<CR>
 nmap <Leader>v  :tabedit $MYVIMRC<CR>
 nmap <Leader>w  :w !sudo tee %<CR>
 vmap <Leader>r  :w !sh<CR>
