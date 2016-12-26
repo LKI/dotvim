@@ -98,6 +98,7 @@ nmap <Leader>n  :w!<CR>:bn<CR>
 nmap <Leader>sp :set paste!<CR>
 nmap <Leader>v  :tabedit $MYVIMRC<CR>
 nmap <Leader>w  :w !sudo tee %<CR>
+nmap <Leader>re /Test Plan<CR>Aunit test<Esc>2jAzhangjinming zhoucheng xieyang<Esc>gg
 vmap <Leader>r  :w !sh<CR>
 
 " Mappings inspired by @sheerun
