@@ -80,9 +80,9 @@ set backspace=2
 set noeb vb t_vb=
 autocmd GUIEnter * set vb t_vb=
 
-" Set html shift width
-au FileType html,vim,javascript setl shiftwidth=2
-au FileType html,vim,javascript setl tabstop=2
+" Set shift width to 2
+au FileType sh,html,vim,javascript setl shiftwidth=2
+au FileType sh,html,vim,javascript setl tabstop=2
 
 " Mappings
 let mapleader="\<Space>"
