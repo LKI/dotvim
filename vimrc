@@ -2,8 +2,13 @@
 set nocompatible
 filetype off
 " set the runtime path to include Vundle and initialize
-set rtp+=~/.vim/vundle
-call vundle#begin('~/.vim/modules')
+if has("win32")
+  set rtp+=~/vimfiles/vundle
+  call vundle#begin('~/vimfiles/modules')
+else
+  set rtp+=~/.vim/vundle
+  call vundle#begin('~/.vim/modules')
+endif
 
 " plugins
 Plugin 'VundleVim/Vundle.vim'
