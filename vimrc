@@ -25,6 +25,7 @@ Plugin 'tpope/vim-surround'
 Plugin 'tpope/vim-unimpaired'
 Plugin 'vim-scripts/dbext.vim'
 Plugin 'vim-scripts/taglist.vim'
+Plugin 'wakatime/vim-wakatime'
 
 call vundle#end()
 
