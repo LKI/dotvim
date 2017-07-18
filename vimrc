@@ -134,6 +134,7 @@ hi CSVColumnOdd  ctermbg=0
 
 " emmet settings
 let g:user_emmet_install_global = 0
+let g:powerline_no_python_error = 1
 autocmd FileType html,css EmmetInstall
 
 " add trailing space to line up to 150 length
