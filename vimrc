@@ -46,9 +46,10 @@ elseif has("win32")
   let $LANG='en_US'
   if has("gui_win32") || has("gui_win32s")
     set rtp+=~\vimfiles\modules\powerline\powerline\bindings\vim
-    set guifont=Inconsolata\ for\ Powerline:h14,Fixedsys:h12,Consolas:h12
+    set guifont=Fira\ Code:h14,Fixedsys:h12,Consolas:h12
     set guioptions-=m
     set guioptions-=T
+    set renderoptions=type:directx
   endif
 endif
 
