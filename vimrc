@@ -100,11 +100,13 @@ nmap <Leader>c  :w!<CR>:!perl -c %<CR>
 nmap <Leader>d  :w!<CR>:bd<CR>
 nmap <Leader>e  :TlistOpen<CR>
 nmap <Leader>n  :w!<CR>:bn<CR>
+nmap <Leader>p  "*p
+nmap <Leader>r  :! bash %<CR>
 nmap <Leader>sp :set paste!<CR>
+nmap <Leader>u :set ff=unix<CR>
 nmap <Leader>v  :tabedit $MYVIMRC<CR>
 nmap <Leader>w  :w !sudo tee %<CR>
-nmap <Leader>u :set ff=unix<CR>
-nmap <Leader>r  :! bash %<CR>
+nmap <Leader>y  "*y
 vmap <Leader>r  :w !sh<CR>
 
 " Mappings inspired by @sheerun
