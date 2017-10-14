@@ -93,20 +93,20 @@ au FileType sh,html,vim,javascript setl tabstop=2
 let mapleader="\<Space>"
 map <Leader>/   <Esc>*:vimgrep /<C-R>// **/*<CR>
 map <Leader>fj  :%!python -c "import json,sys;reload(sys);sys.setdefaultencoding('utf-8');print json.dumps(json.load(sys.stdin), ensure_ascii=False, indent=4)"<CR><CR>
+map <Leader>p  "*p
 map <Leader>q   <Esc>:w!<CR>:!perl %<CR>
 map <Leader>t   <Esc>:w!<CR>:!perl -d %<CR>
+map <Leader>y  "*y
 nmap <Leader>a  :w!<CR>:!python %<CR>
 nmap <Leader>c  :w!<CR>:!perl -c %<CR>
 nmap <Leader>d  :w!<CR>:bd<CR>
 nmap <Leader>e  :TlistOpen<CR>
 nmap <Leader>n  :w!<CR>:bn<CR>
-nmap <Leader>p  "*p
 nmap <Leader>r  :! bash %<CR>
 nmap <Leader>sp :set paste!<CR>
 nmap <Leader>u :set ff=unix<CR>
 nmap <Leader>v  :tabedit $MYVIMRC<CR>
 nmap <Leader>w  :w !sudo tee %<CR>
-nmap <Leader>y  "*y
 vmap <Leader>r  :w !sh<CR>
 
 " Mappings inspired by @sheerun
