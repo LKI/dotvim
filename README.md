@@ -21,7 +21,7 @@ Run the following command to make the dotvim effective:
     * powerline requires [python 2.6, 2.7 or 3.0 above][python] in your path
     * also, [ctags][ctags] is required in your path
     * if you're using gvim, make sure python/vim are matched in bit version
-    * we need [Inconsolata][inconsolata] font for gvim
+    * I use [Fira Code][firacode] for displaying special characters
 * how to start
     * if you're a beginner, just clone it, and make it rock
     * check [usage][usage] for some useful shortcuts
@@ -32,9 +32,9 @@ Run the following command to make the dotvim effective:
     * inspired by [schnell18/dotvim][dotvim_justin]
 
 
-[python]:          https://www.python.org/downloads/
-[ctags]:           http://ctags.sourceforge.net/
-[inconsolata]:     https://github.com/Lokaltog/powerline-fonts/blob/master/Inconsolata/Inconsolata%20for%20Powerline.otf?raw=true
-[usage]:           /USAGE.md
-[dotvim_justin]:   https://github.com/schnell18/dotvim
-[vundle]:          https://github.com/VundleVim/Vundle.vim
+[python]:        https://www.python.org/downloads/
+[ctags]:         http://ctags.sourceforge.net/
+[firacode]:      https://github.com/tonsky/FiraCode
+[usage]:         /USAGE.md
+[dotvim_justin]: https://github.com/schnell18/dotvim
+[vundle]:        https://github.com/VundleVim/Vundle.vim
