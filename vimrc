@@ -89,6 +89,9 @@ autocmd GUIEnter * set vb t_vb=
 au FileType sh,html,vim,javascript setl shiftwidth=2
 au FileType sh,html,vim,javascript setl tabstop=2
 
+" Enable external command alias
+set shellcmdflag=-ic
+
 " Mappings
 let mapleader="\<Space>"
 map <Leader>/   <Esc>*:vimgrep /<C-R>// **/*<CR>
