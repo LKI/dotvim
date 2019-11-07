@@ -44,8 +44,8 @@ if has("unix")
 elseif has("win32")
   set langmenu=en_US
   let $LANG='en_US'
+  set rtp+=~\vimfiles\modules\powerline\powerline\bindings\vim
   if has("gui_win32") || has("gui_win32s")
-    set rtp+=~\vimfiles\modules\powerline\powerline\bindings\vim
     set guifont=Fira\ Code\ Retina:h11
     set guioptions-=m
     set guioptions-=T
