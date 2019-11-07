@@ -36,17 +36,17 @@ filetype plugin indent on
 syntax on
 
 " Load powerline plugin
+set encoding=utf-8
 set laststatus=2
 if has("unix")
   set t_Co=256
   set rtp+=~/.vim/modules/powerline/powerline/bindings/vim
 elseif has("win32")
   set langmenu=en_US
-  set encoding=utf-8
   let $LANG='en_US'
   if has("gui_win32") || has("gui_win32s")
     set rtp+=~\vimfiles\modules\powerline\powerline\bindings\vim
-    set guifont=Fira\ Code:h14,Fixedsys:h12,Consolas:h12
+    set guifont=Fira\ Code\ Retina:h11
     set guioptions-=m
     set guioptions-=T
     set renderoptions=type:directx
