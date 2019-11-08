@@ -19,7 +19,6 @@ Run the following command to make the dotvim effective:
 
 * pre-requires
     * powerline requires [python 2.6, 2.7 or 3.0 above][python] in your path
-    * also, [ctags][ctags] is required in your path
     * if you're using gvim, make sure python/vim are matched in bit version
     * I use [Fira Code][firacode] for displaying special characters
 * how to start
@@ -33,7 +32,6 @@ Run the following command to make the dotvim effective:
 
 
 [python]:        https://www.python.org/downloads/
-[ctags]:         http://ctags.sourceforge.net/
 [firacode]:      https://github.com/tonsky/FiraCode
 [usage]:         /USAGE.md
 [dotvim_justin]: https://github.com/schnell18/dotvim
