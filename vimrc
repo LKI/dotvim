@@ -1,6 +1,7 @@
 " enable vundle
 set nocompatible
 filetype off
+
 " set the runtime path to include Vundle and initialize
 if has("win32")
   set rtp+=~/vimfiles/vundle
@@ -94,18 +95,22 @@ au FileType sh,html,vim,javascript setl tabstop=2
 " Mappings
 let mapleader="\<Space>"
 map <Leader>/   <Esc>*:vimgrep /<C-R>// **/*<CR>
-map <Leader>p  "*p
-map <Leader>y  "*y
 nmap <Leader>a  :w!<CR>:!python %<CR>
 nmap <Leader>e  :NERDTreeToggle<CR>
 nmap <Leader>d  :w!<CR>:bd<CR>
-nmap <Leader>n  :w!<CR>:bn<CR>
 nmap <Leader>r  :! bash %<CR>
 nmap <Leader>sp :set paste!<CR>
 nmap <Leader>u :set ff=unix<CR>
 nmap <Leader>v  :tabedit $MYVIMRC<CR>
 nmap <Leader>w  :w !sudo tee %<CR>
 vmap <Leader>r  :w !sh<CR>
+
+map p "*p
+map y "*y
+nmap <A-h> :tabprevious<CR>
+nmap <A-l> :tabnext<CR>
+nmap <A-k> :bprevious<CR>
+nmap <A-j> :bnext<CR>
 
 " Mappings inspired by @sheerun
 nnoremap <CR> G
