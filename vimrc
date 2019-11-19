@@ -18,13 +18,15 @@ Plugin 'ervandew/supertab'
 Plugin 'godlygeek/tabular'
 Plugin 'mattn/emmet-vim'
 Plugin 'powerline/powerline'
+Plugin 'scrooloose/nerdtree'
+Plugin 'skywind3000/asyncrun.vim'
 Plugin 'terryma/vim-expand-region'
 Plugin 'tpope/vim-commentary'
 Plugin 'tpope/vim-fugitive'
 Plugin 'tpope/vim-surround'
 Plugin 'tpope/vim-unimpaired'
 Plugin 'vim-scripts/dbext.vim'
-" Plugin 'wakatime/vim-wakatime'
+Plugin 'wakatime/vim-wakatime'
 
 call vundle#end()
 
@@ -46,7 +48,7 @@ elseif has("win32")
   let $LANG='en_US'
   set rtp+=~\vimfiles\modules\powerline\powerline\bindings\vim
   if has("gui_win32") || has("gui_win32s")
-    set guifont=Fira\ Code\ Retina:h11
+    set guifont=Fira\ Code\ Retina:h10
     set guioptions-=m
     set guioptions-=T
     set renderoptions=type:directx
@@ -89,21 +91,14 @@ autocmd GUIEnter * set vb t_vb=
 au FileType sh,html,vim,javascript setl shiftwidth=2
 au FileType sh,html,vim,javascript setl tabstop=2
 
-" Enable external command alias
-set shellcmdflag=-ic
-
 " Mappings
 let mapleader="\<Space>"
 map <Leader>/   <Esc>*:vimgrep /<C-R>// **/*<CR>
-map <Leader>fj  :%!python -c "import json,sys;reload(sys);sys.setdefaultencoding('utf-8');print json.dumps(json.load(sys.stdin), ensure_ascii=False, indent=4)"<CR><CR>
 map <Leader>p  "*p
-map <Leader>q   <Esc>:w!<CR>:!perl %<CR>
-map <Leader>t   <Esc>:w!<CR>:!perl -d %<CR>
 map <Leader>y  "*y
 nmap <Leader>a  :w!<CR>:!python %<CR>
-nmap <Leader>c  :w!<CR>:!perl -c %<CR>
+nmap <Leader>e  :NERDTreeToggle<CR>
 nmap <Leader>d  :w!<CR>:bd<CR>
-nmap <Leader>e  :TlistOpen<CR>
 nmap <Leader>n  :w!<CR>:bn<CR>
 nmap <Leader>r  :! bash %<CR>
 nmap <Leader>sp :set paste!<CR>
