@@ -59,12 +59,12 @@ endif
 "Set desert as default color scheme
 set background=light
 colorscheme desert
-"call togglebg#map("<F5>")
 
 " Autocmd to markdown
 autocmd BufNewFile,BufRead *.md set filetype=markdown
 
 " Some text settings
+set nu
 set sw=4
 set ts=4
 set expandtab
@@ -102,15 +102,18 @@ nmap <Leader>r  :! bash %<CR>
 nmap <Leader>sp :set paste!<CR>
 nmap <Leader>u :set ff=unix<CR>
 nmap <Leader>v  :tabedit $MYVIMRC<CR>
+nmap <F5>       :source $MYVIMRC<CR>
 nmap <Leader>w  :w !sudo tee %<CR>
 vmap <Leader>r  :w !sh<CR>
 
-map p "*p
-map y "*y
+noremap p "*p
+noremap y "*y
+noremap yy "*yy
 nmap <A-h> :tabprevious<CR>
 nmap <A-l> :tabnext<CR>
 nmap <A-k> :bprevious<CR>
 nmap <A-j> :bnext<CR>
+vmap <C-/> :Commentary<CR>
 
 " Mappings inspired by @sheerun
 nnoremap <CR> G
