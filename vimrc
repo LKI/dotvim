@@ -3,16 +3,13 @@ set nocompatible
 filetype off
 
 " set the runtime path to include Vundle and initialize
-if has("win32")
-  set rtp+=~/vimfiles/vundle
-  call vundle#begin('~/vimfiles/modules')
-else
-  set rtp+=~/.vim/vundle
-  call vundle#begin('~/.vim/modules')
-endif
+set rtp+=~/.vim/vundle
+set rtp+=~/.fzf
+call vundle#begin('~/.vim/modules')
 
 " plugins
 Plugin 'VundleVim/Vundle.vim'
+
 Plugin 'altercation/vim-colors-solarized'
 Plugin 'elzr/vim-json'
 Plugin 'ervandew/supertab'
@@ -21,6 +18,7 @@ Plugin 'mattn/emmet-vim'
 Plugin 'powerline/powerline'
 Plugin 'scrooloose/nerdtree'
 Plugin 'skywind3000/asyncrun.vim'
+Plugin 'junegunn/fzf.vim'
 Plugin 'terryma/vim-expand-region'
 Plugin 'tpope/vim-commentary'
 Plugin 'tpope/vim-fugitive'
@@ -38,7 +36,7 @@ filetype plugin on
 filetype plugin indent on
 syntax on
 
-" Load powerline plugin
+" Load GUI options
 set encoding=utf-8
 set laststatus=2
 if has("unix")
@@ -53,6 +51,7 @@ elseif has("win32")
     set guioptions-=m
     set guioptions-=T
     set renderoptions=type:directx
+    au GUIEnter * simalt ~x
   endif
 endif
 
@@ -72,6 +71,9 @@ set hlsearch
 set incsearch
 set wildmenu
 set smartindent
+
+" Use system clipboard
+set clipboard=unnamed
 
 " Match parentheses, 1matchtime = 1/10s
 set showmatch
@@ -96,7 +98,6 @@ au FileType sh,html,vim,javascript setl tabstop=2
 let mapleader="\<Space>"
 map <Leader>/   <Esc>*:vimgrep /<C-R>// **/*<CR>
 nmap <Leader>a  :w!<CR>:!python %<CR>
-nmap <Leader>e  :NERDTreeToggle<CR>
 nmap <Leader>d  :w!<CR>:bd<CR>
 nmap <Leader>r  :! bash %<CR>
 nmap <Leader>sp :set paste!<CR>
@@ -106,14 +107,15 @@ nmap <F5>       :source $MYVIMRC<CR>
 nmap <Leader>w  :w !sudo tee %<CR>
 vmap <Leader>r  :w !sh<CR>
 
-noremap p "*p
-noremap y "*y
-noremap yy "*yy
 nmap <A-h> :tabprevious<CR>
 nmap <A-l> :tabnext<CR>
 nmap <A-k> :bprevious<CR>
 nmap <A-j> :bnext<CR>
 vmap <C-/> :Commentary<CR>
+
+" NERDTree
+nmap <Leader>e :NERDTreeToggle<CR>
+nmap <A-1>     :NERDTreeToggle<CR>
 
 " Mappings inspired by @sheerun
 nnoremap <CR> G
