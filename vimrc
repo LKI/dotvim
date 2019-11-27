@@ -14,11 +14,12 @@ Plugin 'altercation/vim-colors-solarized'
 Plugin 'elzr/vim-json'
 Plugin 'ervandew/supertab'
 Plugin 'godlygeek/tabular'
+Plugin 'junegunn/fzf.vim'
 Plugin 'mattn/emmet-vim'
+Plugin 'plasticboy/vim-markdown'
 Plugin 'powerline/powerline'
 Plugin 'scrooloose/nerdtree'
 Plugin 'skywind3000/asyncrun.vim'
-Plugin 'junegunn/fzf.vim'
 Plugin 'terryma/vim-expand-region'
 Plugin 'tpope/vim-commentary'
 Plugin 'tpope/vim-fugitive'
@@ -52,7 +53,7 @@ elseif has("win32")
     set guioptions-=T
     set renderoptions=type:directx
     set shell=~/.lki/scripts/gitbash.bat
-    set shellcmdflag="-c"
+    set shellcmdflag=-c
     au GUIEnter * simalt ~x
   endif
 endif
