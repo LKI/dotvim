@@ -64,8 +64,6 @@ autocmd BufNewFile,BufRead *.md set filetype=markdown
 
 " Some text settings
 set nu
-set sw=4
-set ts=4
 set expandtab
 set hlsearch
 set incsearch
@@ -101,21 +99,54 @@ nmap <Leader>a  :w!<CR>:!python %<CR>
 nmap <Leader>d  :w!<CR>:bd<CR>
 nmap <Leader>r  :! bash %<CR>
 nmap <Leader>sp :set paste!<CR>
-nmap <Leader>u :set ff=unix<CR>
+nmap <Leader>u  :set ff=unix<CR>
 nmap <Leader>v  :tabedit $MYVIMRC<CR>
 nmap <F5>       :source $MYVIMRC<CR>
 nmap <Leader>w  :w !sudo tee %<CR>
 vmap <Leader>r  :w !sh<CR>
+vmap <Leader>s  :sort<CR>
 
 nmap <A-h> :tabprevious<CR>
-nmap <A-l> :tabnext<CR>
-nmap <A-k> :bprevious<CR>
 nmap <A-j> :bnext<CR>
+nmap <A-r> :AsyncRun<Space>
+nmap <A-k> :bprevious<CR>
+nmap <A-l> :tabnext<CR>
+nmap <A-w> :bdelete<CR>
 vmap <C-/> :Commentary<CR>
 
-" NERDTree
+" Helper Windows
 nmap <Leader>e :NERDTreeToggle<CR>
 nmap <A-1>     :NERDTreeToggle<CR>
+
+let g:asyncrun_open = 20
+let NERDTreeMinimalUI = 1
+
+" inspired by pakutoma/toggle-terminal
+nmap <A-F12> :call ToggleTerminal()<CR>
+tmap <A-F12> <C-W>:call ToggleTerminal()<CR>
+func! ToggleTerminal()
+  let terminalBuffer = get(filter(range(1, bufnr("$")), "getbufvar(v:val, '&buftype') == 'terminal'"), 0, -1)
+  if terminalBuffer == -1 || bufloaded(terminalBuffer) != 1
+    execute "belowright term ++close ++kill=term"
+  else
+    let terminalWindow = bufwinnr(terminalBuffer)
+    if terminalWindow == -1
+      execute "belowright sbuffer ".terminalBuffer
+    else
+      execute terminalWindow." wincmd w"
+      hide
+    endif
+  endif
+endfunc
+
+nmap gd :call GoInto()<CR>
+func! GoInto()
+  if exists("b:NERDTree")
+    normal cdCD
+  else
+    normal <C-]>
+  endif
+endfunc
 
 " Mappings inspired by @sheerun
 nnoremap <CR> G
@@ -150,3 +181,6 @@ autocmd FileType html,css EmmetInstall
 
 " add trailing space to line up to 150 length
 " :%s/$/\=repeat(" ", 150-virtcol("$"))
+
+" playgrounds
+command! -bang -nargs=* -complete=file Make AsyncRun -program=make @ <args>
