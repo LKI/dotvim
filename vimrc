@@ -51,6 +51,8 @@ elseif has("win32")
     set guioptions-=m
     set guioptions-=T
     set renderoptions=type:directx
+    set shell=~/.lki/scripts/gitbash.bat
+    set shellcmdflag="-c"
     au GUIEnter * simalt ~x
   endif
 endif
