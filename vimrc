@@ -71,7 +71,15 @@ if has("gui_win32")
   set guioptions=
   set langmenu=en_US
   set shell=~/.lki/scripts/cmdsh.bat
+  set shellcmdflag=/c
   autocmd GUIEnter * simalt ~x  " Maximize Screen When Start
+endif
+
+if has("win32unix")
+  set termguicolors
+  let g:airline_powerline_fonts=0
+else
+  let g:airline_powerline_fonts=1
 endif
 
 
@@ -89,12 +97,13 @@ nmap <A-l> :tabnext<CR>
 nmap <A-r> :AsyncRun<Space>
 nmap <A-s> :set<Space>
 nmap <A-w> :bdelete<CR>
-nmap <CR> :call GoInto()<CR>
 nmap <F5>       :source $MYVIMRC<CR>
 nmap <Leader>sp :set paste!<CR>
 nmap <Leader>u  :set ff=unix<CR>:w<CR>
 nmap <Leader>v  :tabedit $MYVIMRC<CR>
+nmap gd    :call GoInto()<CR>
 tmap <A-F12> <C-W>:call ToggleTerminal()<CR>
+tmap <A-w> :bdelete<CR>
 vmap <Leader>s  :sort<CR>
 vmap V <Plug>(expand_region_shrink)
 vmap v <Plug>(expand_region_expand)
@@ -105,7 +114,6 @@ vmap v <Plug>(expand_region_expand)
 let NERDTreeMinimalUI = 1
 let b:csv_headerline=0
 let g:airline#extensions#tabline#enabled=1
-let g:airline_powerline_fonts=1
 let g:asyncrun_open = 20
 let g:csv_delim='|'
 let g:dbext_default_MYSQL_bin = 'mysql'
