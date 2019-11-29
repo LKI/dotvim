@@ -1,14 +1,15 @@
 """ Section I. Preparation
 "" Plugins
 
-set rtp+=~/.vim/vundle,~/.fzf
+set rtp+=~/.vim/vundle
 
 call vundle#begin('~/.vim/modules')
 Plugin 'VundleVim/Vundle.vim'
 
+Plugin 'airblade/vim-gitgutter'
+Plugin 'ctrlpvim/ctrlp.vim'
 Plugin 'elzr/vim-json'
 Plugin 'ervandew/supertab'
-Plugin 'junegunn/fzf.vim'
 Plugin 'mattn/emmet-vim'
 Plugin 'plasticboy/vim-markdown'
 Plugin 'scrooloose/nerdtree'
@@ -18,10 +19,12 @@ Plugin 'tpope/vim-commentary'
 Plugin 'tpope/vim-fugitive'
 Plugin 'tpope/vim-surround'
 Plugin 'tpope/vim-unimpaired'
+Plugin 'tpope/vim-repeat'
 Plugin 'vim-airline/vim-airline'
 Plugin 'vim-scripts/dbext.vim'
 Plugin 'wakatime/vim-wakatime'
 Plugin 'whatyouhide/vim-gotham'
+Plugin 'xuyuanp/nerdtree-git-plugin'
 
 call vundle#end()
 
@@ -31,15 +34,21 @@ syntax on
 set nocompatible  " Vi Improved, not vi
 
 " File related
+set belloff=all
 set encoding=utf-8
+set fileencoding=utf-8
+set fileencodings=utf-8,gb2313,gb18030,gbk,cp936,latin1
 set nobackup
 set noswapfile
-set belloff=all
+set termencoding=utf-8
+set wildignore+=.git/,node_modules/,.git/*,node_modules/*,*.pyc
+set updatetime=250
 
 " Read related
 set hlsearch
 set incsearch
 set number
+set relativenumber
 set wildmenu
 set laststatus=2
 
@@ -49,9 +58,11 @@ set backspace=2
 set clipboard=unnamed  " Use system clipboard
 set expandtab
 set matchtime=2
+set shiftwidth=4
 set showmatch
 set smartindent
 set smarttab
+set tabstop=4
 
 
 """ Section II. Appearance
@@ -67,66 +78,96 @@ if has("win32")
 endif
 
 if has("gui_win32")
-  set guifont=Fira\ Code\ Retina:h10
+  set autowrite
+  set guifont=Fira_Code_Retina:h10
   set guioptions=
   set langmenu=en_US
   set shell=~/.lki/scripts/cmdsh.bat
   set shellcmdflag=/c
-  autocmd GUIEnter * simalt ~x  " Maximize Screen When Start
+  autocmd GUIEnter * set lines=39 columns=128
 endif
 
 if has("win32unix")
   set termguicolors
-  let g:airline_powerline_fonts=0
-else
-  let g:airline_powerline_fonts=1
 endif
 
 
 """ Section III. Keymap
 
 let mapleader="\<Space>"
-map <Leader>/   <Esc>*:vimgrep /<C-R>// **/*<CR>
-
-nmap <A-1>     :NERDTreeToggle<CR>
-nmap <A-F12> :call ToggleTerminal()<CR>
-nmap <A-h> :tabprevious<CR>
-nmap <A-j> :bnext<CR>
-nmap <A-k> :bprevious<CR>
-nmap <A-l> :tabnext<CR>
-nmap <A-r> :AsyncRun<Space>
-nmap <A-s> :set<Space>
-nmap <A-w> :bdelete<CR>
-nmap <F5>       :source $MYVIMRC<CR>
-nmap <Leader>sp :set paste!<CR>
-nmap <Leader>u  :set ff=unix<CR>:w<CR>
-nmap <Leader>v  :tabedit $MYVIMRC<CR>
-nmap gd    :call GoInto()<CR>
-tmap <A-F12> <C-W>:call ToggleTerminal()<CR>
-tmap <A-w> :bdelete<CR>
-vmap <Leader>s  :sort<CR>
-vmap V <Plug>(expand_region_shrink)
-vmap v <Plug>(expand_region_expand)
+nnoremap <A-r> :AsyncRun<Space>
+nnoremap <A-s> :set<Space>
+nnoremap <silent> <A-!> :NERDTreeToggle $CODE<CR>
+nnoremap <silent> <A-1> :NERDTreeToggle<CR>
+nnoremap <silent> <A-F12> :call ToggleTerminal()<CR>
+nnoremap <silent> <A-h> :tabprevious<CR>
+nnoremap <silent> <A-j> :bnext<CR>
+nnoremap <silent> <A-k> :bprevious<CR>
+nnoremap <silent> <A-l> :tabnext<CR>
+nnoremap <silent> <A-w> :bdelete<CR>
+nnoremap <silent> <F5> :source $MYVIMRC<CR>
+nnoremap <silent> <Leader>b  :Gblame<CR>
+nnoremap <silent> <Leader>eh  :edit C:\Windows\System32\drivers\etc\hosts<CR>
+nnoremap <silent> <Leader>ep  :edit ~/.profile<CR>
+nnoremap <silent> <Leader>es  :edit ~/.ssh/config<CR>
+nnoremap <silent> <Leader>ev  :edit $MYVIMRC<CR>
+nnoremap <silent> <Leader>q  :wq<CR>
+nnoremap <silent> <Leader>w  :w<CR>
+nnoremap <silent> <Leader>sp :set paste!<CR>
+nnoremap <silent> <Leader>u  :set ff=unix<CR>:w<CR>
+nnoremap <silent> gd :call GoInto()<CR>
+noremap <silent> <Leader>c :Commentary<CR>
+noremap <silent> <Leader>l :=<CR>
+tnoremap <silent> <A-F12> <C-W>:call ToggleTerminal()<CR>
+tnoremap <silent> <A-w> :bdelete<CR>
+vnoremap <silent> <Leader>st  :sort<CR>
+vnoremap <silent> V <Plug>(expand_region_shrink)
+vnoremap <silent> v <Plug>(expand_region_expand)
 
 
 """ Section IV. Plugins
 
+" Plugin 'scrooloose/nerdtree'
+let NERDTreeAutoDeleteBuffer = 1
+let NERDTreeChDirMode = 2
 let NERDTreeMinimalUI = 1
-let b:csv_headerline=0
-let g:airline#extensions#tabline#enabled=1
-let g:asyncrun_open = 20
+let NERDTreeQuitOnOpen = 1
+let NERDTreeRemoveFileCmd = 'rm '
+let NERDTreeRespectWildIgnore = 1
+let NERDTreeShowBookmarks = 1
+let NERDTreeShowHidden = 1
+let NERDTreeWinSize = 50
+autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
+
+let b:csv_headerline = 0
 let g:csv_delim='|'
+
+let g:airline#extensions#tabline#enabled = 1
+let g:airline_powerline_fonts = 1
+
+let g:asyncrun_open = 20
+
+let g:ctrlp_clear_cache_on_exit = 0
+let g:ctrlp_follow_symlinks = 1
+let g:ctrlp_map = '<C-n>'
+let g:ctrlp_max_depth = 20
+let g:ctrlp_max_files = 65535
+let g:ctrlp_open_new_file = 't'
+let g:ctrlp_show_hidden = 1
+
 let g:dbext_default_MYSQL_bin = 'mysql'
 let g:dbext_default_SQLITE_bin = 'sqlite3'
 let g:dbext_default_profile_mysql= 'type=MYSQL:user=lirian:dbname=db'
 let g:dbext_default_profile_sqlite = 'type=SQLITE:dbname=~/sqlite.db'
+
+" Plugin 'mattn/emmet-vim'
 let g:user_emmet_install_global = 0
+autocmd FileType html,css,js,tsx ++once EmmetInstall
 
 
 """ Section V. Filetypes
-autocmd BufNewFile,BufRead *.md setl filetype=markdown
-autocmd FileType html,css,js,tsx EmmetInstall
-autocmd FileType sh,html,vim,javascript setl shiftwidth=2 tabstop=2
+autocmd BufNewFile,BufRead *.md ++once setl filetype=markdown
+autocmd FileType sh,html,vim,javascript ++once setl shiftwidth=2 tabstop=2
 
 
 """ Section X. Functions
