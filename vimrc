@@ -85,6 +85,9 @@ if has("gui_win32")
   set shell=~/.lki/scripts/cmdsh.bat
   set shellcmdflag=/c
   autocmd GUIEnter * set lines=39 columns=128
+
+  nnoremap <silent> <A-F12> :call ToggleTerminal()<CR>
+  tnoremap <silent> <A-F12> <C-W>:call ToggleTerminal()<CR>
 endif
 
 if has("win32unix")
@@ -99,7 +102,6 @@ nnoremap <A-r> :AsyncRun<Space>
 nnoremap <A-s> :set<Space>
 nnoremap <silent> <A-!> :NERDTreeToggle $CODE<CR>
 nnoremap <silent> <A-1> :NERDTreeToggle<CR>
-nnoremap <silent> <A-F12> :call ToggleTerminal()<CR>
 nnoremap <silent> <A-h> :tabprevious<CR>
 nnoremap <silent> <A-j> :bnext<CR>
 nnoremap <silent> <A-k> :bprevious<CR>
@@ -118,7 +120,6 @@ nnoremap <silent> <Leader>u  :set ff=unix<CR>:w<CR>
 nnoremap <silent> gd :call GoInto()<CR>
 noremap <silent> <Leader>c :Commentary<CR>
 noremap <silent> <Leader>l :=<CR>
-tnoremap <silent> <A-F12> <C-W>:call ToggleTerminal()<CR>
 tnoremap <silent> <A-w> :bdelete<CR>
 vnoremap <silent> <Leader>st  :sort<CR>
 vnoremap <silent> V <Plug>(expand_region_shrink)
