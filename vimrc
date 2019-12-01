@@ -80,11 +80,15 @@ endif
 if has("gui_win32")
   set autowrite
   set guifont=Fira_Code_Retina:h10
-  set guioptions=
+  set guioptions=c
   set langmenu=en_US
   set shell=~/.lki/scripts/cmdsh.bat
   set shellcmdflag=/c
   autocmd GUIEnter * set lines=39 columns=128
+  if eval("@%") == ""
+    cd ~/.lki
+    autocmd VimEnter * edit $MYVIMRC
+  endif
 
   nnoremap <silent> <A-F12> :call ToggleTerminal()<CR>
   tnoremap <silent> <A-F12> <C-W>:call ToggleTerminal()<CR>
