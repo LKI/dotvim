@@ -41,7 +41,7 @@ set fileencodings=utf-8,gb2313,gb18030,gbk,cp936,latin1
 set nobackup
 set noswapfile
 set termencoding=utf-8
-set wildignore+=.git/,node_modules/,.git/*,node_modules/*,*.pyc
+set wildignore+=*/.git,*/.git/*,*/node_modules,node_modules/*,*/dist,*/dist/*,*.pyc
 set updatetime=250
 
 " Read related
@@ -118,12 +118,16 @@ nnoremap <silent> <Leader>ep  :edit ~/.profile<CR>
 nnoremap <silent> <Leader>es  :edit ~/.ssh/config<CR>
 nnoremap <silent> <Leader>ev  :edit $MYVIMRC<CR>
 nnoremap <silent> <Leader>q  :wq<CR>
-nnoremap <silent> <Leader>w  :w<CR>
 nnoremap <silent> <Leader>sp :set paste!<CR>
 nnoremap <silent> <Leader>u  :set ff=unix<CR>:w<CR>
+nnoremap <silent> <Leader>w  :w<CR>
 nnoremap <silent> gd :call GoInto()<CR>
+nnoremap <silent> j gj
+nnoremap <silent> k gk
 noremap <silent> <Leader>c :Commentary<CR>
 noremap <silent> <Leader>l :=<CR>
+tnoremap <silent> <A-j> <C-W>:bnext!<CR>
+tnoremap <silent> <A-k> <C-W>:bprevious!<CR>
 tnoremap <silent> <A-w> :bdelete<CR>
 vnoremap <silent> <Leader>st  :sort<CR>
 vnoremap <silent> V <Plug>(expand_region_shrink)
@@ -171,6 +175,7 @@ autocmd FileType html,css,js,tsx ++once EmmetInstall
 
 
 """ Section V. Filetypes
+autocmd BufNewFile,BufRead *vimrc ++once setl filetype=vim
 autocmd BufNewFile,BufRead *.md ++once setl filetype=markdown
 autocmd FileType sh,html,vim,javascript ++once setl shiftwidth=2 tabstop=2
 
