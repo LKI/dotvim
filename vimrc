@@ -6,7 +6,7 @@ set rtp+=~/.vim/vundle
 call vundle#begin('~/.vim/modules')
 Plugin 'VundleVim/Vundle.vim'
 
-Plugin 'airblade/vim-gitgutter'
+" Plugin 'airblade/vim-gitgutter'
 Plugin 'ctrlpvim/ctrlp.vim'
 Plugin 'elzr/vim-json'
 Plugin 'ervandew/supertab'
@@ -75,27 +75,24 @@ endif
 
 if has("win32")
   let $LANG='en_US'
-endif
 
-if has("gui_win32")
-  set autowrite
-  set guifont=Fira_Code_Retina:h10
-  set guioptions=c
-  set langmenu=en_US
-  set shell=~/.lki/scripts/cmdsh.bat
-  set shellcmdflag=/c
-  autocmd GUIEnter * set lines=39 columns=128
-  if eval("@%") == ""
-    cd ~/.lki
-    autocmd VimEnter * edit $MYVIMRC
+  if has("gui_win32")
+    set autowrite
+    set guifont=Fira_Code_Retina:h10
+    set guioptions=c
+    set langmenu=en_US
+    set shell=~/.lki/scripts/cmdsh.bat
+    set shellcmdflag=/c
+    autocmd GUIEnter * set lines=39 columns=128
+    if eval("@%") == ""
+      cd ~/.lki
+      autocmd VimEnter * edit $MYVIMRC
+    endif
+    nnoremap <silent> <A-F12> :call ToggleTerminal()<CR>
+    tnoremap <silent> <A-F12> <C-W>:call ToggleTerminal()<CR>
+  else
+    set termguicolors
   endif
-
-  nnoremap <silent> <A-F12> :call ToggleTerminal()<CR>
-  tnoremap <silent> <A-F12> <C-W>:call ToggleTerminal()<CR>
-endif
-
-if has("win32unix")
-  set termguicolors
 endif
 
 
