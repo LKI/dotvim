@@ -16,12 +16,12 @@ Plugin 'scrooloose/nerdtree'
 Plugin 'skywind3000/asyncrun.vim'
 Plugin 'terryma/vim-expand-region'
 Plugin 'tpope/vim-commentary'
+Plugin 'tpope/vim-dadbod'
 Plugin 'tpope/vim-fugitive'
+Plugin 'tpope/vim-repeat'
 Plugin 'tpope/vim-surround'
 Plugin 'tpope/vim-unimpaired'
-Plugin 'tpope/vim-repeat'
 Plugin 'vim-airline/vim-airline'
-Plugin 'vim-scripts/dbext.vim'
 Plugin 'wakatime/vim-wakatime'
 Plugin 'whatyouhide/vim-gotham'
 Plugin 'xuyuanp/nerdtree-git-plugin'
@@ -160,11 +160,6 @@ let g:ctrlp_max_depth = 20
 let g:ctrlp_max_files = 65535
 let g:ctrlp_open_new_file = 't'
 let g:ctrlp_show_hidden = 1
-
-let g:dbext_default_MYSQL_bin = 'mysql'
-let g:dbext_default_SQLITE_bin = 'sqlite3'
-let g:dbext_default_profile_mysql= 'type=MYSQL:user=lirian:dbname=db'
-let g:dbext_default_profile_sqlite = 'type=SQLITE:dbname=~/sqlite.db'
 
 " Plugin 'mattn/emmet-vim'
 let g:user_emmet_install_global = 0
