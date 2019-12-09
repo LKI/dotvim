@@ -1,33 +1,30 @@
 """ Section I. Preparation
 "" Plugins
 
-set rtp+=~/.vim/vundle
+call plug#begin('~/.vim/modules')
 
-call vundle#begin('~/.vim/modules')
-Plugin 'VundleVim/Vundle.vim'
+" Plug 'airblade/vim-gitgutter'
+Plug 'ctrlpvim/ctrlp.vim'
+Plug 'elzr/vim-json'
+Plug 'ervandew/supertab'
+Plug 'fatih/vim-go'
+Plug 'mattn/emmet-vim'
+Plug 'plasticboy/vim-markdown'
+Plug 'scrooloose/nerdtree'
+Plug 'skywind3000/asyncrun.vim'
+Plug 'terryma/vim-expand-region'
+Plug 'tpope/vim-commentary'
+Plug 'tpope/vim-dadbod'
+Plug 'tpope/vim-fugitive'
+Plug 'tpope/vim-repeat'
+Plug 'tpope/vim-surround'
+Plug 'tpope/vim-unimpaired'
+Plug 'vim-airline/vim-airline'
+Plug 'wakatime/vim-wakatime'
+Plug 'whatyouhide/vim-gotham'
+Plug 'xuyuanp/nerdtree-git-plugin'
 
-" Plugin 'airblade/vim-gitgutter'
-Plugin 'ctrlpvim/ctrlp.vim'
-Plugin 'elzr/vim-json'
-Plugin 'ervandew/supertab'
-Plugin 'fatih/vim-go'
-Plugin 'mattn/emmet-vim'
-Plugin 'plasticboy/vim-markdown'
-Plugin 'scrooloose/nerdtree'
-Plugin 'skywind3000/asyncrun.vim'
-Plugin 'terryma/vim-expand-region'
-Plugin 'tpope/vim-commentary'
-Plugin 'tpope/vim-dadbod'
-Plugin 'tpope/vim-fugitive'
-Plugin 'tpope/vim-repeat'
-Plugin 'tpope/vim-surround'
-Plugin 'tpope/vim-unimpaired'
-Plugin 'vim-airline/vim-airline'
-Plugin 'wakatime/vim-wakatime'
-Plugin 'whatyouhide/vim-gotham'
-Plugin 'xuyuanp/nerdtree-git-plugin'
-
-call vundle#end()
+call plug#end()
 
 "" General
 filetype plugin indent on  " help :filetype-overview
