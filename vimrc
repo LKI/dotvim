@@ -42,12 +42,13 @@ set wildignore+=*/.git,*/.git/*,*/node_modules,node_modules/*,*/dist,*/dist/*,*.
 set updatetime=250
 
 " Read related
+set hidden
 set hlsearch
 set incsearch
+set laststatus=2
 set number
 set relativenumber
 set wildmenu
-set laststatus=2
 
 " Write related
 set autoindent
@@ -91,6 +92,8 @@ if has("win32")
     endif
     nnoremap <silent> <A-F12> :call ToggleTerminal()<CR>
     tnoremap <silent> <A-F12> <C-W>:call ToggleTerminal()<CR>
+    tnoremap <silent> <S-F12> <C-W>N
+    nnoremap <silent> <S-F12> i
   else
     set termguicolors
   endif
@@ -109,12 +112,12 @@ nnoremap <silent> <A-j> :bnext<CR>
 nnoremap <silent> <A-k> :bprevious<CR>
 nnoremap <silent> <A-l> :tabnext<CR>
 nnoremap <silent> <A-w> :bdelete<CR>
-nnoremap <silent> <F5> :source $MYVIMRC<CR>
+nnoremap <silent> <F5> :source ~/.vim/vimrc<CR>
 nnoremap <silent> <Leader>b  :Gblame<CR>
 nnoremap <silent> <Leader>eh  :edit C:\Windows\System32\drivers\etc\hosts<CR>
 nnoremap <silent> <Leader>ep  :edit ~/.profile<CR>
 nnoremap <silent> <Leader>es  :edit ~/.ssh/config<CR>
-nnoremap <silent> <Leader>ev  :edit $MYVIMRC<CR>
+nnoremap <silent> <Leader>ev  :edit ~/.vim/vimrc<CR>
 nnoremap <silent> <Leader>q  :wq<CR>
 nnoremap <silent> <Leader>sp :set paste!<CR>
 nnoremap <silent> <Leader>u  :set ff=unix<CR>:w<CR>
