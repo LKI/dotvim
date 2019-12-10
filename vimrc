@@ -3,7 +3,6 @@
 
 call plug#begin('~/.vim/modules')
 
-" Plug 'airblade/vim-gitgutter'
 Plug 'ctrlpvim/ctrlp.vim'
 Plug 'elzr/vim-json'
 Plug 'ervandew/supertab'
@@ -69,6 +68,7 @@ colorscheme gotham256
 
 if has("unix")
   set t_Co=256
+  set termguicolors
 endif
 
 if has("win32")
@@ -85,6 +85,7 @@ if has("win32")
     if eval("@%") == ""
       cd ~/.lki
       autocmd VimEnter * edit $MYVIMRC
+      autocmd VimEnter * set filetype=vim
     endif
     nnoremap <silent> <A-F12> :call ToggleTerminal()<CR>
     tnoremap <silent> <A-F12> <C-W>:call ToggleTerminal()<CR>
