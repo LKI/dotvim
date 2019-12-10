@@ -80,11 +80,13 @@ if has("win32")
     set guioptions=c
     set langmenu=en_US
     set shell=~/.lki/scripts/cmdsh.bat
-    set shellcmdflag=/c
+    set shellcmdflag=-c
+    set shellslash
+    set renderoptions=type:directx
     autocmd GUIEnter * set lines=39 columns=128
     if eval("@%") == ""
       cd ~/.lki
-      autocmd VimEnter * edit $MYVIMRC
+      autocmd VimEnter * edit ~/.vim/vimrc
       autocmd VimEnter * set filetype=vim
     endif
     nnoremap <silent> <A-F12> :call ToggleTerminal()<CR>
@@ -122,8 +124,6 @@ nnoremap <silent> j gj
 nnoremap <silent> k gk
 noremap <silent> <Leader>c :Commentary<CR>
 noremap <silent> <Leader>l :=<CR>
-tnoremap <silent> <A-j> <C-W>:bnext!<CR>
-tnoremap <silent> <A-k> <C-W>:bprevious!<CR>
 tnoremap <silent> <A-w> :bdelete<CR>
 vnoremap <silent> <Leader>st  :sort<CR>
 vnoremap <silent> V <Plug>(expand_region_shrink)
@@ -165,10 +165,22 @@ let g:user_emmet_install_global = 0
 autocmd FileType html,css,js,tsx ++once EmmetInstall
 
 
-""" Section V. Filetypes
-autocmd BufNewFile,BufRead *vimrc ++once setl filetype=vim
-autocmd BufNewFile,BufRead *.md ++once setl filetype=markdown
-autocmd FileType sh,html,vim,javascript ++once setl shiftwidth=2 tabstop=2
+""" Section V. Autocmds
+augroup setFileType
+  autocmd!
+  autocmd BufNewFile,BufRead *vimrc ++once setl filetype=vim
+  autocmd BufNewFile,BufRead *.md ++once setl filetype=markdown
+augroup END
+
+augroup setIndent
+  autocmd!
+  autocmd FileType sh,html,vim,javascript ++once setl shiftwidth=2 tabstop=2
+augroup END
+
+augroup ignoreBuffer  " inspired by https://vi.stackexchange.com/questions/16708/
+  autocmd!
+  autocmd TerminalOpen * set nobuflisted
+augroup END
 
 
 """ Section X. Functions
