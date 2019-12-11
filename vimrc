@@ -105,6 +105,7 @@ endif
 """ Section III. Keymap
 
 let mapleader="\<Space>"
+
 nnoremap <A-r> :AsyncRun<Space>
 nnoremap <A-s> :set<Space>
 nnoremap <silent> <A-!> :NERDTreeToggle $CODE<CR>
@@ -116,14 +117,17 @@ nnoremap <silent> <A-l> :tabnext<CR>
 nnoremap <silent> <A-w> :bdelete<CR>
 nnoremap <silent> <F5> :source ~/.vim/vimrc<CR>
 nnoremap <silent> <Leader>b  :Gblame<CR>
+nnoremap <silent> <Leader>eg  :edit ~/.gitconfig<CR>
 nnoremap <silent> <Leader>eh  :edit C:\Windows\System32\drivers\etc\hosts<CR>
 nnoremap <silent> <Leader>ep  :edit ~/.profile<CR>
 nnoremap <silent> <Leader>es  :edit ~/.ssh/config<CR>
 nnoremap <silent> <Leader>ev  :edit ~/.vim/vimrc<CR>
-nnoremap <silent> <Leader>gst  :Gstatus<CR>
 nnoremap <silent> <Leader>gca  :Gcommit -a<CR>
-nnoremap <silent> <Leader>gps  :Gpush<CR>
+nnoremap <silent> <Leader>glg  :G logg<CR>
 nnoremap <silent> <Leader>gpl  :Gpull --rebase<CR>
+nnoremap <silent> <Leader>gps  :Gpush<CR>
+nnoremap <silent> <Leader>gst  :w<CR>:Gstatus<CR>
+nnoremap <silent> <Leader>gwip :G wip<CR>
 nnoremap <silent> <Leader>q  :wq<CR>
 nnoremap <silent> <Leader>sp :set paste!<CR>
 nnoremap <silent> <Leader>u  :set ff=unix<CR>:w<CR>
@@ -176,6 +180,11 @@ augroup END
 augroup setIndent
   autocmd!
   autocmd FileType sh,html,vim,javascript ++once setl shiftwidth=2 tabstop=2
+augroup END
+
+augroup mapping
+  autocmd!
+  autocmd FileType gitcommit ++once nnoremap <silent> <A-w> :w<CR>:bdelete<CR>
 augroup END
 
 augroup ignoreBuffer  " inspired by https://vi.stackexchange.com/questions/16708/
