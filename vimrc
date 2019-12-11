@@ -3,10 +3,11 @@
 
 call plug#begin('~/.vim/modules')
 
-Plug 'ctrlpvim/ctrlp.vim'
 Plug 'elzr/vim-json'
 Plug 'ervandew/supertab'
 Plug 'fatih/vim-go'
+Plug 'junegunn/fzf', { 'do': './install --all' }
+Plug 'junegunn/fzf.vim'
 Plug 'mattn/emmet-vim'
 Plug 'plasticboy/vim-markdown'
 Plug 'scrooloose/nerdtree'
@@ -80,18 +81,18 @@ if has("win32")
     set guifont=Fira_Code_Retina:h10
     set guioptions=c
     set langmenu=en_US
-    set shell=~/.lki/scripts/cmdsh.bat
-    set shellcmdflag=-c
-    set shellslash
     set renderoptions=type:directx
     autocmd GUIEnter * set lines=39 columns=128
     if eval("@%") == ""
-      cd ~/.lki
+      cd ~/.vim
       autocmd VimEnter * edit ~/.vim/vimrc
       autocmd VimEnter * set filetype=vim
     endif
     nnoremap <silent> <A-F12> :call ToggleTerminal()<CR>
     tnoremap <silent> <A-F12> <C-W>:call ToggleTerminal()<CR>
+    nnoremap <silent> <C-N> :call LoadFZF()<CR>
+    nnoremap <silent> <C-F> :call ToggleRg()<CR>
+    tnoremap <silent> <C-F> <C-W>:call ToggleRg()<CR>
     tnoremap <silent> <S-F12> <C-W>N
     nnoremap <silent> <S-F12> i
   else
@@ -155,14 +156,6 @@ let g:airline_powerline_fonts = 1
 
 let g:asyncrun_open = 20
 
-let g:ctrlp_clear_cache_on_exit = 0
-let g:ctrlp_follow_symlinks = 1
-let g:ctrlp_map = '<C-n>'
-let g:ctrlp_max_depth = 20
-let g:ctrlp_max_files = 65535
-let g:ctrlp_open_new_file = 't'
-let g:ctrlp_show_hidden = 1
-
 " Plugin 'mattn/emmet-vim'
 let g:user_emmet_install_global = 0
 autocmd FileType html,css,js,tsx ++once EmmetInstall
@@ -189,9 +182,14 @@ augroup END
 """ Section X. Functions
 
 func! ToggleTerminal()  " inspired by pakutoma/toggle-terminal
-  let terminalBuffer = get(filter(range(1, bufnr("$")), "getbufvar(v:val, '&buftype') == 'terminal'"), 0, -1)
+  " let terminalBuffer = get(filter(range(1, bufnr("$")), "getbufvar(v:val, '&buftype') == 'terminal'"), 0, -1)
+  let terminalBuffer = get(filter(range(1, bufnr("$")), "bufname(v:val) == 'terminalBuffer'"), 0, -1)
   if terminalBuffer == -1 || bufloaded(terminalBuffer) != 1
-    execute "belowright term ++close ++kill=term"
+    let [shell, shellcmdflag] = [&shell, &shellcmdflag]
+    set shell=$CodeEnv/Git/usr/bin/bash.exe shellcmdflag="-l -i"
+    execute "belowright term ++close ++kill=term ++type=conpty"
+    let [&shell, &shellcmdflag] = [shell, shellcmdflag]
+    file terminalBuffer
   else
     let terminalWindow = bufwinnr(terminalBuffer)
     if terminalWindow == -1
@@ -208,6 +206,38 @@ func! GoInto()
     normal cdCD
   else
     normal <C-]>
+  endif
+endfunc
+
+func! LoadFZF()
+  let fzfBuffer = get(filter(range(1, bufnr("$")), "bufname(v:val) == 'fzfBuffer'"), 0, -1)
+  if fzfBuffer == -1 || bufloaded(fzfBuffer) != 1
+    execute "FZF"
+    file fzfBuffer
+  else
+    let fzfWindow = bufwinnr(fzfBuffer)
+    if fzfWindow == -1
+      execute "belowright sbuffer ".fzfBuffer
+    else
+      execute fzfWindow." wincmd w"
+      hide
+    endif
+  endif
+endfunc
+
+func! ToggleRg()
+  let rgBuffer = get(filter(range(1, bufnr("$")), "bufname(v:val) == 'rgBuffer'"), 0, -1)
+  if rgBuffer == -1 || bufloaded(rgBuffer) != 1
+    execute "Rg"
+    file rgBuffer
+  else
+    let rgWindow = bufwinnr(rgBuffer)
+    if rgWindow == -1
+      execute "belowright sbuffer ".rgBuffer
+    else
+      execute rgWindow." wincmd w"
+      hide
+    endif
   endif
 endfunc
 
