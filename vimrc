@@ -15,6 +15,7 @@ Plug 'skywind3000/asyncrun.vim'
 Plug 'terryma/vim-expand-region'
 Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-dadbod'
+Plug 'tpope/vim-dispatch'
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-surround'
@@ -90,9 +91,9 @@ if has("win32")
     endif
     nnoremap <silent> <A-F12> :call ToggleTerminal()<CR>
     tnoremap <silent> <A-F12> <C-W>:call ToggleTerminal()<CR>
-    nnoremap <silent> <C-N> :call LoadFZF()<CR>
-    nnoremap <silent> <C-F> :call ToggleRg()<CR>
-    tnoremap <silent> <C-F> <C-W>:call ToggleRg()<CR>
+    nnoremap <silent> <A-N> :call LoadFZF()<CR>
+    nnoremap <silent> <A-F> :call ToggleRg()<CR>
+    tnoremap <silent> <A-F> <C-W>:call ToggleRg()<CR>
     tnoremap <silent> <S-F12> <C-W>N
     nnoremap <silent> <S-F12> i
   else
@@ -119,6 +120,10 @@ nnoremap <silent> <Leader>eh  :edit C:\Windows\System32\drivers\etc\hosts<CR>
 nnoremap <silent> <Leader>ep  :edit ~/.profile<CR>
 nnoremap <silent> <Leader>es  :edit ~/.ssh/config<CR>
 nnoremap <silent> <Leader>ev  :edit ~/.vim/vimrc<CR>
+nnoremap <silent> <Leader>gst  :Gstatus<CR>
+nnoremap <silent> <Leader>gca  :Gcommit -a<CR>
+nnoremap <silent> <Leader>gps  :Gpush<CR>
+nnoremap <silent> <Leader>gpl  :Gpull --rebase<CR>
 nnoremap <silent> <Leader>q  :wq<CR>
 nnoremap <silent> <Leader>sp :set paste!<CR>
 nnoremap <silent> <Leader>u  :set ff=unix<CR>:w<CR>
@@ -185,10 +190,10 @@ func! ToggleTerminal()  " inspired by pakutoma/toggle-terminal
   " let terminalBuffer = get(filter(range(1, bufnr("$")), "getbufvar(v:val, '&buftype') == 'terminal'"), 0, -1)
   let terminalBuffer = get(filter(range(1, bufnr("$")), "bufname(v:val) == 'terminalBuffer'"), 0, -1)
   if terminalBuffer == -1 || bufloaded(terminalBuffer) != 1
-    let [shell, shellcmdflag] = [&shell, &shellcmdflag]
-    set shell=$CodeEnv/Git/usr/bin/bash.exe shellcmdflag="-l -i"
+    let shell = &shell
+    set shell=cmdsh.bat
     execute "belowright term ++close ++kill=term ++type=conpty"
-    let [&shell, &shellcmdflag] = [shell, shellcmdflag]
+    let &shell = shell
     file terminalBuffer
   else
     let terminalWindow = bufwinnr(terminalBuffer)
