@@ -185,7 +185,7 @@ augroup END
 
 augroup mapping
   autocmd!
-  autocmd FileType gitcommit ++once nnoremap <silent> <A-w> :w<CR>:bdelete<CR>
+  autocmd FileType gitcommit ++once nnoremap <buffer> <silent> <A-w> :w<CR>:bdelete<CR>
 augroup END
 
 augroup ignoreBuffer  " inspired by https://vi.stackexchange.com/questions/16708/
