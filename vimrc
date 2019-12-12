@@ -92,6 +92,7 @@ if has("win32")
     nnoremap <silent> <A-F12> :call ToggleTerminal()<CR>
     tnoremap <silent> <A-F12> <C-W>:call ToggleTerminal()<CR>
     nnoremap <silent> <A-N> :call LoadFZF()<CR>
+    nnoremap <silent> <A-A> :Gblame<CR>
     nnoremap <silent> <A-F> :call ToggleRg()<CR>
     tnoremap <silent> <A-F> <C-W>:call ToggleRg()<CR>
     tnoremap <silent> <S-F12> <C-W>N
@@ -123,7 +124,7 @@ nnoremap <silent> <Leader>ep  :edit ~/.profile<CR>
 nnoremap <silent> <Leader>es  :edit ~/.ssh/config<CR>
 nnoremap <silent> <Leader>ev  :edit ~/.vim/vimrc<CR>
 nnoremap <silent> <Leader>gca  :Gcommit -a<CR>
-nnoremap <silent> <Leader>glg  :G logg<CR>
+nnoremap <silent> <Leader>glg  :G log --all --graph --pretty=format:'%h - (%cr)%d %s <%an>' --abbrev-commit<CR>:setlocal filetype=gitlog<CR>
 nnoremap <silent> <Leader>gpl  :Gpull --rebase<CR>
 nnoremap <silent> <Leader>gps  :Gpush<CR>
 nnoremap <silent> <Leader>gst  :w<CR>:Gstatus<CR>
