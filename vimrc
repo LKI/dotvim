@@ -116,7 +116,7 @@ nnoremap <silent> <A-j> :bnext<CR>
 nnoremap <silent> <A-k> :bprevious<CR>
 nnoremap <silent> <A-l> :tabnext<CR>
 nnoremap <silent> <A-w> :bdelete<CR>
-nnoremap <silent> <F5> :source ~/.vim/vimrc<CR>
+nnoremap <silent> <F5> :w<CR>:source $MYVIMRC<CR>
 nnoremap <silent> <Leader>b  :Gblame<CR>
 nnoremap <silent> <Leader>eg  :edit ~/.gitconfig<CR>
 nnoremap <silent> <Leader>eh  :edit C:\Windows\System32\drivers\etc\hosts<CR>
@@ -124,9 +124,11 @@ nnoremap <silent> <Leader>ep  :edit ~/.profile<CR>
 nnoremap <silent> <Leader>es  :edit ~/.ssh/config<CR>
 nnoremap <silent> <Leader>ev  :edit ~/.vim/vimrc<CR>
 nnoremap <silent> <Leader>gca  :Gcommit -a<CR>
+nnoremap <silent> <Leader>gco  :G co -b<Space>
 nnoremap <silent> <Leader>glg  :G log --all --graph --pretty=format:'%h - (%cr)%d %s <%an>' --abbrev-commit<CR>:setlocal filetype=gitlog<CR>
 nnoremap <silent> <Leader>gpl  :Gpull --rebase<CR>
 nnoremap <silent> <Leader>gps  :Gpush<CR>
+nnoremap <silent> <Leader>gpod  :G pod<CR>
 nnoremap <silent> <Leader>gst  :w<CR>:Gstatus<CR>
 nnoremap <silent> <Leader>gwip :G wip<CR>
 nnoremap <silent> <Leader>q  :wq<CR>
@@ -164,7 +166,8 @@ let g:csv_delim='|'
 let g:airline#extensions#tabline#enabled = 1
 let g:airline_powerline_fonts = 1
 
-let g:asyncrun_open = 20
+let g:asyncrun_open = 10
+let g:vim_markdown_new_list_item_indent = 2
 
 " Plugin 'mattn/emmet-vim'
 let g:user_emmet_install_global = 0
@@ -180,7 +183,7 @@ augroup END
 
 augroup setIndent
   autocmd!
-  autocmd FileType sh,html,vim,javascript ++once setl shiftwidth=2 tabstop=2
+  autocmd FileType sh,html,vim,javascript,markdown ++once setl shiftwidth=2 tabstop=2
 augroup END
 
 augroup mapping
@@ -190,7 +193,8 @@ augroup END
 
 augroup ignoreBuffer  " inspired by https://vi.stackexchange.com/questions/16708/
   autocmd!
-  autocmd TerminalOpen * set nobuflisted
+  autocmd TerminalOpen * setl nobuflisted
+  autocmd FileType qf setl nobuflisted
 augroup END
 
 
