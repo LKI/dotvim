@@ -5,7 +5,6 @@ call plug#begin('~/.vim/modules')
 
 Plug 'elzr/vim-json'
 Plug 'ervandew/supertab'
-Plug 'fatih/vim-go'
 Plug 'junegunn/fzf', { 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
 Plug 'mattn/emmet-vim'
@@ -24,6 +23,13 @@ Plug 'vim-airline/vim-airline'
 Plug 'wakatime/vim-wakatime'
 Plug 'whatyouhide/vim-gotham'
 Plug 'xuyuanp/nerdtree-git-plugin'
+
+" Golang
+Plug 'fatih/vim-go', {'do': ':GoInstallBinaries'}
+
+" TypeScript
+Plug 'leafgarland/typescript-vim'
+Plug 'HerringtonDarkholme/yats.vim'
 
 call plug#end()
 
@@ -173,6 +179,7 @@ let g:vim_markdown_new_list_item_indent = 2
 let g:user_emmet_install_global = 0
 autocmd FileType html,css,js,tsx ++once EmmetInstall
 
+let g:yats_host_keyword = 1
 
 """ Section V. Autocmds
 augroup setFileType
@@ -188,7 +195,7 @@ augroup END
 
 augroup mapping
   autocmd!
-  autocmd FileType gitcommit ++once nnoremap <buffer> <silent> <A-w> :w<CR>:bdelete<CR>
+  autocmd FileType gitcommit nnoremap <buffer> <silent> <A-w> :w<CR>:bdelete<CR>
 augroup END
 
 augroup ignoreBuffer  " inspired by https://vi.stackexchange.com/questions/16708/
