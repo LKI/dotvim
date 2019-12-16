@@ -4,7 +4,6 @@
 call plug#begin('~/.vim/modules')
 
 Plug 'elzr/vim-json'
-Plug 'ervandew/supertab'
 Plug 'junegunn/fzf', { 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
 Plug 'mattn/emmet-vim'
@@ -24,12 +23,14 @@ Plug 'wakatime/vim-wakatime'
 Plug 'whatyouhide/vim-gotham'
 Plug 'xuyuanp/nerdtree-git-plugin'
 
-" Golang
-Plug 'fatih/vim-go', {'do': ':GoInstallBinaries'}
-
-" TypeScript
-Plug 'leafgarland/typescript-vim'
+" Language Servers
 Plug 'HerringtonDarkholme/yats.vim'
+Plug 'fatih/vim-go', {'do': ':GoInstallBinaries'}  " Golang
+Plug 'leafgarland/typescript-vim'
+Plug 'prabirshrestha/async.vim'
+Plug 'prabirshrestha/asyncomplete-lsp.vim'
+Plug 'prabirshrestha/asyncomplete.vim'
+Plug 'prabirshrestha/vim-lsp'
 
 call plug#end()
 
@@ -204,6 +205,23 @@ augroup ignoreBuffer  " inspired by https://vi.stackexchange.com/questions/16708
   autocmd FileType qf setl nobuflisted
 augroup END
 
+
+""" Section VI. Language Servers
+
+inoremap <expr> <Tab>   pumvisible() ? "\<C-n>" : "\<Tab>"
+inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
+inoremap <expr> <cr>    pumvisible() ? "\<C-y>" : "\<cr>"
+
+" npm install -g typescript typescript-language-server
+" https://github.com/prabirshrestha/vim-lsp/wiki/Servers-TypeScript
+if executable('typescript-language-server')
+    autocmd User lsp_setup call lsp#register_server({
+        \ 'name': 'typescript-language-server',
+        \ 'cmd': {server_info->[&shell, &shellcmdflag, 'typescript-language-server --stdio']},
+        \ 'root_uri':{server_info->lsp#utils#path_to_uri(lsp#utils#find_nearest_parent_file_directory(lsp#utils#get_buffer_path(), 'tsconfig.json'))},
+        \ 'whitelist': ['typescript', 'typescript.tsx', 'typescriptreact'],
+        \ })
+endif
 
 """ Section X. Functions
 
