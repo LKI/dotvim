@@ -110,12 +110,14 @@ if has("win32")
     endif
     nnoremap <silent> <A-A> :Gblame<CR>
     nnoremap <silent> <A-F12> :call ToggleTerminal()<CR>
+    nnoremap <silent> <A-t> :call ToggleRepl()<CR>
     nnoremap <silent> <A-f> :Ag<CR>
     nnoremap <silent> <A-n> :FZF<CR>
     nnoremap <silent> <A-o> :GFiles<CR>
     nnoremap <silent> <Leader>go :call OpenGitRepo()<CR>
     nnoremap <silent> <S-F12> i
     tnoremap <silent> <A-F12> <C-W>:call ToggleTerminal()<CR>
+    tnoremap <silent> <A-t> <C-W>:call ToggleRepl()<CR>
     tnoremap <silent> <S-F12> <C-W>N
   else
     set termguicolors
@@ -276,15 +278,31 @@ func! ToggleTerminal()  " inspired by pakutoma/toggle-terminal
   if terminalBuffer == -1 || bufloaded(terminalBuffer) != 1
     let shell = &shell
     set shell=cmdsh.bat
-    execute "belowright term ++close ++kill=term ++type=conpty"
+    execute "botright term ++close ++kill=term ++type=conpty"
     let &shell = shell
     file terminalBuffer
   else
     let terminalWindow = bufwinnr(terminalBuffer)
     if terminalWindow == -1
-      execute "belowright sbuffer ".terminalBuffer
+      execute "botright sbuffer ".terminalBuffer
     else
       execute terminalWindow." wincmd w"
+      hide
+    endif
+  endif
+endfunc
+
+func! ToggleRepl()
+  let replBuffer = get(filter(range(1, bufnr("$")), "bufname(v:val) == 'replBuffer'"), 0, -1)
+  if replBuffer == -1 || bufloaded(replBuffer) != 1
+    execute "botright term ++close ++kill=term ++type=conpty node"
+    file replBuffer
+  else
+    let replWindow = bufwinnr(replBuffer)
+    if replWindow == -1
+      execute "botright sbuffer ".replBuffer
+    else
+      execute replWindow." wincmd w"
       hide
     endif
   endif
