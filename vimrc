@@ -3,14 +3,8 @@
 
 call plug#begin('~/.vim/modules')
 
-Plug 'elzr/vim-json'
-Plug 'junegunn/fzf', { 'do': './install --all' }
-Plug 'junegunn/fzf.vim'
-Plug 'mattn/emmet-vim'
-Plug 'plasticboy/vim-markdown'
-Plug 'scrooloose/nerdtree'
+" Basic
 Plug 'skywind3000/asyncrun.vim'
-Plug 'terryma/vim-expand-region'
 Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-dadbod'
 Plug 'tpope/vim-dispatch'
@@ -18,19 +12,35 @@ Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-unimpaired'
-Plug 'vim-airline/vim-airline'
 Plug 'wakatime/vim-wakatime'
+
+" Display
+Plug 'vim-airline/vim-airline'
 Plug 'whatyouhide/vim-gotham'
+
+" Jumpping
+Plug 'junegunn/fzf', { 'do': './install --all' }
+Plug 'junegunn/fzf.vim'
+Plug 'scrooloose/nerdtree'
 Plug 'xuyuanp/nerdtree-git-plugin'
 
 " Language Servers
-Plug 'HerringtonDarkholme/yats.vim'
-Plug 'fatih/vim-go', {'do': ':GoInstallBinaries'}  " Golang
-Plug 'leafgarland/typescript-vim'
 Plug 'prabirshrestha/async.vim'
 Plug 'prabirshrestha/asyncomplete-lsp.vim'
 Plug 'prabirshrestha/asyncomplete.vim'
 Plug 'prabirshrestha/vim-lsp'
+
+" FileTypes
+" -> TypeScript
+Plug 'HerringtonDarkholme/yats.vim'
+Plug 'leafgarland/typescript-vim'
+Plug 'mattn/emmet-vim'
+" -> Golang
+Plug 'fatih/vim-go', { 'do': ':GoInstallBinaries' }
+" -> JSON
+Plug 'elzr/vim-json', { 'for': 'json' }
+" -> Markdown
+Plug 'plasticboy/vim-markdown', { 'for': 'markdown' }
 
 call plug#end()
 
@@ -96,14 +106,15 @@ if has("win32")
       autocmd VimEnter * edit ~/.vim/vimrc
       autocmd VimEnter * set filetype=vim
     endif
-    nnoremap <silent> <A-F12> :call ToggleTerminal()<CR>
-    tnoremap <silent> <A-F12> <C-W>:call ToggleTerminal()<CR>
-    nnoremap <silent> <A-N> :call LoadFZF()<CR>
     nnoremap <silent> <A-A> :Gblame<CR>
+    nnoremap <silent> <A-F12> :call ToggleTerminal()<CR>
     nnoremap <silent> <A-F> :call ToggleRg()<CR>
+    nnoremap <silent> <A-N> :GFiles<CR>
+    nnoremap <silent> <Leader>go :call OpenGitRepo()<CR>
+    nnoremap <silent> <S-F12> i
+    tnoremap <silent> <A-F12> <C-W>:call ToggleTerminal()<CR>
     tnoremap <silent> <A-F> <C-W>:call ToggleRg()<CR>
     tnoremap <silent> <S-F12> <C-W>N
-    nnoremap <silent> <S-F12> i
   else
     set termguicolors
   endif
@@ -116,6 +127,7 @@ let mapleader="\<Space>"
 
 nnoremap <A-r> :AsyncRun<Space>
 nnoremap <A-s> :set<Space>
+nnoremap <Leader>gco  :G co -b<Space>
 nnoremap <silent> <A-!> :NERDTreeToggle $CODE<CR>
 nnoremap <silent> <A-1> :NERDTreeToggle<CR>
 nnoremap <silent> <A-h> :tabprevious<CR>
@@ -131,11 +143,11 @@ nnoremap <silent> <Leader>ep  :edit ~/.profile<CR>
 nnoremap <silent> <Leader>es  :edit ~/.ssh/config<CR>
 nnoremap <silent> <Leader>ev  :edit ~/.vim/vimrc<CR>
 nnoremap <silent> <Leader>gca  :Gcommit -a<CR>
-nnoremap <silent> <Leader>gco  :G co -b<Space>
 nnoremap <silent> <Leader>glg  :G log --all --graph --pretty=format:'%h - (%cr)%d %s <%an>' --abbrev-commit<CR>:setlocal filetype=gitlog<CR>
 nnoremap <silent> <Leader>gpl  :Gpull --rebase<CR>
-nnoremap <silent> <Leader>gps  :Gpush<CR>
 nnoremap <silent> <Leader>gpod  :G pod<CR>
+nnoremap <silent> <Leader>gps  :Gpush<CR>
+nnoremap <silent> <Leader>grd  :Grebase o/dev<Space>
 nnoremap <silent> <Leader>gst  :w<CR>:Gstatus<CR>
 nnoremap <silent> <Leader>gwip :G wip<CR>
 nnoremap <silent> <Leader>q  :wq<CR>
@@ -149,8 +161,6 @@ noremap <silent> <Leader>c :Commentary<CR>
 noremap <silent> <Leader>l :=<CR>
 tnoremap <silent> <A-w> :bdelete<CR>
 vnoremap <silent> <Leader>st  :sort<CR>
-vnoremap <silent> V <Plug>(expand_region_shrink)
-vnoremap <silent> v <Plug>(expand_region_expand)
 
 
 """ Section IV. Plugins
@@ -253,20 +263,7 @@ func! GoInto()
   endif
 endfunc
 
-func! LoadFZF()
-  let fzfBuffer = get(filter(range(1, bufnr("$")), "bufname(v:val) == 'fzfBuffer'"), 0, -1)
-  if fzfBuffer == -1 || bufloaded(fzfBuffer) != 1
-    execute "FZF"
-    file fzfBuffer
-  else
-    let fzfWindow = bufwinnr(fzfBuffer)
-    if fzfWindow == -1
-      execute "belowright sbuffer ".fzfBuffer
-    else
-      execute fzfWindow." wincmd w"
-      hide
-    endif
-  endif
+func! OpenGitRepo()
 endfunc
 
 func! ToggleRg()
