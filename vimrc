@@ -110,15 +110,15 @@ if has("win32")
       autocmd VimEnter * execute "NERDTreeToggle $CODE"
     endif
     nnoremap <silent> <A-A> :Gblame --date=sdort<CR>
-    nnoremap <silent> <A-F12> :call ToggleTerminal()<CR>
-    nnoremap <silent> <A-t> :call ToggleRepl()<CR>
+    nnoremap <silent> <A-F12> :call Togable("gitbash", "D:/CodeEnv/Git/bin/bash.exe -l -i")<CR>
+    nnoremap <silent> <A-t> :call Togable("node")<CR>
     nnoremap <silent> <A-f> :Ag<CR>
     nnoremap <silent> <A-n> :FZF<CR>
     nnoremap <silent> <A-o> :GFiles<CR>
     nnoremap <silent> <Leader>go :call OpenGitRepo()<CR>
     nnoremap <silent> <S-F12> i
-    tnoremap <silent> <A-F12> <C-W>:call ToggleTerminal()<CR>
-    tnoremap <silent> <A-t> <C-W>:call ToggleRepl()<CR>
+    tnoremap <silent> <A-F12> <C-W>:call Togable("gitbash", "D:/CodeEnv/Git/bin/bash.exe -l -i")<CR>
+    tnoremap <silent> <A-t> <C-W>:call Togable("node")<CR>
     tnoremap <silent> <S-F12> <C-W>N
   else
     set termguicolors
@@ -274,37 +274,22 @@ endif
 
 """ Section X. Functions
 
-func! ToggleTerminal()  " inspired by pakutoma/toggle-terminal
-  " let terminalBuffer = get(filter(range(1, bufnr("$")), "getbufvar(v:val, '&buftype') == 'terminal'"), 0, -1)
-  let terminalBuffer = get(filter(range(1, bufnr("$")), "bufname(v:val) == 'terminalBuffer'"), 0, -1)
-  if terminalBuffer == -1 || bufloaded(terminalBuffer) != 1
-    let shell = &shell
-    set shell=cmdsh.bat
-    execute "botright term ++close ++kill=term ++type=conpty"
-    let &shell = shell
-    file terminalBuffer
+func! Togable(name, ...)  " inspired by pakutoma/toggle-terminal
+  let cmd = get(a:, 1, a:name)
+  let pos = get(a:, 2, "botright")
+  let bufName = "<Togable> ".a:name
+  let bufNum = get(filter(range(1, bufnr("$")), "bufname(v:val) == '".bufName."'"), 0, -1)
+  echom bufName." ".bufNum
+  if bufNum == -1 || bufloaded(bufNum) != 1
+    execute "silent ".pos." term ++close ++kill=term ++type=conpty ".cmd
+    execute "silent file ".bufName
+    execute "silent set nobuflisted"
   else
-    let terminalWindow = bufwinnr(terminalBuffer)
-    if terminalWindow == -1
-      execute "botright sbuffer ".terminalBuffer
+    let bufWinNum = bufwinnr(bufNum)
+    if bufWinNum == -1
+      execute "silent ".pos." sbuffer ".bufNum
     else
-      execute terminalWindow." wincmd w"
-      hide
-    endif
-  endif
-endfunc
-
-func! ToggleRepl()
-  let replBuffer = get(filter(range(1, bufnr("$")), "bufname(v:val) == 'replBuffer'"), 0, -1)
-  if replBuffer == -1 || bufloaded(replBuffer) != 1
-    execute "botright term ++close ++kill=term ++type=conpty node"
-    file replBuffer
-  else
-    let replWindow = bufwinnr(replBuffer)
-    if replWindow == -1
-      execute "botright sbuffer ".replBuffer
-    else
-      execute replWindow." wincmd w"
+      execute "silent ".bufWinNum." wincmd w"
       hide
     endif
   endif
