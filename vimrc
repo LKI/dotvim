@@ -1,4 +1,3 @@
-" Source: https://github.com/LKI/LKI
 """ Section I. Preparation
 "" Plugins
 
@@ -114,7 +113,6 @@ if has("win32")
     nnoremap <silent> <A-f> :Ag<CR>
     nnoremap <silent> <A-n> :FZF<CR>
     nnoremap <silent> <A-o> :GFiles<CR>
-    nnoremap <silent> <Leader>go :call GoIntoUrl()<CR>
     nnoremap <silent> <S-F12> i
     tnoremap <silent> <A-F12> <C-W>:call Togable("gitbash", "D:/CodeEnv/Git/bin/bash.exe -l -i")<CR>
     tnoremap <silent> <A-t> <C-W>:call Togable("node")<CR>
@@ -151,9 +149,10 @@ nnoremap <silent> <Leader>gcm  :Gcommit -a --amend<CR>
 nnoremap <silent> <Leader>gf   :Gfetch o<CR>
 nnoremap <silent> <Leader>gld  :G load<CR>
 nnoremap <silent> <Leader>glg  :G log --all --graph --pretty=format:'%h - (%cr)%d %s <%an>' --abbrev-commit<CR>:setlocal filetype=gitlog<CR>
+nnoremap <silent> <Leader>go   :call GoIntoUrl()<CR>
+nnoremap <silent> <Leader>gpd  :G pod -f<CR>
 nnoremap <silent> <Leader>gpf  :Gpush -f<CR>
 nnoremap <silent> <Leader>gpl  :Gpull --rebase<CR>
-nnoremap <silent> <Leader>gpd  :G pod -f<CR>
 nnoremap <silent> <Leader>gps  :Gpush<CR>
 nnoremap <silent> <Leader>grd  :Grebase o/dev<CR>
 nnoremap <silent> <Leader>gst  :w<CR>:Gstatus<CR>
