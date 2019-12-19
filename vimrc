@@ -1,3 +1,4 @@
+" Source: https://github.com/LKI/LKI
 """ Section I. Preparation
 "" Plugins
 
@@ -77,11 +78,9 @@ set backspace=2
 set clipboard=unnamed  " Use system clipboard
 set expandtab
 set matchtime=2
-set shiftwidth=4
 set showmatch
 set smartindent
 set smarttab
-set tabstop=4
 
 
 """ Section II. Appearance
@@ -115,7 +114,7 @@ if has("win32")
     nnoremap <silent> <A-f> :Ag<CR>
     nnoremap <silent> <A-n> :FZF<CR>
     nnoremap <silent> <A-o> :GFiles<CR>
-    nnoremap <silent> <Leader>go :call OpenGitRepo()<CR>
+    nnoremap <silent> <Leader>go :call GoIntoUrl()<CR>
     nnoremap <silent> <S-F12> i
     tnoremap <silent> <A-F12> <C-W>:call Togable("gitbash", "D:/CodeEnv/Git/bin/bash.exe -l -i")<CR>
     tnoremap <silent> <A-t> <C-W>:call Togable("node")<CR>
@@ -303,6 +302,15 @@ func! GoInto()
   endif
 endfunc
 
-func! OpenGitRepo()
+func! GoIntoUrl()
+  let repo = matchstr(getline('.'), '[0-9a-zA-z_-]\+\/[0-9a-zA-Z._-]\+')
+  if len(repo)
+    let group = split(repo, '/')[0]
+    if group == 'stdev' || group == 'zaihui'
+      call job_start('explorer https://aria2.kezaihui.com/'.repo.'/merge_requests/')
+    else
+      call job_start('explorer https://github.com/'.repo)
+    endif
+  endif
 endfunc
 
