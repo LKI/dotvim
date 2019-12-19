@@ -4,6 +4,9 @@
 call plug#begin('~/.vim/modules')
 
 " Basic
+Plug 'junegunn/goyo.vim'
+Plug 'mattn/gist-vim'
+Plug 'raimondi/delimitmate'
 Plug 'skywind3000/asyncrun.vim'
 Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-dadbod'
@@ -31,14 +34,12 @@ Plug 'prabirshrestha/asyncomplete.vim'
 Plug 'prabirshrestha/vim-lsp'
 
 " FileTypes
+Plug 'sheerun/vim-polyglot'
 " -> TypeScript
-Plug 'HerringtonDarkholme/yats.vim'
 Plug 'leafgarland/typescript-vim'
 Plug 'mattn/emmet-vim'
 " -> Golang
 Plug 'fatih/vim-go', { 'do': ':GoInstallBinaries' }
-" -> JSON
-Plug 'elzr/vim-json', { 'for': 'json' }
 " -> Markdown
 Plug 'plasticboy/vim-markdown', { 'for': 'markdown' }
 
@@ -129,6 +130,7 @@ let mapleader="\<Space>"
 
 nnoremap <A-r> :AsyncRun<Space>
 nnoremap <A-s> :set<Space>
+nnoremap <F10> :Goyo<CR>
 nnoremap <Leader>gco  :G co -b<Space>
 nnoremap <silent> <A-!> :NERDTreeToggle $CODE<CR>
 nnoremap <silent> <A-1> :NERDTreeToggle<CR>
@@ -200,7 +202,8 @@ let g:user_emmet_install_global = 0
 let g:user_emmet_leader_key = '<C-Tab>'
 autocmd FileType html,css,js,jsx,ts,tsx EmmetInstall
 
-let g:yats_host_keyword = 1
+let g:goyo_width = '80%'
+let g:goyo_height = '85%'
 
 """ Section V. Autocmds
 augroup setFileType
