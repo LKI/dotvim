@@ -109,14 +109,10 @@ if has("win32")
       autocmd VimEnter * execute "NERDTreeToggle $CODE"
     endif
     nnoremap <silent> <A-A> :Gblame --date=sdort<CR>
-    nnoremap <silent> <A-F12> :call Togable("gitbash", "D:/CodeEnv/Git/bin/bash.exe -l -i")<CR>
-    nnoremap <silent> <A-t> :call Togable("node")<CR>
     nnoremap <silent> <A-f> :Ag<CR>
     nnoremap <silent> <A-n> :FZF<CR>
     nnoremap <silent> <A-o> :GFiles<CR>
     nnoremap <silent> <S-F12> i
-    tnoremap <silent> <A-F12> <C-W>:call Togable("gitbash", "D:/CodeEnv/Git/bin/bash.exe -l -i")<CR>
-    tnoremap <silent> <A-t> <C-W>:call Togable("node")<CR>
     tnoremap <silent> <S-F12> <C-W>N
   else
     set termguicolors
@@ -170,7 +166,7 @@ nnoremap <silent> j gj
 nnoremap <silent> k gk
 noremap <silent> <Leader>c :Commentary<CR>
 noremap <silent> <Leader>l :=<CR>
-tnoremap <silent> <A-w> :bdelete<CR>
+tnoremap <silent> <A-w> <C-W>:bdelete!<CR>
 vnoremap <silent> <Leader>st  :sort<CR>
 
 
@@ -229,6 +225,10 @@ augroup ignoreBuffer  " inspired by https://vi.stackexchange.com/questions/16708
   autocmd FileType qf setl nobuflisted
 augroup END
 
+augroup editing
+  autocmd!
+  autocmd BufWritePre * %s/\s\+$//e
+augroup END
 
 """ Section VI. Language Servers
 
@@ -275,6 +275,15 @@ endif
 
 """ Section X. Functions
 
+func! TogableMap(key, name, ...)
+  let cmd = a:name
+  if len(a:000)
+    let cmd = cmd."', '".join(a:000, "', '")
+  endif
+  execute "nnoremap ".a:key."      :call Togable('".cmd."')<CR>"
+  execute "tnoremap ".a:key." <C-W>:call Togable('".cmd."')<CR>"
+endfunc
+
 func! Togable(name, ...)  " inspired by pakutoma/toggle-terminal
   let cmd = get(a:, 1, a:name)
   let pos = get(a:, 2, "botright")
@@ -316,3 +325,8 @@ func! GoIntoUrl()
   endif
 endfunc
 
+if has('gui_win32')
+  call TogableMap('<A-t>', 'node')
+  call TogableMap('<A-4>', 'yarn', 'cmd /k "yarn start"')
+  call TogableMap('<A-F12>', 'gitbash', 'D:/CodeEnv/Git/bin/bash.exe -l -i')
+endif
