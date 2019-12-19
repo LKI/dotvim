@@ -50,6 +50,7 @@ syntax on
 set nocompatible  " Vi Improved, not vi
 
 " File related
+set autoread
 set belloff=all
 set encoding=utf-8
 set fileencoding=utf-8
@@ -108,7 +109,7 @@ if has("win32")
       autocmd VimEnter * set filetype=vim
       autocmd VimEnter * execute "NERDTreeToggle $CODE"
     endif
-    nnoremap <silent> <A-A> :Gblame<CR>
+    nnoremap <silent> <A-A> :Gblame --date=sdort<CR>
     nnoremap <silent> <A-F12> :call ToggleTerminal()<CR>
     nnoremap <silent> <A-t> :call ToggleRepl()<CR>
     nnoremap <silent> <A-f> :Ag<CR>
@@ -148,17 +149,17 @@ nnoremap <silent> <Leader>es  :edit ~/.ssh/config<CR>
 nnoremap <silent> <Leader>ev  :edit ~/.vim/vimrc<CR>
 nnoremap <silent> <Leader>gca  :Gcommit -a<CR>
 nnoremap <silent> <Leader>gcm  :Gcommit -a --amend<CR>
-nnoremap <silent> <Leader>gf  :Gfetch o<CR>
+nnoremap <silent> <Leader>gf   :Gfetch o<CR>
 nnoremap <silent> <Leader>gld  :G load<CR>
 nnoremap <silent> <Leader>glg  :G log --all --graph --pretty=format:'%h - (%cr)%d %s <%an>' --abbrev-commit<CR>:setlocal filetype=gitlog<CR>
 nnoremap <silent> <Leader>gpf  :Gpush -f<CR>
 nnoremap <silent> <Leader>gpl  :Gpull --rebase<CR>
-nnoremap <silent> <Leader>gpod  :G pod -f<CR>
+nnoremap <silent> <Leader>gpd  :G pod -f<CR>
 nnoremap <silent> <Leader>gps  :Gpush<CR>
 nnoremap <silent> <Leader>grd  :Grebase o/dev<CR>
 nnoremap <silent> <Leader>gst  :w<CR>:Gstatus<CR>
 nnoremap <silent> <Leader>gsv  :w<CR>:AsyncRun git add . && git save<CR>
-nnoremap <silent> <Leader>gwip :Gcommit --all --message 'WIP' --allow-empty --no-verify<CR>
+nnoremap <silent> <Leader>gwp  :Gcommit --all --message 'WIP' --allow-empty --no-verify<CR>
 nnoremap <silent> <Leader>q  :wq<CR>
 nnoremap <silent> <Leader>sp :set paste!<CR>
 nnoremap <silent> <Leader>sv :wincmd v<CR>:setl nobuflisted<CR>:bnext<CR>
@@ -218,6 +219,7 @@ augroup END
 augroup mapping
   autocmd!
   autocmd FileType gitcommit nnoremap <buffer> <silent> <A-w> :w<CR>:bdelete<CR>
+  autocmd FileType fugitiveblame nnoremap <buffer> <silent> <A-A> :bdelete<CR>
 augroup END
 
 augroup ignoreBuffer  " inspired by https://vi.stackexchange.com/questions/16708/
