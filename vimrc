@@ -4,6 +4,7 @@
 call plug#begin('~/.vim/modules')
 
 " Basic
+Plug 'editorconfig/editorconfig-vim'
 Plug 'junegunn/goyo.vim'
 Plug 'mattn/gist-vim'
 Plug 'raimondi/delimitmate'
@@ -52,6 +53,7 @@ set nocompatible  " Vi Improved, not vi
 
 " File related
 set autoread
+set autowrite
 set belloff=all
 set encoding=utf-8
 set fileencoding=utf-8
@@ -143,7 +145,7 @@ nnoremap <silent> <Leader>ep  :edit ~/.profile<CR>
 nnoremap <silent> <Leader>es  :edit ~/.ssh/config<CR>
 nnoremap <silent> <Leader>ev  :edit ~/.vim/vimrc<CR>
 nnoremap <silent> <Leader>gca  :Gcommit -a<CR>
-nnoremap <silent> <Leader>gcm  :Gcommit -a --amend<CR>
+nnoremap <silent> <Leader>gcm  :Gcommit -a --amend --no-edit<CR>
 nnoremap <silent> <Leader>gf   :Gfetch o<CR>
 nnoremap <silent> <Leader>gld  :G load<CR>
 nnoremap <silent> <Leader>glg  :G log --all --graph --pretty=format:'%h - (%cr)%d %s <%an>' --abbrev-commit<CR>:setlocal filetype=gitlog<CR>
@@ -223,11 +225,6 @@ augroup ignoreBuffer  " inspired by https://vi.stackexchange.com/questions/16708
   autocmd!
   autocmd TerminalOpen * setl nobuflisted
   autocmd FileType qf setl nobuflisted
-augroup END
-
-augroup editing
-  autocmd!
-  autocmd BufWritePre * %s/\s\+$//e
 augroup END
 
 """ Section VI. Language Servers
