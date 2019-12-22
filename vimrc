@@ -7,6 +7,7 @@ call plug#begin('~/.vim/modules')
 Plug 'editorconfig/editorconfig-vim'
 Plug 'junegunn/goyo.vim'
 Plug 'mattn/gist-vim'
+Plug 'mattn/webapi-vim'
 Plug 'raimondi/delimitmate'
 Plug 'skywind3000/asyncrun.vim'
 Plug 'tpope/vim-commentary'
