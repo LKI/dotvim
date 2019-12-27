@@ -111,7 +111,7 @@ if has("win32")
       autocmd VimEnter * set filetype=vim
       autocmd VimEnter * execute "NERDTreeToggle $CODE"
     endif
-    nnoremap <silent> <A-A> :Gblame --date=sdort<CR>
+    nnoremap <silent> <A-A> :Gblame --date=short<CR>
     nnoremap <silent> <A-f> :Ag<CR>
     nnoremap <silent> <A-n> :FZF<CR>
     nnoremap <silent> <A-o> :GFiles<CR>
@@ -133,6 +133,8 @@ nnoremap <F10> :Goyo<CR>
 nnoremap <Leader>gco  :G co -b<Space>
 nnoremap <silent> <A-!> :NERDTreeToggle $CODE<CR>
 nnoremap <silent> <A-1> :NERDTreeToggle<CR>
+nnoremap <silent> <A-N> :cnext<CR>
+nnoremap <silent> <A-P> :cprevious<CR>
 nnoremap <silent> <A-h> :tabprevious<CR>
 nnoremap <silent> <A-j> :bprevious<CR>
 nnoremap <silent> <A-k> :bnext<CR>
@@ -140,7 +142,7 @@ nnoremap <silent> <A-l> :tabnext<CR>
 nnoremap <silent> <A-w> :bdelete<CR>
 nnoremap <silent> <F5> :w<CR>:source $MYVIMRC<CR>
 nnoremap <silent> <Leader>b  :Gblame<CR>
-nnoremap <silent> <Leader>eg  :edit ~/.gitconfig<CR>
+nnoremap <silent> <Leader>eg  :edit ~/.lki/.gitconfig<CR>
 nnoremap <silent> <Leader>eh  :edit C:\Windows\System32\drivers\etc\hosts<CR>
 nnoremap <silent> <Leader>ep  :edit ~/.profile<CR>
 nnoremap <silent> <Leader>es  :edit ~/.ssh/config<CR>
@@ -270,6 +272,15 @@ if executable('docker-langserver')
         \ 'whitelist': ['dockerfile'],
         \ })
 endif
+" pip install -U python-language-server
+" https://github.com/prabirshrestha/vim-lsp/wiki/Servers-Python
+if executable('pyls')
+    au User lsp_setup call lsp#register_server({
+        \ 'name': 'pyls',
+        \ 'cmd': {server_info->['pyls']},
+        \ 'whitelist': ['python'],
+        \ })
+endif
 
 """ Section X. Functions
 
@@ -316,7 +327,7 @@ func! GoIntoUrl()
   if len(repo)
     let group = split(repo, '/')[0]
     if group == 'stdev' || group == 'zaihui'
-      call job_start('explorer https://aria2.kezaihui.com/'.repo.'/merge_requests/')
+      call job_start('explorer https://pasta.zaihui.com.cn/'.repo.'/merge_requests/')
     else
       call job_start('explorer https://github.com/'.repo)
     endif
