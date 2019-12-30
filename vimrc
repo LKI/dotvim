@@ -154,7 +154,7 @@ nnoremap <silent> <Leader>gca  :Gcommit -a<CR>
 nnoremap <silent> <Leader>gcm  :Gcommit -a --amend --no-edit<CR>
 nnoremap <silent> <Leader>gf   :Gfetch o<CR>
 nnoremap <silent> <Leader>gld  :G load<CR>
-nnoremap <silent> <Leader>glg  :G log --all --graph --pretty=format:'%h - (%cr)%d %s <%an>' --abbrev-commit<CR>:setlocal filetype=gitlog<CR>
+nnoremap <silent> <Leader>glg  :silent G log --all --graph --pretty=format:'%h - (%cr)%d %s <%an>' --abbrev-commit<CR>:setlocal filetype=gitlog<CR>
 nnoremap <silent> <Leader>go   :call GoIntoUrl()<CR>
 nnoremap <silent> <Leader>gpd  :G pod -f<CR>
 nnoremap <silent> <Leader>gpf  :Gpush -f<CR>
@@ -247,8 +247,7 @@ nnoremap <silent> <F1>   :LspHover<CR>
 nnoremap <silent> <F2>   :LspNextError<CR>
 nnoremap <silent> <F3>   :LspNextWarning<CR>
 nnoremap <silent> <F7>   :LspReferences<CR>
-nnoremap <silent> <A-L>  :LspDocumentFormat<CR>
-vnoremap <silent> <A-L>  :LspDocumentRangeFormat<CR>
+nnoremap <silent> <A-L>  :call Reformat()<CR>
 
 " npm install -g typescript typescript-language-server
 " https://github.com/prabirshrestha/vim-lsp/wiki/Servers-TypeScript
@@ -353,6 +352,16 @@ func! GoIntoUrl()
     else
       call job_start('explorer https://github.com/'.repo)
     endif
+  endif
+endfunc
+
+func! Reformat()
+  if &ft == 'python'
+    execute "Black"
+  elseif mode() == 'v'
+    execute "LspDocumentRangeFormat"
+  else
+    execute "LspDocumentFormat"
   endif
 endfunc
 
