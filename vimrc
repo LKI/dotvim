@@ -44,6 +44,8 @@ Plug 'mattn/emmet-vim'
 Plug 'fatih/vim-go', { 'do': ':GoInstallBinaries' }
 " -> Markdown
 Plug 'plasticboy/vim-markdown', { 'for': 'markdown' }
+" -> Python
+Plug 'psf/black', { 'for': 'python' }
 
 call plug#end()
 
@@ -133,6 +135,7 @@ nnoremap <F10> :Goyo<CR>
 nnoremap <Leader>gco  :G co -b<Space>
 nnoremap <silent> <A-!> :NERDTreeToggle $CODE<CR>
 nnoremap <silent> <A-1> :NERDTreeToggle<CR>
+nnoremap <silent> <A-9> :call TogGitLog()<CR>
 nnoremap <silent> <A-N> :cnext<CR>
 nnoremap <silent> <A-P> :cprevious<CR>
 nnoremap <silent> <A-h> :tabprevious<CR>
@@ -205,6 +208,9 @@ autocmd FileType html,css,js,jsx,ts,tsx EmmetInstall
 
 let g:goyo_width = '80%'
 let g:goyo_height = '85%'
+
+let g:black_virtualenv = 'C:\CodeEnv\Python37'
+let g:black_linelength = 120
 
 """ Section V. Autocmds
 augroup setFileType
@@ -298,7 +304,6 @@ func! Togable(name, ...)  " inspired by pakutoma/toggle-terminal
   let pos = get(a:, 2, "botright")
   let bufName = "<Togable> ".a:name
   let bufNum = get(filter(range(1, bufnr("$")), "bufname(v:val) == '".bufName."'"), 0, -1)
-  echom bufName." ".bufNum
   if bufNum == -1 || bufloaded(bufNum) != 1
     execute "silent ".pos." term ++close ++kill=term ++type=conpty ".cmd
     execute "silent file ".bufName
@@ -310,6 +315,23 @@ func! Togable(name, ...)  " inspired by pakutoma/toggle-terminal
     else
       execute "silent ".bufWinNum." wincmd w"
       hide
+    endif
+  endif
+endfunc
+
+func! TogGitLog()
+  let bufName = "<Togable> git logg"
+  let bufNum = get(filter(range(1, bufnr("$")), "bufname(v:val) == '<Togable> git logg'"), 0, -1)
+  if bufNum == -1 || bufloaded(bufNum) != 1
+    execute "silent G log --all --graph --pretty=format:'%h - (%cr)%d %s <%an>' --abbrev-commit"
+    execute "silent file ".bufName
+    execute "silent set nobuflisted"
+    execute "silent set filetype=gitlog"
+  else
+    let bufWinNum = bufwinnr(bufNum)
+    if bufWinNum != -1
+      execute "silent ".bufWinNum." wincmd w"
+      execute "silent bdelete"
     endif
   endif
 endfunc
