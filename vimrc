@@ -209,7 +209,7 @@ autocmd FileType html,css,js,jsx,ts,tsx EmmetInstall
 let g:goyo_width = '80%'
 let g:goyo_height = '85%'
 
-let g:black_virtualenv = 'C:\CodeEnv\Python37'
+let g:black_virtualenv = 'D:\CodeEnv\Python37'
 let g:black_linelength = 120
 
 """ Section V. Autocmds
@@ -255,7 +255,7 @@ if executable('typescript-language-server')
     au User lsp_setup call lsp#register_server({
         \ 'name': 'typescript-language-server',
         \ 'cmd': {server_info->[&shell, &shellcmdflag, 'typescript-language-server --stdio']},
-        \ 'root_uri':{server_info->lsp#utils#path_to_uri(lsp#utils#find_nearest_parent_file_directory(lsp#utils#get_buffer_path(), 'tsconfig.json'))},
+        \ 'root_uri':{server_info->lsp#utils#path_to_uri(lsp#utils#find_nearest_parent_file_directory(lsp#utils#get_buffer_path(), 'package.json'))},
         \ 'whitelist': ['typescript', 'typescript.tsx', 'typescriptreact'],
         \ })
 endif
@@ -344,10 +344,10 @@ func! GoInto()
 endfunc
 
 func! GoIntoUrl()
-  let repo = matchstr(getline('.'), '[0-9a-zA-z_-]\+\/[0-9a-zA-Z._-]\+')
+  let repo = matchstr(getline('.'), '[0-9a-zA-Z._-][0-9a-zA-z_/-]\+[0-9a-zA-Z._-]')
   if len(repo)
     let group = split(repo, '/')[0]
-    if group == 'stdev' || group == 'zaihui'
+    if group == 'stdev' || group == 'zaihui' || group == 'BE'
       call job_start('explorer https://pasta.zaihui.com.cn/'.repo.'/merge_requests/')
     else
       call job_start('explorer https://github.com/'.repo)
