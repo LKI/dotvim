@@ -147,7 +147,7 @@ nnoremap <silent> <F5> :w<CR>:source $MYVIMRC<CR>
 nnoremap <silent> <Leader>b  :Gblame<CR>
 nnoremap <silent> <Leader>eg  :edit ~/.lki/.gitconfig<CR>
 nnoremap <silent> <Leader>eh  :edit C:\Windows\System32\drivers\etc\hosts<CR>
-nnoremap <silent> <Leader>ep  :edit ~/.profile<CR>
+nnoremap <silent> <Leader>ep  :edit ~/.lki/.profile<CR>
 nnoremap <silent> <Leader>es  :edit ~/.ssh/config<CR>
 nnoremap <silent> <Leader>ev  :edit ~/.vim/vimrc<CR>
 nnoremap <silent> <Leader>gca  :Gcommit -a<CR>
@@ -160,7 +160,7 @@ nnoremap <silent> <Leader>gpd  :G pod -f<CR>
 nnoremap <silent> <Leader>gpf  :Gpush -f<CR>
 nnoremap <silent> <Leader>gpl  :Gpull --rebase<CR>
 nnoremap <silent> <Leader>gps  :Gpush<CR>
-nnoremap <silent> <Leader>grd  :Grebase o/dev<CR>
+nnoremap <silent> <Leader>grd  :Grebase o/HEAD<CR>
 nnoremap <silent> <Leader>gst  :w<CR>:Gstatus<CR>
 nnoremap <silent> <Leader>gsv  :w<CR>:AsyncRun git add . && git save<CR>
 nnoremap <silent> <Leader>gwp  :Gcommit --all --message 'WIP' --allow-empty --no-verify<CR>
@@ -294,8 +294,8 @@ func! TogableMap(key, name, ...)
   if len(a:000)
     let cmd = cmd."', '".join(a:000, "', '")
   endif
-  execute "nnoremap ".a:key."      :call Togable('".cmd."')<CR>"
-  execute "tnoremap ".a:key." <C-W>:call Togable('".cmd."')<CR>"
+  execute "nnoremap <silent> ".a:key."      :call Togable('".cmd."')<CR>"
+  execute "tnoremap <silent> ".a:key." <C-W>:call Togable('".cmd."')<CR>"
 endfunc
 
 func! Togable(name, ...)  " inspired by pakutoma/toggle-terminal
