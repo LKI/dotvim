@@ -156,7 +156,7 @@ nnoremap <silent> <Leader>gf   :Gfetch o<CR>
 nnoremap <silent> <Leader>gld  :G load<CR>
 nnoremap <silent> <Leader>glg  :silent G log --all --graph --pretty=format:'%h - (%cr)%d %s <%an>' --abbrev-commit<CR>:setlocal filetype=gitlog<CR>
 nnoremap <silent> <Leader>go   :call GoIntoUrl()<CR>
-nnoremap <silent> <Leader>gpd  :G pod -f<CR>
+nnoremap <silent> <Leader>gpd  :G pd<CR>
 nnoremap <silent> <Leader>gpf  :Gpush -f<CR>
 nnoremap <silent> <Leader>gpl  :Gpull --rebase<CR>
 nnoremap <silent> <Leader>gps  :Gpush<CR>
