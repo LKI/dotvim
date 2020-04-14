@@ -45,7 +45,7 @@ Plug 'fatih/vim-go', { 'do': ':GoInstallBinaries' }
 " -> Markdown
 Plug 'plasticboy/vim-markdown', { 'for': 'markdown' }
 " -> Python
-Plug 'psf/black', { 'for': 'python' }
+Plug 'psf/black', { 'for': 'python', 'tag': '19.10b0' }
 
 call plug#end()
 
