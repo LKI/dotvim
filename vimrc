@@ -105,7 +105,7 @@ if has("win32")
     set guifont=Fira_Code_Retina:h10
     set guioptions=c
     set langmenu=en_US
-    set renderoptions=type:directx
+    set renderoptions=type:directx,renmode:3
     autocmd GUIEnter * set lines=39 columns=150
     if eval("@%") == ""
       cd ~/.vim
@@ -195,6 +195,8 @@ autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isT
 let b:csv_headerline = 0
 let g:csv_delim='|'
 
+let g:fzf_layout = { 'window': { 'width': 0.9, 'height': 0.6, 'highlight': 'Todo' } }
+
 let g:airline#extensions#tabline#enabled = 1
 let g:airline_powerline_fonts = 1
 
@@ -209,7 +211,7 @@ autocmd FileType html,css,js,jsx,ts,tsx EmmetInstall
 let g:goyo_width = '80%'
 let g:goyo_height = '85%'
 
-let g:black_virtualenv = 'D:\CodeEnv\Python37'
+let g:black_virtualenv = 'D:\CodeEnv\Python38'
 let g:black_linelength = 120
 
 """ Section V. Autocmds
