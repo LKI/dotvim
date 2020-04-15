@@ -142,7 +142,7 @@ nnoremap <silent> <A-j> :bprevious<CR>
 nnoremap <silent> <A-k> :bnext<CR>
 nnoremap <silent> <A-l> :tabnext<CR>
 nnoremap <silent> <A-w> :bdelete<CR>
-nnoremap <silent> <F5> :w<CR>:source $MYVIMRC<CR>
+nnoremap <silent> <F5> :call RunFile()<CR>
 nnoremap <silent> <Leader>b  :Gblame<CR>
 nnoremap <silent> <Leader>eg  :edit ~/.lki/.gitconfig<CR>
 nnoremap <silent> <Leader>eh  :edit C:\Windows\System32\drivers\etc\hosts<CR>
@@ -163,6 +163,7 @@ nnoremap <silent> <Leader>grd  :Grebase o/HEAD<CR>
 nnoremap <silent> <Leader>gst  :w<CR>:Gstatus<CR>
 nnoremap <silent> <Leader>gsv  :w<CR>:AsyncRun git add . && git save<CR>
 nnoremap <silent> <Leader>gwp  :Gcommit --all --message 'WIP' --allow-empty --no-verify<CR>
+nnoremap <silent> <Leader>n  :NERDTreeFind<CR>
 nnoremap <silent> <Leader>q  :wq<CR>
 nnoremap <silent> <Leader>sp :set paste!<CR>
 nnoremap <silent> <Leader>sv :wincmd v<CR>:setl nobuflisted<CR>:bnext<CR>
@@ -212,6 +213,8 @@ let g:goyo_height = '85%'
 
 let g:black_virtualenv = 'D:\CodeEnv\Python38'
 let g:black_linelength = 120
+let $PYTHONNUNBUFFERED=1
+
 
 """ Section V. Autocmds
 augroup setFileType
@@ -233,7 +236,6 @@ augroup END
 
 augroup ignoreBuffer  " inspired by https://vi.stackexchange.com/questions/16708/
   autocmd!
-  autocmd TerminalOpen * setl nobuflisted
   autocmd FileType qf setl nobuflisted
 augroup END
 
@@ -365,6 +367,17 @@ func! Reformat()
     execute "LspDocumentFormat"
   endif
 endfunc
+
+if !exists('*RunFile')
+  func! RunFile()
+    write
+    if &ft == 'python'
+      execute "AsyncRun -raw pipenv run python %"
+    elseif &ft == 'vim'
+      execute "source $MYVIMRC"
+    endif
+  endfunc
+endif
 
 if has('gui_win32')
   call TogableMap('<A-t>', 'node')
