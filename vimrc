@@ -114,6 +114,7 @@ if has("win32")
     endif
     nnoremap <silent> <A-A> :Gblame --date=short<CR>
     nnoremap <silent> <A-f> :Ag<CR>
+    xnoremap <silent> <A-f> "zy:Ag<Space><C-r>z<CR>
     nnoremap <silent> <A-n> :FZF<CR>
     nnoremap <silent> <A-o> :GFiles<CR>
     nnoremap <silent> <S-F12> i
@@ -176,7 +177,7 @@ nnoremap <silent> k gk
 noremap <silent> <Leader>c :Commentary<CR>
 noremap <silent> <Leader>l :=<CR>
 tnoremap <silent> <A-w> <C-W>:bdelete!<CR>
-vnoremap <silent> <Leader>st  :sort<CR>
+xnoremap <silent> <Leader>st  :sort<CR>
 
 
 """ Section IV. Plugins
