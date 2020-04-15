@@ -163,6 +163,7 @@ nnoremap <silent> <Leader>grd  :Grebase o/HEAD<CR>
 nnoremap <silent> <Leader>gst  :w<CR>:Gstatus<CR>
 nnoremap <silent> <Leader>gsv  :w<CR>:AsyncRun git add . && git save<CR>
 nnoremap <silent> <Leader>gwp  :Gcommit --all --message 'WIP' --allow-empty --no-verify<CR>
+nnoremap <silent> <Leader>kaf  :AsyncRun -raw kubectl apply -f %<CR>
 nnoremap <silent> <Leader>n  :NERDTreeFind<CR>
 nnoremap <silent> <Leader>q  :wq<CR>
 nnoremap <silent> <Leader>sp :set paste!<CR>
