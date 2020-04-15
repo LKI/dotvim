@@ -111,7 +111,6 @@ if has("win32")
       cd ~/.vim
       autocmd VimEnter * edit ~/.vim/vimrc
       autocmd VimEnter * set filetype=vim
-      autocmd VimEnter * execute "NERDTreeToggle $CODE"
     endif
     nnoremap <silent> <A-A> :Gblame --date=short<CR>
     nnoremap <silent> <A-f> :Ag<CR>
