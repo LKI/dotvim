@@ -197,6 +197,7 @@ let b:csv_headerline = 0
 let g:csv_delim='|'
 
 let g:fzf_layout = { 'window': { 'width': 0.9, 'height': 0.6, 'highlight': 'Todo' } }
+let g:fzf_preview_window = ''
 
 let g:airline#extensions#tabline#enabled = 1
 let g:airline_powerline_fonts = 1
