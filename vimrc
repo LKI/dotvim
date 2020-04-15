@@ -349,7 +349,7 @@ func! GoIntoUrl()
   if len(repo)
     let group = split(repo, '/')[0]
     if group == 'stdev' || group == 'zaihui' || group == 'BE'
-      call job_start('explorer https://pasta.zaihui.com.cn/'.repo.'/merge_requests/')
+      call job_start('explorer https://pasta.zaihui.com.cn/'.repo.'/-/merge_requests/')
     else
       call job_start('explorer https://github.com/'.repo)
     endif
