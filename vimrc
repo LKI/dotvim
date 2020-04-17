@@ -177,6 +177,7 @@ nnoremap <silent> k gk
 noremap <silent> <Leader>c :Commentary<CR>
 noremap <silent> <Leader>l :=<CR>
 tnoremap <silent> <A-w> <C-W>:bdelete!<CR>
+xnoremap <silent> <Leader>r    "zy:AsyncRun -r <C-r>z<CR>
 xnoremap <silent> <Leader>st  :sort<CR>
 
 
