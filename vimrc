@@ -100,8 +100,22 @@ endif
 if has("win32")
   let $LANG='en_US'
 
-  if has("nvim") && exists('g:GuiLoaded')
-    GuiFont Fira\ Code\ Retina:h10
+  if exists('##UIEnter')  " NVim UIEnter
+    func! NVimSetup()
+      GuiFont! Fira\ Code\ Retina:h10
+      GuiTabline 0
+      if eval("@%") == ""
+        cd ~/.vim
+      endif
+      nnoremap <silent> <A-A> :Gblame --date=short<CR>
+      nnoremap <silent> <A-f> :Ag<CR>
+      xnoremap <silent> <A-f> "zy:Ag<Space><C-r>z<CR>
+      nnoremap <silent> <A-n> :FZF<CR>
+      nnoremap <silent> <A-o> :GFiles<CR>
+      nnoremap <silent> <S-F12> i
+      tnoremap <silent> <S-F12> <C-W>N
+    endfunc
+    autocmd UIEnter * call NVimSetup()
   elseif has("gui_win32")
     set autowrite
     set guifont=Fira_Code_Retina:h10
