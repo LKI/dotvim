@@ -97,6 +97,20 @@ if has("unix")
   set termguicolors
 endif
 
+func! GUISetup()
+  set autowrite
+  if eval("@%") == ""
+    cd ~/.vim
+  endif
+  nnoremap <silent> <A-A> :Gblame --date=short<CR>
+  nnoremap <silent> <A-f> :Ag<CR>
+  xnoremap <silent> <A-f> "zy:Ag<Space><C-r>z<CR>
+  nnoremap <silent> <A-n> :FZF<CR>
+  nnoremap <silent> <A-o> :GFiles<CR>
+  nnoremap <silent> <S-F12> i
+  tnoremap <silent> <S-F12> <C-W>N
+endfunc
+
 if has("win32")
   let $LANG='en_US'
 
@@ -104,37 +118,16 @@ if has("win32")
     func! NVimSetup()
       GuiFont! Fira\ Code\ Retina:h10
       GuiTabline 0
-      if eval("@%") == ""
-        cd ~/.vim
-      endif
-      nnoremap <silent> <A-A> :Gblame --date=short<CR>
-      nnoremap <silent> <A-f> :Ag<CR>
-      xnoremap <silent> <A-f> "zy:Ag<Space><C-r>z<CR>
-      nnoremap <silent> <A-n> :FZF<CR>
-      nnoremap <silent> <A-o> :GFiles<CR>
-      nnoremap <silent> <S-F12> i
-      tnoremap <silent> <S-F12> <C-W>N
+      call GUISetup()
     endfunc
     autocmd UIEnter * call NVimSetup()
   elseif has("gui_win32")
-    set autowrite
     set guifont=Fira_Code_Retina:h10
     set guioptions=c
     set langmenu=en_US
     set renderoptions=type:directx,renmode:3
     autocmd GUIEnter * set lines=39 columns=150
-    if eval("@%") == ""
-      cd ~/.vim
-      autocmd VimEnter * edit ~/.vim/vimrc
-      autocmd VimEnter * set filetype=vim
-    endif
-    nnoremap <silent> <A-A> :Gblame --date=short<CR>
-    nnoremap <silent> <A-f> :Ag<CR>
-    xnoremap <silent> <A-f> "zy:Ag<Space><C-r>z<CR>
-    nnoremap <silent> <A-n> :FZF<CR>
-    nnoremap <silent> <A-o> :GFiles<CR>
-    nnoremap <silent> <S-F12> i
-    tnoremap <silent> <S-F12> <C-W>N
+    call GUISetup()
   else
     set termguicolors
   endif
