@@ -100,7 +100,9 @@ endif
 if has("win32")
   let $LANG='en_US'
 
-  if has("gui_win32")
+  if has("nvim") && exists('g:GuiLoaded')
+    GuiFont Fira\ Code\ Retina:h10
+  elseif has("gui_win32")
     set autowrite
     set guifont=Fira_Code_Retina:h10
     set guioptions=c

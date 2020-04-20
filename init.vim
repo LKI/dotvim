@@ -1,0 +1,1 @@
+C:/Users/liriansu/.vim/vimrc
