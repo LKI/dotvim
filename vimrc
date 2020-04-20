@@ -119,6 +119,9 @@ if has("win32")
       GuiFont! Fira\ Code\ Retina:h10
       GuiTabline 0
       call GUISetup()
+      call TogableMap('<A-t>', 'node')
+      call TogableMap('<A-4>', 'yarn', 'cmd /k "yarn start"')
+      call TogableMap('<A-F12>', 'gitbash', 'D:/CodeEnv/Git/bin/bash.exe -l -i')
     endfunc
     autocmd UIEnter * call NVimSetup()
   elseif has("gui_win32")
