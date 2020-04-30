@@ -74,7 +74,6 @@ set incsearch
 set laststatus=2
 set nowrap
 set number
-set relativenumber
 set wildmenu
 
 " Write related
