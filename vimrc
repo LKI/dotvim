@@ -335,6 +335,30 @@ if executable('go-langserver')
         \ })
     autocmd BufWritePre *.go LspDocumentFormatSync
 endif
+" npm install -g yaml-language-server
+" https://github.com/prabirshrestha/vim-lsp/wiki/Servers-YAML
+if executable('yaml-language-server')
+  augroup LspYaml
+   au User lsp_setup call lsp#register_server({
+       \ 'name': 'yaml-language-server',
+       \ 'cmd': {server_info->['yaml-language-server', '--stdio']},
+       \ 'whitelist': ['yaml', 'yaml.ansible'],
+       \ 'workspace_config': {
+       \   'yaml': {
+       \     'validate': v:true,
+       \     'hover': v:true,
+       \     'completion': v:true,
+       \     'customTags': [],
+       \     'schemas': {
+       \        'https://raw.githubusercontent.com/docker/cli/master/cli/compose/schema/data/config_schema_v3.9.json': ['docker-compose.yml'],
+       \     },
+       \     'schemaStore': { 'enable': v:true },
+       \   }
+       \ }
+       \})
+  augroup END
+endif
+
 
 """ Section X. Functions
 
