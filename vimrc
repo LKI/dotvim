@@ -72,7 +72,7 @@ set hidden
 set hlsearch
 set incsearch
 set laststatus=2
-set nowrap
+set wrap
 set number
 set wildmenu
 
