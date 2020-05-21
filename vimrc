@@ -240,8 +240,8 @@ let &t_EI.="\e[1 q"
 """ Section V. Autocmds
 augroup setFileType
   autocmd!
-  autocmd BufNewFile,BufRead *vimrc ++once setl filetype=vim
-  autocmd BufNewFile,BufRead *.md ++once setl filetype=markdown
+  autocmd BufNewFile,BufRead *vimrc setl filetype=vim
+  autocmd BufNewFile,BufRead *.md setl filetype=markdown
 augroup END
 
 augroup setIndent
