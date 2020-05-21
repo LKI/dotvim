@@ -230,6 +230,12 @@ let g:black_virtualenv = 'D:\CodeEnv\Python38'
 let g:black_linelength = 120
 let $PYTHONNUNBUFFERED=1
 
+" Vim insert mode cursor
+" https://github.com/microsoft/terminal/issues/68#issuecomment-418438517
+let &t_SI.="\e[5 q"
+let &t_SR.="\e[4 q"
+let &t_EI.="\e[1 q"
+
 
 """ Section V. Autocmds
 augroup setFileType
