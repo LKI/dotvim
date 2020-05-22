@@ -46,6 +46,8 @@ Plug 'fatih/vim-go', { 'do': ':GoInstallBinaries' }
 Plug 'plasticboy/vim-markdown', { 'for': 'markdown' }
 " -> Python
 Plug 'psf/black', { 'for': 'python', 'tag': '19.10b0' }
+Plug 'jmcantrell/vim-virtualenv'
+Plug 'PieterjanMontens/vim-pipenv'
 
 call plug#end()
 
@@ -66,6 +68,7 @@ set noswapfile
 set termencoding=utf-8
 set updatetime=250
 set wildignore+=.git,node_modules,dist,.idea,*.pyc,.pytest_cache,__pycache__
+set shellslash
 
 " Read related
 set hidden
