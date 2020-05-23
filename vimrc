@@ -34,6 +34,7 @@ Plug 'prabirshrestha/async.vim'
 Plug 'prabirshrestha/asyncomplete-lsp.vim'
 Plug 'prabirshrestha/asyncomplete.vim'
 Plug 'prabirshrestha/vim-lsp'
+Plug 'mattn/vim-lsp-settings'
 
 " FileTypes
 Plug 'sheerun/vim-polyglot'
@@ -47,6 +48,7 @@ Plug 'plasticboy/vim-markdown', { 'for': 'markdown' }
 " -> Python
 Plug 'psf/black', { 'for': 'python', 'tag': '19.10b0' }
 Plug 'jmcantrell/vim-virtualenv'
+Plug 'LKI/vim-pipenv'
 
 call plug#end()
 
@@ -105,6 +107,7 @@ if has("win32")
     set guioptions=c
     set langmenu=en_US
     set renderoptions=type:directx,renmode:3
+    let g:netrw_gx="start"
     autocmd GUIEnter * set lines=39 columns=150
   else
     set termguicolors
@@ -158,6 +161,7 @@ nnoremap <silent> <Leader>q  :wq<CR>
 nnoremap <silent> <Leader>sp :set paste!<CR>
 nnoremap <silent> <Leader>sv :wincmd v<CR>:setl nobuflisted<CR>:bnext<CR>
 nnoremap <silent> <Leader>u  :set ff=unix<CR>:w<CR>
+nnoremap <silent> <Leader>v  :Pipenv<CR>
 nnoremap <silent> <Leader>w  :w<CR>
 nnoremap <silent> gd :call GoInto()<CR>
 nnoremap <silent> j gj
@@ -249,98 +253,6 @@ nnoremap <silent> <F2>   :LspNextError<CR>
 nnoremap <silent> <F3>   :LspNextWarning<CR>
 nnoremap <silent> <F7>   :LspReferences<CR>
 nnoremap <silent> <A-L>  :call Reformat()<CR>
-
-" npm install -g typescript typescript-language-server
-" https://github.com/prabirshrestha/vim-lsp/wiki/Servers-TypeScript
-if executable('typescript-language-server')
-  au User lsp_setup call lsp#register_server({
-    \ 'name': 'typescript-language-server',
-    \ 'cmd': {server_info->[&shell, &shellcmdflag, 'typescript-language-server --stdio']},
-    \ 'root_uri':{server_info->lsp#utils#path_to_uri(lsp#utils#find_nearest_parent_file_directory(lsp#utils#get_buffer_path(), 'package.json'))},
-    \ 'whitelist': ['typescript', 'typescript.tsx', 'typescriptreact'],
-    \ })
-endif
-" npm install -g vscode-css-languageserver-bin
-" https://github.com/prabirshrestha/vim-lsp/wiki/Servers-Css
-if executable('css-languageserver')
-  au User lsp_setup call lsp#register_server({
-    \ 'name': 'css-languageserver',
-    \ 'cmd': {server_info->[&shell, &shellcmdflag, 'css-languageserver --stdio']},
-    \ 'whitelist': ['css', 'less', 'sass', 'scss'],
-    \ })
-endif
-" npm install -g dockerfile-language-server-nodejs
-" https://github.com/prabirshrestha/vim-lsp/wiki/Servers-Docker
-if executable('docker-langserver')
-  au User lsp_setup call lsp#register_server({
-    \ 'name': 'docker-langserver',
-    \ 'cmd': {server_info->[&shell, &shellcmdflag, 'docker-langserver --stdio']},
-    \ 'whitelist': ['dockerfile'],
-    \ })
-endif
-" npm install -g vim-language-server
-" https://github.com/prabirshrestha/vim-lsp/wiki/Servers-Vim
-if executable('vim-language-server')
-  au User lsp_setup call lsp#register_server({
-    \ 'name': 'vim-language-server',
-    \ 'cmd': {server_info->[&shell, &shellcmdflag, 'vim-language-server', '--stdio']},
-    \ 'whitelist': ['vim'],
-    \ 'initialization_options': {
-    \   'vimruntime': $VIMRUNTIME,
-    \   'runtimepath': &rtp,
-    \ }})
-endif
-" pip install -U python-language-server
-" https://github.com/prabirshrestha/vim-lsp/wiki/Servers-Python
-if executable('pyls')
-  au User lsp_setup call lsp#register_server({
-    \ 'name': 'pyls',
-    \ 'cmd': {server_info->['pyls']},
-    \ 'whitelist': ['python'],
-    \ })
-endif
-" go get -u golang.org/x/tools/gopls
-" go get -u github.com/sourcegraph/go-langserver
-" https://github.com/prabirshrestha/vim-lsp/wiki/Servers-Go
-if executable('gopls')
-    au User lsp_setup call lsp#register_server({
-        \ 'name': 'gopls',
-        \ 'cmd': {server_info->['gopls']},
-        \ 'whitelist': ['go'],
-        \ })
-    autocmd BufWritePre *.go LspDocumentFormatSync
-endif
-if executable('go-langserver')
-    au User lsp_setup call lsp#register_server({
-        \ 'name': 'go-langserver',
-        \ 'cmd': {server_info->['go-langserver', '-gocodecompletion']},
-        \ 'whitelist': ['go'],
-        \ })
-    autocmd BufWritePre *.go LspDocumentFormatSync
-endif
-" npm install -g yaml-language-server
-" https://github.com/prabirshrestha/vim-lsp/wiki/Servers-YAML
-if executable('yaml-language-server')
-  augroup LspYaml
-   au User lsp_setup call lsp#register_server({
-       \ 'name': 'yaml-language-server',
-       \ 'cmd': {server_info->['yaml-language-server', '--stdio']},
-       \ 'whitelist': ['yaml', 'yaml.ansible'],
-       \ 'workspace_config': {
-       \   'yaml': {
-       \     'validate': v:true,
-       \     'hover': v:true,
-       \     'completion': v:true,
-       \     'customTags': [],
-       \     'schemas': {
-       \        'https://raw.githubusercontent.com/docker/cli/master/cli/compose/schema/data/config_schema_v3.9.json': ['docker-compose.yml'],
-       \     },
-       \     'schemaStore': { 'enable': v:true },
-       \   }
-       \ }
-       \})
-  augroup END
-endif
 
 
 """ Section X. Functions
