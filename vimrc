@@ -47,7 +47,6 @@ Plug 'plasticboy/vim-markdown', { 'for': 'markdown' }
 " -> Python
 Plug 'psf/black', { 'for': 'python', 'tag': '19.10b0' }
 Plug 'jmcantrell/vim-virtualenv'
-Plug 'PieterjanMontens/vim-pipenv'
 
 call plug#end()
 
@@ -99,40 +98,15 @@ if has("unix")
   set termguicolors
 endif
 
-func! GUISetup()
-  set autowrite
-  if eval("@%") == ""
-    cd ~/.vim
-  endif
-  nnoremap <silent> <A-A> :Gblame --date=short<CR>
-  nnoremap <silent> <A-f> :Ag<CR>
-  xnoremap <silent> <A-f> "zy:Ag<Space><C-r>z<CR>
-  nnoremap <silent> <A-n> :FZF<CR>
-  nnoremap <silent> <A-o> :GFiles<CR>
-  nnoremap <silent> <S-F12> i
-  tnoremap <silent> <S-F12> <C-W>N
-endfunc
-
 if has("win32")
   let $LANG='en_US'
 
-  if exists('##UIEnter')  " NVim UIEnter
-    func! NVimSetup()
-      GuiFont! Fira\ Code\ Retina:h10
-      GuiTabline 0
-      call GUISetup()
-      call TogableMap('<A-t>', 'node')
-      call TogableMap('<A-4>', 'yarn', 'cmd /k "yarn start"')
-      call TogableMap('<A-F12>', 'gitbash', 'D:/CodeEnv/Git/bin/bash.exe -l -i')
-    endfunc
-    autocmd UIEnter * call NVimSetup()
-  elseif has("gui_win32")
+  if has("gui_win32")
     set guifont=Fira_Code_Retina:h10
     set guioptions=c
     set langmenu=en_US
     set renderoptions=type:directx,renmode:3
     autocmd GUIEnter * set lines=39 columns=150
-    call GUISetup()
   else
     set termguicolors
   endif
@@ -156,7 +130,7 @@ nnoremap <silent> <A-h> :tabprevious<CR>
 nnoremap <silent> <A-j> :bprevious<CR>
 nnoremap <silent> <A-k> :bnext<CR>
 nnoremap <silent> <A-l> :tabnext<CR>
-nnoremap <silent> <A-w> :bdelete<CR>
+nnoremap <silent> <A-w> :bp\|bd #<CR>
 nnoremap <silent> <F5> :call RunFile()<CR>
 nnoremap <silent> <Leader>b  :Gblame<CR>
 nnoremap <silent> <Leader>eg  :edit ~/.lki/.gitconfig<CR>
@@ -447,6 +421,23 @@ func! Reformat()
   endif
 endfunc
 
+func! GUISetup()
+  set autowrite
+  if eval("@%") == ""
+    cd ~/.vim
+  endif
+  nnoremap <silent> <A-A> :Gblame --date=short<CR>
+  nnoremap <silent> <A-f> :Ag<CR>
+  xnoremap <silent> <A-f> "zy:Ag<Space><C-r>z<CR>
+  nnoremap <silent> <A-n> :FZF<CR>
+  nnoremap <silent> <A-o> :GFiles<CR>
+  nnoremap <silent> <S-F12> i
+  tnoremap <silent> <S-F12> <C-W>N
+  call TogableMap('<A-t>', 'node')
+  call TogableMap('<A-4>', 'yarn', 'cmd /k "yarn start"')
+  call TogableMap('<A-F12>', 'gitbash', 'D:/CodeEnv/Git/bin/bash.exe -l -i')
+endfunc
+
 if !exists('*RunFile')
   func! RunFile()
     write
@@ -459,7 +450,6 @@ if !exists('*RunFile')
 endif
 
 if has('gui_win32')
-  call TogableMap('<A-t>', 'node')
-  call TogableMap('<A-4>', 'yarn', 'cmd /k "yarn start"')
-  call TogableMap('<A-F12>', 'gitbash', 'D:/CodeEnv/Git/bin/bash.exe -l -i')
+  call GUISetup()
 endif
+
