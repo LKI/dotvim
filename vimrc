@@ -66,7 +66,7 @@ set nobackup
 set noswapfile
 set termencoding=utf-8
 set updatetime=250
-set wildignore+=.git,node_modules,dist,.idea,*.pyc,.pytest_cache,__pycache__
+set wildignore+=.git,node_modules,dist,.idea,*.pyc,.pytest_cache,__pycache__,.coverage
 
 " Read related
 set hidden
