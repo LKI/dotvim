@@ -67,7 +67,6 @@ set noswapfile
 set termencoding=utf-8
 set updatetime=250
 set wildignore+=.git,node_modules,dist,.idea,*.pyc,.pytest_cache,__pycache__
-set shellslash
 
 " Read related
 set hidden
@@ -130,7 +129,8 @@ nnoremap <silent> <A-h> :tabprevious<CR>
 nnoremap <silent> <A-j> :bprevious<CR>
 nnoremap <silent> <A-k> :bnext<CR>
 nnoremap <silent> <A-l> :tabnext<CR>
-nnoremap <silent> <A-w> :bp\|bd #<CR>
+nnoremap <silent> <A-w> :bd<CR>
+nnoremap <silent> <A-W> :bp\|bd #<CR>
 nnoremap <silent> <F5> :call RunFile()<CR>
 nnoremap <silent> <Leader>b  :Gblame<CR>
 nnoremap <silent> <Leader>eg  :edit ~/.lki/.gitconfig<CR>
