@@ -128,12 +128,12 @@ nnoremap <silent> <A-1> :NERDTreeToggle<CR>
 nnoremap <silent> <A-9> :call TogGitLog()<CR>
 nnoremap <silent> <A-N> :cnext<CR>
 nnoremap <silent> <A-P> :cprevious<CR>
+nnoremap <silent> <A-W> :bp\|bd #<CR>
 nnoremap <silent> <A-h> :tabprevious<CR>
 nnoremap <silent> <A-j> :bprevious<CR>
 nnoremap <silent> <A-k> :bnext<CR>
 nnoremap <silent> <A-l> :tabnext<CR>
 nnoremap <silent> <A-w> :bd<CR>
-nnoremap <silent> <A-W> :bp\|bd #<CR>
 nnoremap <silent> <F5> :call RunFile()<CR>
 nnoremap <silent> <Leader>b  :Gblame<CR>
 nnoremap <silent> <Leader>eg  :edit ~/.lki/.gitconfig<CR>
@@ -156,13 +156,14 @@ nnoremap <silent> <Leader>gst  :w<CR>:Gstatus<CR>
 nnoremap <silent> <Leader>gsv  :w<CR>:AsyncRun git add . && git save<CR>
 nnoremap <silent> <Leader>gwp  :Gcommit --all --message 'WIP' --allow-empty --no-verify<CR>
 nnoremap <silent> <Leader>kaf  :AsyncRun -raw kubectl apply -f %<CR>
-nnoremap <silent> <Leader>n  :NERDTreeFind<CR>
-nnoremap <silent> <Leader>q  :wq<CR>
-nnoremap <silent> <Leader>sp :set paste!<CR>
-nnoremap <silent> <Leader>sv :wincmd v<CR>:setl nobuflisted<CR>:bnext<CR>
-nnoremap <silent> <Leader>u  :set ff=unix<CR>:w<CR>
-nnoremap <silent> <Leader>v  :Pipenv<CR>
-nnoremap <silent> <Leader>w  :w<CR>
+nnoremap <silent> <Leader>l    :call Reformat()<CR>
+nnoremap <silent> <Leader>n    :NERDTreeFind<CR>
+nnoremap <silent> <Leader>q    :wq<CR>
+nnoremap <silent> <Leader>sp   :set paste!<CR>
+nnoremap <silent> <Leader>sv   :wincmd v<CR>:setl nobuflisted<CR>:bnext<CR>
+nnoremap <silent> <Leader>u    :set ff=unix<CR>:w<CR>
+nnoremap <silent> <Leader>v    :Pipenv<CR>
+nnoremap <silent> <Leader>w    :w<CR>
 nnoremap <silent> gd :call GoInto()<CR>
 nnoremap <silent> j gj
 nnoremap <silent> k gk
@@ -252,7 +253,6 @@ nnoremap <silent> <F1>   :LspHover<CR>
 nnoremap <silent> <F2>   :LspNextError<CR>
 nnoremap <silent> <F3>   :LspNextWarning<CR>
 nnoremap <silent> <F7>   :LspReferences<CR>
-nnoremap <silent> <A-L>  :call Reformat()<CR>
 
 
 """ Section X. Functions
