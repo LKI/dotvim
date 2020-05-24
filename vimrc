@@ -108,7 +108,7 @@ if has("win32")
     set langmenu=en_US
     set renderoptions=type:directx,renmode:3
     let g:netrw_gx="start"
-    autocmd GUIEnter * set lines=39 columns=150
+    autocmd GUIEnter * set lines=69 columns=250
   else
     set termguicolors
   endif
