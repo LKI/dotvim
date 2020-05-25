@@ -126,15 +126,16 @@ nnoremap <Leader>gco  :G co -b<Space>
 nnoremap <silent> <A-!> :NERDTreeToggle $CODE<CR>
 nnoremap <silent> <A-1> :NERDTreeToggle<CR>
 nnoremap <silent> <A-9> :call TogGitLog()<CR>
-nnoremap <silent> <A-N> :cnext<CR>
-nnoremap <silent> <A-P> :cprevious<CR>
-nnoremap <silent> <A-W> :bp\|bd #<CR>
+nnoremap <silent> <A-S-l>    :call Reformat()<CR>
+nnoremap <silent> <A-S-n> :cnext<CR>
+nnoremap <silent> <A-S-p> :cprevious<CR>
+nnoremap <silent> <A-S-w> :bp\|bd #<CR>
 nnoremap <silent> <A-h> :tabprevious<CR>
 nnoremap <silent> <A-j> :bprevious<CR>
 nnoremap <silent> <A-k> :bnext<CR>
 nnoremap <silent> <A-l> :tabnext<CR>
 nnoremap <silent> <A-w> :bd<CR>
-nnoremap <silent> <F5> :call RunFile()<CR>
+nnoremap <silent> <F5>  :call RunFile()<CR>
 nnoremap <silent> <Leader>b  :Gblame<CR>
 nnoremap <silent> <Leader>eg  :edit ~/.lki/.gitconfig<CR>
 nnoremap <silent> <Leader>eh  :edit C:\Windows\System32\drivers\etc\hosts<CR>
@@ -156,7 +157,6 @@ nnoremap <silent> <Leader>gst  :w<CR>:Gstatus<CR>
 nnoremap <silent> <Leader>gsv  :w<CR>:AsyncRun git add . && git save<CR>
 nnoremap <silent> <Leader>gwp  :Gcommit --all --message 'WIP' --allow-empty --no-verify<CR>
 nnoremap <silent> <Leader>kaf  :AsyncRun -raw kubectl apply -f %<CR>
-nnoremap <silent> <Leader>l    :call Reformat()<CR>
 nnoremap <silent> <Leader>n    :NERDTreeFind<CR>
 nnoremap <silent> <Leader>q    :wq<CR>
 nnoremap <silent> <Leader>sp   :set paste!<CR>
@@ -169,7 +169,8 @@ nnoremap <silent> j gj
 nnoremap <silent> k gk
 noremap <silent> <Leader>c :Commentary<CR>
 noremap <silent> <Leader>l :=<CR>
-tnoremap <silent> <A-w> <C-W>:bdelete!<CR>
+tnoremap <silent> <A-w>      <C-W>:bdelete!<CR>
+tnoremap <silent> <S-Insert> <C-W>"*
 xnoremap <silent> <Leader>r    "zy:AsyncRun -r <C-r>z<CR>
 xnoremap <silent> <Leader>st  :sort<CR>
 
@@ -234,7 +235,7 @@ augroup END
 augroup mapping
   autocmd!
   autocmd FileType gitcommit nnoremap <buffer> <silent> <A-w> :w<CR>:bdelete<CR>
-  autocmd FileType fugitiveblame nnoremap <buffer> <silent> <A-A> :bdelete<CR>
+  autocmd FileType fugitiveblame nnoremap <buffer> <silent> <A-S-a> :bdelete<CR>
 augroup END
 
 augroup ignoreBuffer  " inspired by https://vi.stackexchange.com/questions/16708/
@@ -338,7 +339,7 @@ func! GUISetup()
   if eval("@%") == ""
     cd ~/.vim
   endif
-  nnoremap <silent> <A-A> :Gblame --date=short<CR>
+  nnoremap <silent> <A-S-a> :Gblame --date=short<CR>
   nnoremap <silent> <A-f> :Ag<CR>
   xnoremap <silent> <A-f> "zy:Ag<Space><C-r>z<CR>
   nnoremap <silent> <A-n> :FZF<CR>
