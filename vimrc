@@ -5,11 +5,9 @@ call plug#begin('~/.vim/modules')
 
 " Basic
 Plug 'editorconfig/editorconfig-vim'
-Plug 'junegunn/goyo.vim'
 Plug 'mattn/gist-vim'
 Plug 'mattn/webapi-vim'
 Plug 'raimondi/delimitmate'
-Plug 'skywind3000/asyncrun.vim'
 Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-dadbod'
 Plug 'tpope/vim-dispatch'
@@ -17,11 +15,15 @@ Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-unimpaired'
-Plug 'wakatime/vim-wakatime'
 
 " Display
+Plug 'junegunn/goyo.vim'
 Plug 'vim-airline/vim-airline'
 Plug 'whatyouhide/vim-gotham'
+
+" Editor
+Plug 'skywind3000/asyncrun.vim'
+Plug 'wakatime/vim-wakatime'
 
 " Jumpping
 Plug 'junegunn/fzf', { 'do': './install --all' }
