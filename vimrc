@@ -46,7 +46,7 @@ Plug 'mattn/emmet-vim'
 " -> Golang
 Plug 'fatih/vim-go', { 'do': ':GoInstallBinaries' }
 " -> Markdown
-Plug 'plasticboy/vim-markdown', { 'for': 'markdown' }
+" Plug 'plasticboy/vim-markdown', { 'for': 'markdown' }
 " -> Python
 Plug 'psf/black', { 'for': 'python', 'tag': '19.10b0' }
 Plug 'jmcantrell/vim-virtualenv'
