@@ -213,6 +213,7 @@ let g:goyo_width = '80%'
 let g:goyo_height = '85%'
 
 let g:black_virtualenv = 'D:\CodeEnv\Python38'
+let g:black_fast = 1
 let g:black_linelength = 120
 let $PYTHONNUNBUFFERED=1
 
