@@ -358,6 +358,7 @@ if !exists('*RunFile')
   func! RunFile()
     write
     if &ft == 'python'
+      let $PYTHONPATH="."
       execute "AsyncRun -raw pipenv run python %"
     elseif &ft == 'vim'
       execute "source $MYVIMRC"
