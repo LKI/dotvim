@@ -350,7 +350,7 @@ func! GUISetup()
   nnoremap <silent> <A-o> :GFiles<CR>
   nnoremap <silent> <S-F12> i
   tnoremap <silent> <S-F12> <C-W>N
-  call TogableMap('<A-t>', 'node')
+  call TogableMap('<A-t>', 'django', 'python manage.py shell')
   call TogableMap('<A-4>', 'yarn', 'cmd /k "yarn start"')
   call TogableMap('<A-F12>', 'gitbash', 'D:/CodeEnv/Git/bin/bash.exe -l -i')
 endfunc
@@ -360,7 +360,7 @@ if !exists('*RunFile')
     write
     if &ft == 'python'
       let $PYTHONPATH="."
-      execute "AsyncRun -raw pipenv run python %"
+      execute "AsyncRun -raw python %"
     elseif &ft == 'vim'
       execute "source $MYVIMRC"
     endif
