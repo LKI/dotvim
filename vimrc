@@ -177,6 +177,13 @@ tnoremap <silent> <S-Insert> <C-W>"*
 xnoremap <silent> <Leader>r    "zy:AsyncRun -r <C-r>z<CR>
 xnoremap <silent> <Leader>st  :sort<CR>
 
+" Resize splits quickly by Alt+Shift+(-/=)
+" ref: https://vim.fandom.com/wiki/Resize_splits_more_quickly
+nnoremap <silent> <A-+>      :execute "resize " . (winheight(0) * 3/2)<CR>
+nnoremap <silent> <A-_>      :execute "resize " . (winheight(0) * 2/3)<CR>
+tnoremap <silent> <A-+> <C-W>:execute "resize " . (winheight(0) * 3/2)<CR>
+tnoremap <silent> <A-_> <C-W>:execute "resize " . (winheight(0) * 2/3)<CR>
+
 
 """ Section IV. Plugins
 
@@ -195,7 +202,7 @@ autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isT
 let b:csv_headerline = 0
 let g:csv_delim='|'
 
-let g:fzf_layout = { 'window': { 'width': 0.9, 'height': 0.6, 'highlight': 'Todo', 'border': 'sharp' } }
+let g:fzf_layout = { 'window': { 'width': 0.9, 'height': 0.9, 'highlight': 'Todo', 'border': 'sharp' } }
 let g:fzf_preview_window = ''
 
 let g:airline#extensions#tabline#enabled = 1
