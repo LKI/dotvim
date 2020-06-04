@@ -219,7 +219,13 @@ autocmd FileType html,css,js,jsx,ts,tsx EmmetInstall
 let g:goyo_width = '80%'
 let g:goyo_height = '85%'
 
-let g:black_virtualenv = $SCOOP . '/apps/python/current/'
+for p in split($PATH, ';')
+  if filereadable(p . 'black.exe')
+    let g:black_virtualenv = fnamemodify(join(split(p, '\'), '/'), ':h')
+    break
+  endif
+endfor
+
 let g:black_fast = 1
 let g:black_linelength = 120
 let $PYTHONNUNBUFFERED=1
