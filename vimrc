@@ -211,6 +211,8 @@ let g:airline_powerline_fonts = 1
 let g:asyncrun_open = 10
 let g:vim_markdown_new_list_item_indent = 2
 
+let g:lsp_fold_enabled = 0
+
 " Plugin 'mattn/emmet-vim'
 let g:user_emmet_install_global = 0
 let g:user_emmet_leader_key = '<C-Tab>'
