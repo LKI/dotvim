@@ -376,6 +376,8 @@ if !exists('*RunFile')
     if &ft == 'python'
       let $PYTHONPATH="."
       execute "AsyncRun -raw python %"
+    elseif &ft == 'go'
+      execute "AsyncRun -raw go run %"
     elseif &ft == 'vim'
       execute "source $MYVIMRC"
     endif
