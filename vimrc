@@ -367,6 +367,7 @@ func! GUISetup()
   nnoremap <silent> <S-F12> i
   tnoremap <silent> <S-F12> <C-W>N
   call TogableMap('<A-t>', 'django', 'python manage.py shell')
+  call TogableMap('<A-S-t>', 'ipython', 'ipython')
   call TogableMap('<A-4>', 'yarn', 'cmd /k "yarn start"')
   call TogableMap('<A-F12>', 'gitbash', 'D:/CodeEnv/Git/bin/bash.exe -l -i')
 endfunc
