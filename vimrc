@@ -44,7 +44,7 @@ Plug 'sheerun/vim-polyglot'
 Plug 'leafgarland/typescript-vim'
 Plug 'mattn/emmet-vim'
 " -> Golang
-Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
+Plug 'fatih/vim-go', { 'do': ':GoInstallBinaries' }
 " -> Markdown
 " Plug 'plasticboy/vim-markdown', { 'for': 'markdown' }
 " -> Python
