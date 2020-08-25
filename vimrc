@@ -101,17 +101,20 @@ if has("unix")
   set termguicolors
 endif
 
+if has("gui_running")
+  set guifont=Fira_Code_Retina:h10
+  set guioptions=c
+  set langmenu=en_US
+  autocmd GUIEnter * set lines=69 columns=250
+endif
+
 if has("win32")
   let $LANG='en_US'
 
   if has("gui_win32")
-    set guifont=Fira_Code_Retina:h10
-    set guioptions=c
-    set langmenu=en_US
     set renderoptions=type:directx,renmode:3
     let g:netrw_gx="start"
     let g:netrw_browsex_viewer="start"
-    autocmd GUIEnter * set lines=69 columns=250
   else
     set termguicolors
   endif
@@ -385,7 +388,7 @@ if !exists('*RunFile')
   endfunc
 endif
 
-if has('gui_win32')
+if has("gui_running")
   call GUISetup()
 endif
 
