@@ -11,10 +11,13 @@ Plug 'raimondi/delimitmate'
 Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-dadbod'
 Plug 'tpope/vim-dispatch'
-Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-unimpaired'
+
+" Git
+Plug 'rhysd/committia.vim'
+Plug 'tpope/vim-fugitive'
 
 " Display
 Plug 'junegunn/goyo.vim'
