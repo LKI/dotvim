@@ -371,10 +371,11 @@ func! GUISetup()
   nnoremap <silent> <A-o> :GFiles<CR>
   nnoremap <silent> <S-F12> i
   tnoremap <silent> <S-F12> <C-W>N
-  call TogableMap('<A-t>', 'django', 'python manage.py shell')
+  call TogableMap('<A-t>', 'django shell', 'python manage.py shell')
   call TogableMap('<A-S-t>', 'ipython', 'ipython')
-  call TogableMap('<A-4>', 'yarn', 'cmd /k "yarn start"')
-  call TogableMap('<A-F12>', 'gitbash', 'D:/CodeEnv/Git/bin/bash.exe -l -i')
+  call TogableMap('<A-$>', 'yarn', 'cmd /k "yarn start"')
+  call TogableMap('<A-4>', 'django runserver', 'python manage.py runserver')
+  call TogableMap('<A-F12>', 'gitbash', 'C:/Users/lirian/scoop/apps/git/current/usr/bin/bash.exe -l -i')
 endfunc
 
 if !exists('*RunFile')
