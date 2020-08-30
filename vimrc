@@ -228,7 +228,7 @@ let g:goyo_width = '80%'
 let g:goyo_height = '85%'
 
 for p in split($PATH, ';')
-  if filereadable(p . 'black.exe')
+  if filereadable(p . '/black.exe') || filereadable(p . '/black')
     let g:black_virtualenv = fnamemodify(join(split(p, '\'), '/'), ':h')
     break
   endif
