@@ -27,6 +27,7 @@ Plug 'whatyouhide/vim-gotham'
 " Editor
 Plug 'skywind3000/asyncrun.vim'
 Plug 'wakatime/vim-wakatime'
+Plug 'LKI/vim-alt-macos'
 
 " Jumpping
 Plug 'junegunn/fzf', { 'do': './install --all' }
@@ -43,6 +44,7 @@ Plug 'mattn/vim-lsp-settings'
 
 " FileTypes
 Plug 'sheerun/vim-polyglot'
+Plug 'jaxbot/semantic-highlight.vim'
 " -> TypeScript
 Plug 'leafgarland/typescript-vim'
 Plug 'mattn/emmet-vim'
@@ -51,7 +53,7 @@ Plug 'fatih/vim-go', { 'do': ':GoInstallBinaries' }
 " -> Markdown
 " Plug 'plasticboy/vim-markdown', { 'for': 'markdown' }
 " -> Python
-Plug 'psf/black', { 'for': 'python', 'tag': '19.10b0' }
+Plug 'psf/black', { 'for': 'python', 'branch': 'stable' }
 Plug 'jmcantrell/vim-virtualenv'
 Plug 'LKI/vim-pipenv'
 
@@ -227,12 +229,16 @@ autocmd FileType html,css,js,jsx,ts,tsx EmmetInstall
 let g:goyo_width = '80%'
 let g:goyo_height = '85%'
 
-for p in split($PATH, ';')
-  if filereadable(p . '/black.exe') || filereadable(p . '/black')
-    let g:black_virtualenv = fnamemodify(join(split(p, '\'), '/'), ':h')
-    break
-  endif
-endfor
+if has("mac")
+  let g:black_virtualenv = '/Users/liriansu/.pyenv/versions/3.8.5'
+else
+  for p in split($PATH, ';')
+    if filereadable(p . '/black.exe')
+      let g:black_virtualenv = fnamemodify(join(split(p, '\'), '/'), ':h')
+      break
+    endif
+  endfor
+endif
 
 let g:black_fast = 1
 let g:black_linelength = 120
