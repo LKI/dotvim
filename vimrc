@@ -137,14 +137,18 @@ nnoremap <Leader>gco  :G co -b<Space>
 nnoremap <silent> <A-!> :NERDTreeToggle $CODE<CR>
 nnoremap <silent> <A-1> :NERDTreeToggle<CR>
 nnoremap <silent> <A-9> :call TogGitLog()<CR>
+nnoremap <silent> <A-S-a> :Gblame --date=short<CR>
 nnoremap <silent> <A-S-l>    :call Reformat()<CR>
 nnoremap <silent> <A-S-n> :cnext<CR>
 nnoremap <silent> <A-S-p> :cprevious<CR>
 nnoremap <silent> <A-S-w> :bp\|bd #<CR>
+nnoremap <silent> <A-f> :Ag<CR>
 nnoremap <silent> <A-h> :tabprevious<CR>
 nnoremap <silent> <A-j> :bprevious<CR>
 nnoremap <silent> <A-k> :bnext<CR>
 nnoremap <silent> <A-l> :tabnext<CR>
+nnoremap <silent> <A-n> :FZF<CR>
+nnoremap <silent> <A-o> :GFiles<CR>
 nnoremap <silent> <A-w> :bd<CR>
 nnoremap <silent> <F5>  :call RunFile()<CR>
 nnoremap <silent> <Leader>b  :Gblame<CR>
@@ -182,6 +186,7 @@ noremap <silent> <Leader>c :Commentary<CR>
 noremap <silent> <Leader>l :=<CR>
 tnoremap <silent> <A-w>      <C-W>:bdelete!<CR>
 tnoremap <silent> <S-Insert> <C-W>"*
+xnoremap <silent> <A-f> "zy:Ag<Space><C-r>z<CR>
 xnoremap <silent> <Leader>r    "zy:AsyncRun -r <C-r>z<CR>
 xnoremap <silent> <Leader>st  :sort<CR>
 
@@ -370,11 +375,6 @@ func! GUISetup()
   if eval("@%") == ""
     cd ~/.vim
   endif
-  nnoremap <silent> <A-S-a> :Gblame --date=short<CR>
-  nnoremap <silent> <A-f> :Ag<CR>
-  xnoremap <silent> <A-f> "zy:Ag<Space><C-r>z<CR>
-  nnoremap <silent> <A-n> :FZF<CR>
-  nnoremap <silent> <A-o> :GFiles<CR>
   nnoremap <silent> <S-F12> i
   tnoremap <silent> <S-F12> <C-W>N
   call TogableMap('<A-t>', 'django shell', 'python manage.py shell')
