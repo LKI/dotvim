@@ -27,7 +27,6 @@ Plug 'whatyouhide/vim-gotham'
 " Editor
 Plug 'skywind3000/asyncrun.vim'
 Plug 'wakatime/vim-wakatime'
-Plug 'LKI/vim-alt-macos'
 
 " Jumpping
 Plug 'junegunn/fzf', { 'do': './install --all' }
@@ -54,8 +53,8 @@ Plug 'fatih/vim-go', { 'do': ':GoInstallBinaries' }
 " Plug 'plasticboy/vim-markdown', { 'for': 'markdown' }
 " -> Python
 Plug 'psf/black', { 'for': 'python', 'branch': 'stable' }
-Plug 'jmcantrell/vim-virtualenv'
-Plug 'LKI/vim-pipenv'
+Plug 'jmcantrell/vim-virtualenv', { 'for': 'python' }
+Plug 'LKI/vim-pipenv', { 'for': 'python' }
 
 call plug#end()
 
