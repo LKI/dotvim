@@ -116,7 +116,7 @@ if has("win32")
   let $LANG='en_US'
 
   if has("gui_win32")
-    set renderoptions=type:directx,renmode:3
+    set renderoptions=type:directx,renmode:0
     let g:netrw_gx="start"
     let g:netrw_browsex_viewer="start"
   else
@@ -214,7 +214,7 @@ autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isT
 let b:csv_headerline = 0
 let g:csv_delim='|'
 
-let g:fzf_layout = { 'window': { 'width': 0.9, 'height': 0.9, 'highlight': 'Todo', 'border': 'sharp' } }
+let g:fzf_layout = { 'window': { 'width': 0.8, 'height': 0.8, 'highlight': 'Todo', 'border': 'sharp' } }
 let g:fzf_preview_window = ''
 
 let g:airline#extensions#tabline#enabled = 1
