@@ -147,7 +147,7 @@ nnoremap <silent> <A-j> :bprevious<CR>
 nnoremap <silent> <A-k> :bnext<CR>
 nnoremap <silent> <A-l> :tabnext<CR>
 nnoremap <silent> <A-n> :FZF<CR>
-nnoremap <silent> <A-o> :GFiles<CR>
+nnoremap <silent> <A-o> :Files<CR>
 nnoremap <silent> <A-w> :bd<CR>
 nnoremap <silent> <F5>  :call RunFile()<CR>
 nnoremap <silent> <Leader>b  :Gblame<CR>
@@ -214,7 +214,7 @@ autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isT
 let b:csv_headerline = 0
 let g:csv_delim='|'
 
-let g:fzf_layout = { 'window': { 'width': 0.8, 'height': 0.8, 'highlight': 'Todo', 'border': 'sharp' } }
+let g:fzf_layout = { 'window': { 'width': 0.8, 'height': 0.8, 'highlight': 'Todo' } }
 let g:fzf_preview_window = ''
 
 let g:airline#extensions#tabline#enabled = 1
