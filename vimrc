@@ -214,7 +214,7 @@ autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isT
 let b:csv_headerline = 0
 let g:csv_delim='|'
 
-let g:fzf_layout = { 'window': { 'width': 0.8, 'height': 0.8, 'highlight': 'Todo' } }
+let g:fzf_layout = { 'down': '30%' }
 let g:fzf_preview_window = ''
 
 let g:airline#extensions#tabline#enabled = 1
