@@ -136,8 +136,8 @@ nnoremap <Leader>gco  :G co -b<Space>
 nnoremap <silent> <A-!> :NERDTreeToggle $CODE<CR>
 nnoremap <silent> <A-1> :NERDTreeToggle<CR>
 nnoremap <silent> <A-9> :call TogGitLog()<CR>
-nnoremap <silent> <A-S-a> :Gblame --date=short<CR>
-nnoremap <silent> <A-S-l>    :call Reformat()<CR>
+nnoremap <silent> <A-S-a> :Git blame --date=short<CR>
+nnoremap <silent> <A-S-l> :call Reformat()<CR>
 nnoremap <silent> <A-S-n> :cnext<CR>
 nnoremap <silent> <A-S-p> :cprevious<CR>
 nnoremap <silent> <A-S-w> :bp\|bd #<CR>
@@ -156,20 +156,20 @@ nnoremap <silent> <Leader>eh  :edit C:\Windows\System32\drivers\etc\hosts<CR>
 nnoremap <silent> <Leader>ep  :edit ~/.lki/.profile<CR>
 nnoremap <silent> <Leader>es  :edit ~/.ssh/config<CR>
 nnoremap <silent> <Leader>ev  :edit ~/.vim/vimrc<CR>
-nnoremap <silent> <Leader>gca  :Gcommit -a<CR>
-nnoremap <silent> <Leader>gcm  :Gcommit -a --amend --no-edit<CR>
-nnoremap <silent> <Leader>gf   :Gfetch o<CR>
-nnoremap <silent> <Leader>gld  :G load<CR>
-nnoremap <silent> <Leader>glg  :silent G log --all --graph --pretty=format:'%h - (%cr)%d %s <%an>' --abbrev-commit<CR>:setlocal filetype=gitlog<CR>
+nnoremap <silent> <Leader>gca  :Git commit -a<CR>
+nnoremap <silent> <Leader>gcm  :Git commit -a --amend --no-edit<CR>
+nnoremap <silent> <Leader>gf   :Git fetch o<CR>
+nnoremap <silent> <Leader>gld  :Git load<CR>
+nnoremap <silent> <Leader>glg  :silent Git log --all --graph --pretty=format:'%h - (%cr)%d %s <%an>' --abbrev-commit<CR>:setlocal filetype=gitlog<CR>
 nnoremap <silent> <Leader>go   :call GoIntoUrl()<CR>
-nnoremap <silent> <Leader>gpd  :G pd<CR>
-nnoremap <silent> <Leader>gpf  :Gpush -f<CR>
-nnoremap <silent> <Leader>gpl  :Gpull --rebase<CR>
-nnoremap <silent> <Leader>gps  :Gpush<CR>
-nnoremap <silent> <Leader>grd  :Grebase o/HEAD<CR>
+nnoremap <silent> <Leader>gpd  :Git pd<CR>
+nnoremap <silent> <Leader>gpf  :Git push -f<CR>
+nnoremap <silent> <Leader>gpl  :Git pull --rebase<CR>
+nnoremap <silent> <Leader>gps  :Git push<CR>
+nnoremap <silent> <Leader>grd  :Git rebase o/HEAD<CR>
 nnoremap <silent> <Leader>gst  :w<CR>:Gstatus<CR>
 nnoremap <silent> <Leader>gsv  :w<CR>:AsyncRun git add . && git save<CR>
-nnoremap <silent> <Leader>gwp  :Gcommit --all --message 'WIP' --allow-empty --no-verify<CR>
+nnoremap <silent> <Leader>gwp  :Git commit --all --message 'WIP' --allow-empty --no-verify<CR>
 nnoremap <silent> <Leader>kaf  :AsyncRun -raw kubectl apply -f %<CR>
 nnoremap <silent> <Leader>n    :NERDTreeFind<CR>
 nnoremap <silent> <Leader>q    :wq<CR>
