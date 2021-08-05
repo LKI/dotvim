@@ -17,8 +17,7 @@ Plug 'tpope/vim-unimpaired'
 
 " Git
 Plug 'rhysd/committia.vim'
-" Temp comment because https://github.com/tpope/vim-fugitive/issues/1791
-" Plug 'tpope/vim-fugitive'
+Plug 'tpope/vim-fugitive'
 
 " Display
 Plug 'junegunn/goyo.vim'
