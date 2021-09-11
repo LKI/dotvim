@@ -132,7 +132,7 @@ let mapleader="\<Space>"
 nnoremap <A-r> :AsyncRun<Space>
 nnoremap <A-s> :set<Space>
 nnoremap <F10> :Goyo<CR>
-nnoremap <Leader>gco  :G co -b<Space>
+nnoremap <Leader>gco  :Git checkout -b<Space>
 nnoremap <silent> <A-!> :NERDTreeToggle $CODE<CR>
 nnoremap <silent> <A-1> :NERDTreeToggle<CR>
 nnoremap <silent> <A-9> :call TogGitLog()<CR>
@@ -150,7 +150,7 @@ nnoremap <silent> <A-n> :FZF<CR>
 nnoremap <silent> <A-o> :Files<CR>
 nnoremap <silent> <A-w> :bd<CR>
 nnoremap <silent> <F5>  :call RunFile()<CR>
-nnoremap <silent> <Leader>b  :Gblame<CR>
+nnoremap <silent> <Leader>b  :Git blame<CR>
 nnoremap <silent> <Leader>eg  :edit ~/.lki/.gitconfig<CR>
 nnoremap <silent> <Leader>eh  :edit C:\Windows\System32\drivers\etc\hosts<CR>
 nnoremap <silent> <Leader>ep  :edit ~/.lki/.profile<CR>
@@ -167,7 +167,7 @@ nnoremap <silent> <Leader>gpf  :Git push -f<CR>
 nnoremap <silent> <Leader>gpl  :Git pull --rebase<CR>
 nnoremap <silent> <Leader>gps  :Git push<CR>
 nnoremap <silent> <Leader>grd  :Git rebase o/HEAD<CR>
-nnoremap <silent> <Leader>gst  :w<CR>:Gstatus<CR>
+nnoremap <silent> <Leader>gst  :w<CR>:Git<CR>
 nnoremap <silent> <Leader>gsv  :w<CR>:AsyncRun git add . && git save<CR>
 nnoremap <silent> <Leader>gwp  :Git commit --all --message 'WIP' --allow-empty --no-verify<CR>
 nnoremap <silent> <Leader>kaf  :AsyncRun -raw kubectl apply -f %<CR>
