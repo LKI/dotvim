@@ -106,7 +106,7 @@ if has("unix")
 endif
 
 if has("gui_running")
-  set guifont=Fira_Code_Retina:h10:w6
+  set guifont=Fira_Code_Retina:h11:w6
   set guioptions=c
   set langmenu=en_US
   autocmd GUIEnter * set lines=69 columns=250
