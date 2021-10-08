@@ -100,25 +100,25 @@ set smarttab
 " AirlineTheme gotham256
 colorscheme gotham256
 
-if has("unix")
+if has('unix')
   set t_Co=256
   set termguicolors
 endif
 
-if has("gui_running")
+if has('gui_running')
   set guifont=Fira_Code_Retina:h11:w6
   set guioptions=c
   set langmenu=en_US
   autocmd GUIEnter * set lines=69 columns=250
 endif
 
-if has("win32")
+if has('win32')
   let $LANG='en_US'
 
-  if has("gui_win32")
+  if has('gui_win32')
     set renderoptions=type:directx,renmode:0
-    let g:netrw_gx="start"
-    let g:netrw_browsex_viewer="start"
+    let g:netrw_gx='start'
+    let g:netrw_browsex_viewer='start'
   else
     set termguicolors
   endif
@@ -191,10 +191,10 @@ xnoremap <silent> <Leader>st  :sort<CR>
 
 " Resize splits quickly by Alt+Shift+(-/=)
 " ref: https://vim.fandom.com/wiki/Resize_splits_more_quickly
-nnoremap <silent> <A-+>      :execute "resize " . (winheight(0) * 3/2)<CR>
-nnoremap <silent> <A-_>      :execute "resize " . (winheight(0) * 2/3)<CR>
-tnoremap <silent> <A-+> <C-W>:execute "resize " . (winheight(0) * 3/2)<CR>
-tnoremap <silent> <A-_> <C-W>:execute "resize " . (winheight(0) * 2/3)<CR>
+nnoremap <silent> <A-+>      :execute 'resize ' . (winheight(0) * 3/2)<CR>
+nnoremap <silent> <A-_>      :execute 'resize ' . (winheight(0) * 2/3)<CR>
+tnoremap <silent> <A-+> <C-W>:execute 'resize ' . (winheight(0) * 3/2)<CR>
+tnoremap <silent> <A-_> <C-W>:execute 'resize ' . (winheight(0) * 2/3)<CR>
 
 
 """ Section IV. Plugins
@@ -209,7 +209,7 @@ let NERDTreeRespectWildIgnore = 1
 let NERDTreeShowBookmarks = 1
 let NERDTreeShowHidden = 1
 let NERDTreeWinSize = 50
-autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
+autocmd bufenter * if (winnr('$') == 1 && exists('b:NERDTree') && b:NERDTree.isTabTree()) | q | endif
 
 let b:csv_headerline = 0
 let g:csv_delim='|'
@@ -242,7 +242,7 @@ autocmd FileType html,css,js,jsx,ts,tsx EmmetInstall
 let g:goyo_width = '80%'
 let g:goyo_height = '85%'
 
-if has("mac")
+if has('mac')
   let g:black_virtualenv = '/Users/liriansu/.pyenv/versions/3.8.5'
 else
   for p in split($PATH, ';')
@@ -289,9 +289,9 @@ augroup END
 
 """ Section VI. Language Servers
 
-inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
-inoremap <expr> <Tab>   pumvisible() ? "\<C-n>" : "\<Tab>"
-inoremap <expr> <cr>    pumvisible() ? "\<C-y>" : "\<cr>"
+inoremap <expr> <S-Tab> pumvisible() ? '\<C-p>' : '\<S-Tab>'
+inoremap <expr> <Tab>   pumvisible() ? '\<C-n>' : '\<Tab>'
+inoremap <expr> <cr>    pumvisible() ? '\<C-y>' : '\<cr>'
 nnoremap <silent> <A-0>  :LspDocumentDiagnostics<CR>
 nnoremap <silent> <A-CR> :LspCodeAction<CR>
 nnoremap <silent> <F1>   :LspHover<CR>
@@ -305,59 +305,65 @@ nnoremap <silent> <F7>   :LspReferences<CR>
 func! TogableMap(key, name, ...)
   let cmd = a:name
   if len(a:000)
-    let cmd = cmd."', '".join(a:000, "', '")
+    let cmd = cmd.'", "'.join(a:000, '", "')
   endif
-  execute "nnoremap <silent> ".a:key."      :call Togable('".cmd."')<CR>"
-  execute "tnoremap <silent> ".a:key." <C-W>:call Togable('".cmd."')<CR>"
+  execute 'nnoremap <silent> '.a:key.'      :call Togable("'.cmd.'")<CR>'
+  execute 'tnoremap <silent> '.a:key.' <C-W>:call Togable("'.cmd.'")<CR>'
 endfunc
 
 func! Togable(name, ...)  " inspired by pakutoma/toggle-terminal
   let cmd = get(a:, 1, a:name)
-  let pos = get(a:, 2, "botright")
-  let bufName = "<Togable> ".a:name
-  let bufNum = get(filter(range(1, bufnr("$")), "bufname(v:val) == '".bufName."'"), 0, -1)
+  let pos = get(a:, 2, 'botright')
+  let bufName = '<Togable> '.a:name
+  let bufNum = get(filter(range(1, bufnr('$')), 'bufname(v:val) == "'.bufName.'"'), 0, -1)
   if bufNum == -1 || bufloaded(bufNum) != 1
-    execute "silent ".pos." term ++close ++kill=term ++type=conpty ".cmd
-    execute "silent file ".bufName
-    execute "silent set nobuflisted"
+    execute 'silent '.pos.' term ++close ++kill=term ++type=conpty '.cmd
+    execute 'silent file '.bufName
+    execute 'silent set nobuflisted'
   else
     let bufWinNum = bufwinnr(bufNum)
     if bufWinNum == -1
-      execute "silent ".pos." sbuffer ".bufNum
+      execute 'silent '.pos.' sbuffer '.bufNum
     else
-      execute "silent ".bufWinNum." wincmd w"
+      execute 'silent '.bufWinNum.' wincmd w'
       hide
     endif
   endif
 endfunc
 
 func! TogGitLog()
-  let bufName = "<Togable> git logg"
-  let bufNum = get(filter(range(1, bufnr("$")), "bufname(v:val) == '<Togable> git logg'"), 0, -1)
+  let bufName = '<Togable> git logg'
+  let bufNum = get(filter(range(1, bufnr('$')), 'bufname(v:val) == "<Togable> git logg"'), 0, -1)
   if bufNum == -1 || bufloaded(bufNum) != 1
-    execute "silent G log --all --graph --pretty=format:'%h - (%cr)%d %s <%an>' --abbrev-commit"
-    execute "silent file ".bufName
-    execute "silent set nobuflisted"
-    execute "silent set filetype=gitlog"
+    execute 'silent G log --all --graph --pretty=format:"%h - (%cr)%d %s <%an>" --abbrev-commit'
+    execute 'silent file '.bufName
+    execute 'silent set nobuflisted'
+    execute 'silent set filetype=gitlog'
   else
     let bufWinNum = bufwinnr(bufNum)
     if bufWinNum != -1
-      execute "silent ".bufWinNum." wincmd w"
-      execute "silent bdelete"
+      execute 'silent '.bufWinNum.' wincmd w'
+      execute 'silent bdelete'
     endif
   endif
 endfunc
 
 func! GoInto()
-  if exists("b:NERDTree")
+  if exists('b:NERDTree')
     normal cdCD
   else
-    execute "LspDefinition"
+    execute 'LspDefinition'
   endif
 endfunc
 
 func! GoIntoUrl()
-  let repo = matchstr(getline('.'), '[0-9a-zA-Z._-][0-9a-zA-z_/-]\+[0-9a-zA-Z._-]')
+  let line = getline('.')
+  let url = matchstr(line, 'http[s]\?:\/\/[[:alnum:]%\/_#.-]*')
+  if len(url)
+    call job_start('explorer '.url)
+    return
+  endif
+  let repo = matchstr(line, '[0-9a-zA-Z._-][0-9a-zA-z_/-]\+[0-9a-zA-Z._-]')
   if len(repo)
     let group = split(repo, '/')[0]
     if group == 'FE' || group == 'zaihui' || group == 'BE'
@@ -370,17 +376,17 @@ endfunc
 
 func! Reformat()
   if &ft == 'python'
-    execute "Black"
+    execute 'Black'
   elseif mode() == 'v'
-    execute "LspDocumentRangeFormat"
+    execute 'LspDocumentRangeFormat'
   else
-    execute "LspDocumentFormat"
+    execute 'LspDocumentFormat'
   endif
 endfunc
 
 func! GUISetup()
   set autowrite
-  if eval("@%") == ""
+  if eval('@%') == ''
     cd ~/.vim
   endif
   nnoremap <silent> <S-F12> i
@@ -396,17 +402,17 @@ if !exists('*RunFile')
   func! RunFile()
     write
     if &ft == 'python'
-      let $PYTHONPATH="."
-      execute "AsyncRun -raw python %"
+      let $PYTHONPATH='.'
+      execute 'AsyncRun -raw python %'
     elseif &ft == 'go'
-      execute "AsyncRun -raw go run %"
+      execute 'AsyncRun -raw go run %'
     elseif &ft == 'vim'
-      execute "source $MYVIMRC"
+      execute 'source $MYVIMRC'
     endif
   endfunc
 endif
 
-if has("gui_running")
+if has('gui_running')
   call GUISetup()
 endif
 
