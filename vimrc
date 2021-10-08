@@ -289,9 +289,9 @@ augroup END
 
 """ Section VI. Language Servers
 
-inoremap <expr> <S-Tab> pumvisible() ? '\<C-p>' : '\<S-Tab>'
-inoremap <expr> <Tab>   pumvisible() ? '\<C-n>' : '\<Tab>'
-inoremap <expr> <cr>    pumvisible() ? '\<C-y>' : '\<cr>'
+inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
+inoremap <expr> <Tab>   pumvisible() ? "\<C-n>" : "\<Tab>"
+inoremap <expr> <cr>    pumvisible() ? "\<C-y>" : "\<cr>"
 nnoremap <silent> <A-0>  :LspDocumentDiagnostics<CR>
 nnoremap <silent> <A-CR> :LspCodeAction<CR>
 nnoremap <silent> <F1>   :LspHover<CR>
