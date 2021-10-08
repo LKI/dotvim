@@ -98,11 +98,12 @@ set smarttab
 
 """ Section II. Appearance
 " AirlineTheme gotham256
-colorscheme gotham256
+if filereadable(expand('$HOME/.vim/modules/vim-gotham/colors/gotham.vim'))
+  colorscheme gotham256
+endif
 
 if has('unix')
   set t_Co=256
-  set termguicolors
 endif
 
 if has('gui_running')
