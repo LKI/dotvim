@@ -1,5 +1,3 @@
-[![Build Status](https://travis-ci.org/LKI/dotvim.svg)](https://travis-ci.org/LKI/dotvim)
-
 # Linux/Unix Installation
 
 Run the following command to make the dotvim effective:
@@ -13,7 +11,7 @@ Run the following command to make the dotvim effective:
 
     git clone --recurse-submodules git://github.com/LKI/dotvim.git ~/vimfiles
     copy ~/vimfiles/vimrc ~/_vimrc
-    vim +PluginInstall +qall
+    vim +PlugInstall +qall
 
 # Others
 
@@ -27,7 +25,7 @@ Run the following command to make the dotvim effective:
     * feel free to fork your own dotvim repository, make changes and send a pull request
 * about this dotvim
     * it's for text/python/perl/sql editting
-    * I'm using [Vundle][vundle] to manage plugins
+    * I'm using [Vim Plug][vim-plug] to manage plugins
     * inspired by [schnell18/dotvim][dotvim_justin]
 
 
@@ -35,4 +33,4 @@ Run the following command to make the dotvim effective:
 [firacode]:      https://github.com/tonsky/FiraCode
 [usage]:         /USAGE.md
 [dotvim_justin]: https://github.com/schnell18/dotvim
-[vundle]:        https://github.com/VundleVim/Vundle.vim
+[vim-plug]:      https://github.com/junegunn/vim-plug
