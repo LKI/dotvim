@@ -81,9 +81,10 @@ set hidden
 set hlsearch
 set incsearch
 set laststatus=2
-set wrap
 set number
+set scrolloff=6
 set wildmenu
+set wrap
 
 " Write related
 set autoindent
