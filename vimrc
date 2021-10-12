@@ -245,9 +245,7 @@ autocmd FileType html,css,js,jsx,ts,tsx EmmetInstall
 let g:goyo_width = '80%'
 let g:goyo_height = '85%'
 
-if has('mac')
-  let g:black_virtualenv = '/Users/liriansu/.pyenv/versions/3.8.5'
-else
+if has('win32')
   for p in split($PATH, ';')
     if filereadable(p . '/black.exe')
       let g:black_virtualenv = fnamemodify(join(split(p, '\'), '/'), ':h')
