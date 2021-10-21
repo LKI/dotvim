@@ -70,6 +70,7 @@ set belloff=all
 set encoding=utf-8
 set fileencoding=utf-8
 set fileencodings=utf-8,gb2313,gb18030,gbk,cp936,latin1
+set fileformats=unix,dos
 set nobackup
 set noswapfile
 set termencoding=utf-8
