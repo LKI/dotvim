@@ -56,6 +56,9 @@ Plug 'psf/black', { 'for': 'python', 'branch': 'stable' }
 Plug 'jmcantrell/vim-virtualenv', { 'for': 'python' }
 Plug 'LKI/vim-pipenv', { 'for': 'python' }
 
+" Others
+" Plug 'github/copilot.vim'
+
 call plug#end()
 
 "" General
@@ -108,8 +111,9 @@ if has('unix')
   set t_Co=256
 endif
 
+" GVim settings
 if has('gui_running')
-  set guifont=Fira_Code_Retina:h11:w6
+  set guifont=Fira\ Code\ Retina:h11:w6
   set guioptions=c
   set langmenu=en_US
   autocmd GUIEnter * set lines=69 columns=250
