@@ -250,6 +250,7 @@ autocmd FileType html,css,js,jsx,ts,tsx EmmetInstall
 let g:goyo_width = '80%'
 let g:goyo_height = '85%'
 
+let g:wakatime_CLIPath=expand('$HOME/.wakatime/wakatime-cli')
 if has('win32')
   for p in split($PATH, ';')
     if filereadable(p . '/black.exe')
