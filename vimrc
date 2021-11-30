@@ -113,7 +113,7 @@ endif
 
 " GVim settings
 if has('gui_running')
-  set guifont=Fira\ Code\ Retina:h11:w6
+  set guifont=Fira\ Code:h12:w7
   set guioptions=c
   set langmenu=en_US
   autocmd GUIEnter * set lines=69 columns=250
@@ -147,7 +147,6 @@ nnoremap <silent> <A-S-a> :Git blame --date=short<CR>
 nnoremap <silent> <A-S-l> :call Reformat()<CR>
 nnoremap <silent> <A-S-n> :cnext<CR>
 nnoremap <silent> <A-S-p> :cprevious<CR>
-nnoremap <silent> <A-S-w> :bp\|bd #<CR>
 nnoremap <silent> <A-f> :Ag<CR>
 nnoremap <silent> <A-h> :tabprevious<CR>
 nnoremap <silent> <A-j> :bprevious<CR>
@@ -155,7 +154,7 @@ nnoremap <silent> <A-k> :bnext<CR>
 nnoremap <silent> <A-l> :tabnext<CR>
 nnoremap <silent> <A-n> :FZF<CR>
 nnoremap <silent> <A-o> :Files<CR>
-nnoremap <silent> <A-w> :bd<CR>
+nnoremap <silent> <A-w> :call BufferClose()<CR>
 nnoremap <silent> <F5>  :call RunFile()<CR>
 nnoremap <silent> <Leader>b  :Git blame<CR>
 nnoremap <silent> <Leader>eg  :edit ~/.lki/.gitconfig<CR>
@@ -351,6 +350,22 @@ func! TogGitLog()
     if bufWinNum != -1
       execute 'silent '.bufWinNum.' wincmd w'
       execute 'silent bdelete'
+    endif
+  endif
+endfunc
+
+func! BufferClose()
+  let buffer_count = len(filter(range(1, bufnr('$')), 'buflisted(v:val)'))
+  let window_count = winnr('$')
+  if window_count == 1
+    if buffer_count != 1
+      execute 'bp|bd #'
+    endif
+  else
+    if buffer_count > window_count
+      execute 'bp|bd #'
+    else
+      execute 'bd'
     endif
   endif
 endfunc
