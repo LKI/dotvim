@@ -354,19 +354,21 @@ func! TogGitLog()
   endif
 endfunc
 
+" 关闭当前的 buffer, 并尽可能地保留 split layout, 保证以下特征：
+" - 优先关闭 buffer, 最后关闭 window split, 不关闭最后一个 buffer
 func! BufferClose()
   let buffer_count = len(filter(range(1, bufnr('$')), 'buflisted(v:val)'))
   let window_count = winnr('$')
-  if window_count == 1
-    if buffer_count != 1
-      execute 'bp|bd #'
-    endif
-  else
+  if window_count > 1
     if buffer_count > window_count
       execute 'bp|bd #'
     else
       execute 'bd'
     endif
+    return
+  endif
+  if buffer_count != 1
+    execute 'bp|bd #'
   endif
 endfunc
 
