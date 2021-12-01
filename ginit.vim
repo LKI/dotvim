@@ -11,3 +11,4 @@ if exists(':GuiScrollBar')
   GuiScrollBar 0
 endif
 
+autocmd TermOpen * startinsert

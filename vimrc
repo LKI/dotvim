@@ -384,16 +384,16 @@ func! GoIntoUrl()
   let line = getline('.')
   let url = matchstr(line, 'http[s]\?:\/\/[[:alnum:]%\/_#.-]*')
   if len(url)
-    call job_start('explorer '.url)
+    call jobstart('explorer '.url)
     return
   endif
-  let repo = matchstr(line, '[0-9a-zA-Z._-][0-9a-zA-z_/-]\+[0-9a-zA-Z._-]')
+  let repo = matchstr(line, '[0-9a-zA-Z._-][0-9a-zA-z._/-]\+/[0-9a-zA-z._/-]\+[0-9a-zA-Z._-]')
   if len(repo)
     let group = split(repo, '/')[0]
     if group == 'FE' || group == 'zaihui' || group == 'BE'
-      call job_start('explorer https://pasta.zaihui.com.cn/'.repo.'/-/merge_requests/')
+      call jobstart('explorer https://pasta.zaihui.com.cn/'.repo.'/-/merge_requests/')
     else
-      call job_start('explorer https://github.com/'.repo)
+      call jobstart('explorer https://github.com/'.repo)
     endif
   endif
 endfunc
