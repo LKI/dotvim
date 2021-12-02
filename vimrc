@@ -102,6 +102,10 @@ set smarttab
 
 
 """ Section II. Appearance
+if exists('g:neovide')
+  let g:has_gui=1
+endif
+
 " AirlineTheme gotham256
 if filereadable(expand('$HOME/.vim/modules/vim-gotham/colors/gotham.vim'))
   colorscheme gotham256
@@ -284,7 +288,6 @@ augroup END
 augroup mapping
   autocmd!
   autocmd FileType gitcommit nnoremap <buffer> <silent> <A-w> :w<CR>:bdelete<CR>
-  autocmd FileType fugitive  nnoremap <buffer> <silent> <A-w> :bdelete<CR>
   autocmd FileType fugitiveblame nnoremap <buffer> <silent> <A-S-a> :bdelete<CR>
 augroup END
 
@@ -360,6 +363,10 @@ endfunc
 " 关闭当前的 buffer, 并尽可能地保留 split layout, 保证以下特征：
 " - 优先关闭 buffer, 最后关闭 window split, 不关闭最后一个 buffer
 func! BufferClose()
+  if &filetype == 'gitlog' || &filetype == 'fugitive' || &filetype == 'fugitiveblame' || &filetype == 'qf'
+    execute 'silent bdelete!'
+    return
+  endif
   let buffer_count = len(filter(range(1, bufnr('$')), 'buflisted(v:val)'))
   let window_count = winnr('$')
   if window_count > 1
