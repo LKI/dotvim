@@ -11,4 +11,8 @@ if exists(':GuiScrollBar')
   GuiScrollBar 0
 endif
 
-autocmd TermOpen * startinsert
+if exists(':GuiPopupmenu')
+  GuiPopupmenu 0
+endif
+
+call TogableMap('<A-F12>', 'gitbash', 'C:/Users/lirian/scoop/apps/git/current/bin/bash.exe -l -i')

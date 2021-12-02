@@ -57,7 +57,7 @@ Plug 'jmcantrell/vim-virtualenv', { 'for': 'python' }
 Plug 'LKI/vim-pipenv', { 'for': 'python' }
 
 " Others
-" Plug 'github/copilot.vim'
+Plug 'github/copilot.vim'
 
 call plug#end()
 
@@ -136,7 +136,6 @@ endif
 
 let mapleader="\<Space>"
 
-nnoremap <A-r> :AsyncRun<Space>
 nnoremap <A-s> :set<Space>
 nnoremap <F10> :Goyo<CR>
 nnoremap <Leader>gco  :Git checkout -b<Space>
@@ -285,6 +284,7 @@ augroup END
 augroup mapping
   autocmd!
   autocmd FileType gitcommit nnoremap <buffer> <silent> <A-w> :w<CR>:bdelete<CR>
+  autocmd FileType fugitive  nnoremap <buffer> <silent> <A-w> :bdelete<CR>
   autocmd FileType fugitiveblame nnoremap <buffer> <silent> <A-S-a> :bdelete<CR>
 augroup END
 
@@ -313,8 +313,8 @@ func! TogableMap(key, name, ...)
   if len(a:000)
     let cmd = cmd.'", "'.join(a:000, '", "')
   endif
-  execute 'nnoremap <silent> '.a:key.'      :call Togable("'.cmd.'")<CR>'
-  execute 'tnoremap <silent> '.a:key.' <C-W>:call Togable("'.cmd.'")<CR>'
+  execute 'nnoremap <silent> '.a:key.'           :call Togable("'.cmd.'")<CR>'
+  execute 'tnoremap <silent> '.a:key.' <C-\><C-n>:call Togable("'.cmd.'")<CR>'
 endfunc
 
 func! Togable(name, ...)  " inspired by pakutoma/toggle-terminal
@@ -323,13 +323,16 @@ func! Togable(name, ...)  " inspired by pakutoma/toggle-terminal
   let bufName = '<Togable> '.a:name
   let bufNum = get(filter(range(1, bufnr('$')), 'bufname(v:val) == "'.bufName.'"'), 0, -1)
   if bufNum == -1 || bufloaded(bufNum) != 1
-    execute 'silent '.pos.' term ++close ++kill=term ++type=conpty '.cmd
+    execute 'silent '.pos.' split | term '.cmd
     execute 'silent file '.bufName
     execute 'silent set nobuflisted'
+    execute 'silent set nonumber'
+    startinsert!
   else
     let bufWinNum = bufwinnr(bufNum)
     if bufWinNum == -1
       execute 'silent '.pos.' sbuffer '.bufNum
+    startinsert!
     else
       execute 'silent '.bufWinNum.' wincmd w'
       hide
@@ -361,14 +364,14 @@ func! BufferClose()
   let window_count = winnr('$')
   if window_count > 1
     if buffer_count > window_count
-      execute 'bp|bd #'
+      execute 'bp|bd! #'
     else
-      execute 'bd'
+      execute 'bd!'
     endif
     return
   endif
   if buffer_count != 1
-    execute 'bp|bd #'
+    execute 'bp|bd! #'
   endif
 endfunc
 
