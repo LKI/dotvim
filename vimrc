@@ -102,7 +102,7 @@ set smarttab
 
 
 """ Section II. Appearance
-if exists('g:neovide')
+if exists('g:neovide') || has('gui_running')
   let g:has_gui=1
 endif
 
@@ -116,20 +116,20 @@ if has('unix')
 endif
 
 " GVim settings
-if has('gui_running')
-  set guifont=Fira\ Code:h12:w7
+if exists('g:has_gui')
+  set guifont=Fira\ Code\ Retina:h13
   set guioptions=c
   set langmenu=en_US
-  autocmd GUIEnter * set lines=69 columns=250
+  let g:netrw_gx='start'
+  let g:netrw_browsex_viewer='start'
 endif
 
 if has('win32')
   let $LANG='en_US'
 
-  if has('gui_win32')
+  if has('gui_win32')  " GVim settings
     set renderoptions=type:directx,renmode:0
-    let g:netrw_gx='start'
-    let g:netrw_browsex_viewer='start'
+    autocmd GUIEnter * set lines=69 columns=250
   else
     set termguicolors
   endif
@@ -296,6 +296,11 @@ augroup ignoreBuffer  " inspired by https://vi.stackexchange.com/questions/16708
   autocmd FileType qf setl nobuflisted
 augroup END
 
+augroup autoCloseTerminal  " inspired by https://vi.stackexchange.com/questions/10292/
+  autocmd!
+  autocmd TermClose * if getline('$') == '' | bdelete! | endif
+augroup END
+
 """ Section VI. Language Servers
 
 inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
@@ -443,7 +448,6 @@ if !exists('*RunFile')
   endfunc
 endif
 
-if has('gui_running')
+if exists('g:has_gui')
   call GUISetup()
 endif
-
