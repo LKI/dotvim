@@ -16,3 +16,7 @@ if exists(':GuiPopupmenu')
 endif
 
 call TogableMap('<A-F12>', 'gitbash', 'C:/Users/lirian/scoop/apps/git/current/bin/bash.exe -l -i')
+
+if eval('@%') == ''
+  cd ~/.vim
+endif

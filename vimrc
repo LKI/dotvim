@@ -26,7 +26,7 @@ Plug 'whatyouhide/vim-gotham'
 
 " Editor
 Plug 'skywind3000/asyncrun.vim'
-Plug 'wakatime/vim-wakatime'
+" Plug 'wakatime/vim-wakatime'
 
 " Jumpping
 Plug 'junegunn/fzf', { 'do': './install --all' }
@@ -413,9 +413,6 @@ endfunc
 
 func! GUISetup()
   set autowrite
-  if eval('@%') == ''
-    cd ~/.vim
-  endif
   nnoremap <silent> <S-F12> i
   tnoremap <silent> <S-F12> <C-W>N
   call TogableMap('<A-t>', 'django shell', 'python manage.py shell')
