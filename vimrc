@@ -22,7 +22,7 @@ Plug 'tpope/vim-fugitive'
 " Display
 Plug 'junegunn/goyo.vim'
 Plug 'vim-airline/vim-airline'
-Plug 'whatyouhide/vim-gotham'
+Plug 'arcticicestudio/nord-vim'
 
 " Editor
 Plug 'skywind3000/asyncrun.vim'
@@ -35,11 +35,7 @@ Plug 'scrooloose/nerdtree'
 Plug 'xuyuanp/nerdtree-git-plugin'
 
 " Language Servers
-Plug 'prabirshrestha/async.vim'
-Plug 'prabirshrestha/asyncomplete-lsp.vim'
-Plug 'prabirshrestha/asyncomplete.vim'
-Plug 'prabirshrestha/vim-lsp'
-Plug 'mattn/vim-lsp-settings'
+Plug 'neovim/nvim-lspconfig'
 
 " FileTypes
 Plug 'sheerun/vim-polyglot'
@@ -50,7 +46,7 @@ Plug 'mattn/emmet-vim'
 " -> Golang
 Plug 'fatih/vim-go', { 'do': ':GoInstallBinaries' }
 " -> Markdown
-" Plug 'plasticboy/vim-markdown', { 'for': 'markdown' }
+Plug 'plasticboy/vim-markdown', { 'for': 'markdown' }
 " -> Python
 Plug 'psf/black', { 'for': 'python', 'branch': 'stable' }
 Plug 'jmcantrell/vim-virtualenv', { 'for': 'python' }
@@ -106,22 +102,13 @@ if exists('g:neovide') || has('gui_running')
   let g:has_gui=1
 endif
 
-" AirlineTheme gotham256
-if filereadable(expand('$HOME/.vim/modules/vim-gotham/colors/gotham.vim'))
-  colorscheme gotham256
+" AirlineTheme nord
+if filereadable(expand('$HOME/.vim/modules/nord-vim/colors/nord.vim'))
+  colorscheme nord
 endif
 
 if has('unix')
   set t_Co=256
-endif
-
-" GVim settings
-if exists('g:has_gui')
-  set guifont=Fira\ Code\ Retina:h13
-  set guioptions=c
-  set langmenu=en_US
-  let g:netrw_gx='start'
-  let g:netrw_browsex_viewer='start'
 endif
 
 if has('win32')
@@ -223,7 +210,6 @@ autocmd bufenter * if (winnr('$') == 1 && exists('b:NERDTree') && b:NERDTree.isT
 let b:csv_headerline = 0
 let g:csv_delim='|'
 
-" let g:fzf_layout = { 'down': '30%' }
 let g:fzf_layout = { 'window': { 'width': 0.9, 'height': 0.8 } }
 let g:fzf_preview_window = ''
 
@@ -232,17 +218,6 @@ let g:airline_powerline_fonts = 1
 
 let g:asyncrun_open = 10
 let g:vim_markdown_new_list_item_indent = 2
-
-let g:lsp_fold_enabled = 0
-let g:lsp_settings = {
-\   'pyls-all': {
-\     'workspace_config': {
-\       'pyls': {
-\         'configurationSources': ['flake8']
-\       }
-\     }
-\   },
-\}
 
 " Plugin 'mattn/emmet-vim'
 let g:user_emmet_install_global = 0
@@ -424,7 +399,15 @@ func! Reformat()
 endfunc
 
 func! GUISetup()
+  let g:netrw_browsex_viewer='start'
+  let g:netrw_gx='start'
   set autowrite
+  set guifont=Fira\ Code\ Retina:h13
+  set guioptions=c
+  set langmenu=en_US
+  if eval('@%') == ''
+    cd ~/.vim
+  endif
   nnoremap <silent> <S-F12> i
   tnoremap <silent> <S-F12> <C-W>N
   call TogableMap('<A-t>', 'django shell', 'python manage.py shell')
