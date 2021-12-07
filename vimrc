@@ -56,6 +56,9 @@ Plug 'github/copilot.vim'
 if has('nvim')
   " Language Servers
   Plug 'neovim/nvim-lspconfig'
+  " Display
+  Plug 'nvim-lualine/lualine.nvim'
+  Plug 'kyazdani42/nvim-web-devicons'
 endif
 
 call plug#end()
@@ -218,6 +221,7 @@ let g:fzf_preview_window = ''
 
 let g:airline#extensions#tabline#enabled = 1
 let g:airline_powerline_fonts = 1
+let g:airline_disable_statusline = 1
 
 let g:asyncrun_open = 10
 let g:vim_markdown_new_list_item_indent = 2
@@ -438,4 +442,10 @@ endif
 
 if exists('g:has_gui')
   call GUISetup()
+endif
+
+if has('nvim')
+lua << END
+require('lualine').setup()
+END
 endif
