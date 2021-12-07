@@ -271,7 +271,7 @@ augroup ignoreBuffer  " inspired by https://vi.stackexchange.com/questions/16708
   autocmd FileType qf setl nobuflisted
 augroup END
 
-if has("nvim")
+if exists('##TermClose')
   augroup autoCloseTerminal  " inspired by https://vi.stackexchange.com/questions/10292/
     autocmd!
     autocmd TermClose * if getline('$') == '' | bdelete! | endif
