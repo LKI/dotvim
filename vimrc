@@ -271,10 +271,12 @@ augroup ignoreBuffer  " inspired by https://vi.stackexchange.com/questions/16708
   autocmd FileType qf setl nobuflisted
 augroup END
 
-augroup autoCloseTerminal  " inspired by https://vi.stackexchange.com/questions/10292/
-  autocmd!
-  autocmd TermClose * if getline('$') == '' | bdelete! | endif
-augroup END
+if has("nvim")
+  augroup autoCloseTerminal  " inspired by https://vi.stackexchange.com/questions/10292/
+    autocmd!
+    autocmd TermClose * if getline('$') == '' | bdelete! | endif
+  augroup END
+endif
 
 """ Section VI. Language Servers
 
