@@ -34,9 +34,6 @@ Plug 'junegunn/fzf.vim'
 Plug 'scrooloose/nerdtree'
 Plug 'xuyuanp/nerdtree-git-plugin'
 
-" Language Servers
-Plug 'neovim/nvim-lspconfig'
-
 " FileTypes
 Plug 'sheerun/vim-polyglot'
 Plug 'jaxbot/semantic-highlight.vim'
@@ -54,6 +51,12 @@ Plug 'LKI/vim-pipenv', { 'for': 'python' }
 
 " Others
 Plug 'github/copilot.vim'
+
+" NVim
+if has('nvim')
+  " Language Servers
+  Plug 'neovim/nvim-lspconfig'
+endif
 
 call plug#end()
 
