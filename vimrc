@@ -133,6 +133,7 @@ endif
 
 let mapleader="\<Space>"
 
+inoremap <silent> <S-Insert> <C-R>"
 nnoremap <A-s> :set<Space>
 nnoremap <F10> :Goyo<CR>
 nnoremap <Leader>gco  :Git checkout -b<Space>
