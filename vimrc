@@ -272,6 +272,7 @@ augroup mapping
   autocmd!
   autocmd FileType gitcommit nnoremap <buffer> <silent> <A-w> :w<CR>:bdelete<CR>
   autocmd FileType fugitiveblame nnoremap <buffer> <silent> <A-S-a> :bdelete<CR>
+  autocmd FileType help nnoremap <buffer> <silent> <A-w> :bdelete<CR>
 augroup END
 
 augroup ignoreBuffer  " inspired by https://vi.stackexchange.com/questions/16708/
