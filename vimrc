@@ -293,12 +293,11 @@ endif
 inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
 inoremap <expr> <Tab>   pumvisible() ? "\<C-n>" : "\<Tab>"
 inoremap <expr> <cr>    pumvisible() ? "\<C-y>" : "\<cr>"
-nnoremap <silent> <A-0>  :LspDocumentDiagnostics<CR>
-nnoremap <silent> <A-CR> :LspCodeAction<CR>
-nnoremap <silent> <F1>   :LspHover<CR>
-nnoremap <silent> <F2>   :LspNextError<CR>
-nnoremap <silent> <F3>   :LspNextWarning<CR>
-nnoremap <silent> <F7>   :LspReferences<CR>
+nnoremap <silent> <A-0>  :lua vim.diagnostic.open_float()<CR>
+nnoremap <silent> <A-CR> :lua vim.lsp.buf.code_action()<CR>
+nnoremap <silent> <F1>   :lua vim.lsp.buf.hover()<CR>
+nnoremap <silent> <F2>   :lua vim.diagnostic.goto_next()<CR>
+nnoremap <silent> <F7>   :lua vim.lsp.buf.references()<CR>
 
 
 """ Section X. Functions
@@ -378,7 +377,7 @@ func! GoInto()
   if exists('b:NERDTree')
     normal cdCD
   else
-    execute 'LspDefinition'
+    lua vim.lsp.buf.definition()
   endif
 endfunc
 
@@ -403,10 +402,8 @@ endfunc
 func! Reformat()
   if &ft == 'python'
     execute 'Black'
-  elseif mode() == 'v'
-    execute 'LspDocumentRangeFormat'
   else
-    execute 'LspDocumentFormat'
+    lua vim.lsp.buf.formatting_sync()
   endif
 endfunc
 
