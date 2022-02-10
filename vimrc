@@ -56,6 +56,7 @@ Plug 'github/copilot.vim'
 if has('nvim')
   " Language Servers
   Plug 'neovim/nvim-lspconfig'
+  Plug 'williamboman/nvim-lsp-installer'
   " Display
   Plug 'nvim-lualine/lualine.nvim'
   Plug 'kyazdani42/nvim-web-devicons'
@@ -449,5 +450,10 @@ endif
 if has('nvim')
 lua << END
 require('lualine').setup()
+
+require('nvim-lsp-installer').on_server_ready(function(server)
+  local opts = {}
+  server:setup(opts)
+end)
 END
 endif
