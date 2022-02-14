@@ -56,6 +56,11 @@ Plug 'github/copilot.vim'
 if has('nvim')
   " Language Servers
   Plug 'neovim/nvim-lspconfig'
+  Plug 'hrsh7th/cmp-nvim-lsp'
+  Plug 'hrsh7th/cmp-buffer'
+  Plug 'hrsh7th/cmp-path'
+  Plug 'hrsh7th/cmp-cmdline'
+  Plug 'hrsh7th/nvim-cmp'
   Plug 'williamboman/nvim-lsp-installer'
   " Display
   Plug 'nvim-lualine/lualine.nvim'
@@ -86,6 +91,7 @@ set updatetime=250
 set wildignore+=.git,node_modules,dist,.idea,*.pyc,.pytest_cache,__pycache__,.coverage
 
 " Read related
+set completeopt=menu,menuone,noselect
 set hidden
 set hlsearch
 set incsearch
