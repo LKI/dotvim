@@ -399,11 +399,7 @@ func! GoIntoUrl()
   let repo = matchstr(line, '[0-9a-zA-Z._-][0-9a-zA-z._/-]\+/[0-9a-zA-z._/-]\+[0-9a-zA-Z._-]')
   if len(repo)
     let group = split(repo, '/')[0]
-    if group == 'FE' || group == 'zaihui' || group == 'BE'
-      call jobstart('explorer https://pasta.zaihui.com.cn/'.repo.'/-/merge_requests/')
-    else
-      call jobstart('explorer https://github.com/'.repo)
-    endif
+    call jobstart('explorer https://github.com/'.repo)
   endif
 endfunc
 
