@@ -298,14 +298,16 @@ endif
 
 """ Section VI. Language Servers
 
-inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
-inoremap <expr> <Tab>   pumvisible() ? "\<C-n>" : "\<Tab>"
-inoremap <expr> <cr>    pumvisible() ? "\<C-y>" : "\<cr>"
-nnoremap <silent> <A-0>  :lua vim.diagnostic.open_float()<CR>
-nnoremap <silent> <A-CR> :lua vim.lsp.buf.code_action()<CR>
-nnoremap <silent> <F1>   :lua vim.lsp.buf.hover()<CR>
-nnoremap <silent> <F2>   :lua vim.diagnostic.goto_next()<CR>
-nnoremap <silent> <F7>   :lua vim.lsp.buf.references()<CR>
+if !exists('has_vsvim')
+  inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
+  inoremap <expr> <Tab>   pumvisible() ? "\<C-n>" : "\<Tab>"
+  inoremap <expr> <cr>    pumvisible() ? "\<C-y>" : "\<cr>"
+  nnoremap <silent> <A-0>  :lua vim.diagnostic.open_float()<CR>
+  nnoremap <silent> <A-CR> :lua vim.lsp.buf.code_action()<CR>
+  nnoremap <silent> <F1>   :lua vim.lsp.buf.hover()<CR>
+  nnoremap <silent> <F2>   :lua vim.diagnostic.goto_next()<CR>
+  nnoremap <silent> <F7>   :lua vim.lsp.buf.references()<CR>
+endif
 
 
 """ Section X. Functions
@@ -415,7 +417,7 @@ func! GUISetup()
   let g:netrw_browsex_viewer='start'
   let g:netrw_gx='start'
   set autowrite
-  set guifont=Fira\ Code\ Retina:h10
+  set guifont=FiraCode_NF:h12
   set guioptions=c
   set langmenu=en_US
   if eval('@%') == ''
