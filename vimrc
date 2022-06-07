@@ -417,7 +417,7 @@ func! GUISetup()
   let g:netrw_browsex_viewer='start'
   let g:netrw_gx='start'
   set autowrite
-  set guifont=FiraCode_NF:h12
+  set guifont=FiraCode_NF:h11.5
   set guioptions=c
   set langmenu=en_US
   if eval('@%') == ''
