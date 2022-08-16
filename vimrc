@@ -153,7 +153,7 @@ nnoremap <silent> <A-S-a> :Git blame --date=short<CR>
 nnoremap <silent> <A-S-l> :call Reformat()<CR>
 nnoremap <silent> <A-S-n> :cnext<CR>
 nnoremap <silent> <A-S-p> :cprevious<CR>
-nnoremap <silent> <A-f> :Ag<CR>
+nnoremap <silent> <A-f> :Rg<CR>
 nnoremap <silent> <A-h> :tabprevious<CR>
 nnoremap <silent> <A-j> :bprevious<CR>
 nnoremap <silent> <A-k> :bnext<CR>
@@ -197,7 +197,7 @@ noremap <silent> <Leader>c :Commentary<CR>
 noremap <silent> <Leader>l :=<CR>
 tnoremap <silent> <A-w>      <C-W>:bdelete!<CR>
 tnoremap <silent> <S-Insert> <C-W>"*
-xnoremap <silent> <A-f> "zy:Ag<Space><C-r>z<CR>
+xnoremap <silent> <A-f> "zy:Rg<Space><C-r>z<CR>
 xnoremap <silent> <Leader>r    "zy:AsyncRun -r <C-r>z<CR>
 xnoremap <silent> <Leader>st  :sort<CR>
 
