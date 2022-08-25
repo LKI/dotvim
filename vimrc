@@ -119,6 +119,10 @@ if exists('g:neovide') || has('gui_running')
   let g:has_gui=1
 endif
 
+if exists('g:neovide')
+  let g:neovide_transparency=0.8
+endif
+
 " AirlineTheme nord
 if filereadable(expand('$HOME/.vim/modules/nord-vim/colors/nord.vim'))
   colorscheme nord
