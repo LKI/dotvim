@@ -415,7 +415,7 @@ func! Reformat()
   if &ft == 'python'
     execute 'Black'
   else
-    lua vim.lsp.buf.formatting_sync()
+    lua vim.lsp.buf.format()
   endif
 endfunc
 
