@@ -168,12 +168,13 @@ nnoremap <silent> <A-n> :FZF<CR>
 nnoremap <silent> <A-o> :Files<CR>
 nnoremap <silent> <A-w> :call BufferClose()<CR>
 nnoremap <silent> <F5>  :call RunFile()<CR>
-nnoremap <silent> <Leader>b  :Git blame<CR>
-nnoremap <silent> <Leader>eg  :edit ~/.lki/.gitconfig<CR>
-nnoremap <silent> <Leader>eh  :edit C:\Windows\System32\drivers\etc\hosts<CR>
-nnoremap <silent> <Leader>ep  :edit ~/.lki/.profile<CR>
-nnoremap <silent> <Leader>es  :edit ~/.ssh/config<CR>
-nnoremap <silent> <Leader>ev  :edit ~/.vim/vimrc<CR>
+nnoremap <silent> <Leader>/    :let @/ = ""<CR>
+nnoremap <silent> <Leader>b    :Git blame<CR>
+nnoremap <silent> <Leader>eg   :edit ~/.lki/.gitconfig<CR>
+nnoremap <silent> <Leader>eh   :edit C:\Windows\System32\drivers\etc\hosts<CR>
+nnoremap <silent> <Leader>ep   :edit ~/.lki/.profile<CR>
+nnoremap <silent> <Leader>es   :edit ~/.ssh/config<CR>
+nnoremap <silent> <Leader>ev   :edit ~/.vim/vimrc<CR>
 nnoremap <silent> <Leader>gca  :Git commit -a<CR>
 nnoremap <silent> <Leader>gcm  :Git commit -a --amend --no-edit<CR>
 nnoremap <silent> <Leader>gf   :Git fetch o<CR>
