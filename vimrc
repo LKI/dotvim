@@ -535,5 +535,21 @@ require('nvim-lsp-installer').on_server_ready(function(server)
   server:setup(opts)
 end)
 
+-- setup nvim python virtualenv
+local function get_python_path(workspace)
+  -- Use activated virtualenv if any
+  if vim.env.VIRTUAL_ENV then
+    return require('lspconfig/util').path.join(vim.env.VIRTUAL_ENV, 'bin', 'python')
+  end
+  -- Fallback to system Python
+  return exepath('python3') or exepath('python') or 'python'
+end
+-- setup pyright with virtualenv
+require('lspconfig').pyright.setup({
+  before_init = function(_, config)
+    config.settings.python.pythonPath = get_python_path(config.root_dir)
+  end
+})
+
 END
 endif
