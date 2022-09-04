@@ -45,7 +45,7 @@ Plug 'fatih/vim-go', { 'do': ':GoInstallBinaries' }
 " -> Markdown
 Plug 'plasticboy/vim-markdown', { 'for': 'markdown' }
 " -> Python
-Plug 'psf/black', { 'for': 'python', 'branch': 'stable' }
+Plug 'psf/black', { 'for': 'python' }
 Plug 'jmcantrell/vim-virtualenv', { 'for': 'python' }
 Plug 'LKI/vim-pipenv', { 'for': 'python' }
 
@@ -431,7 +431,7 @@ func! GUISetup()
     cd ~/.vim
   endif
   nnoremap <silent> <S-F12> i
-  tnoremap <silent> <S-F12> <C-W>N
+  tnoremap <silent> <S-F12> <C-\><C-N>
   call TogableMap('<A-t>', 'django shell', 'python manage.py shell')
   call TogableMap('<A-S-t>', 'ipython', 'ipython')
   call TogableMap('<A-$>', 'yarn', 'cmd /k "yarn start"')
