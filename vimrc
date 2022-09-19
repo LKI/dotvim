@@ -152,7 +152,7 @@ inoremap <silent> <S-Insert> <C-R>"
 nnoremap <A-s> :set<Space>
 nnoremap <F10> :Goyo<CR>
 nnoremap <Leader>gco  :Git checkout -b<Space>
-nnoremap <silent> <A-!> :NERDTreeToggle $CODE<CR>
+nnoremap <silent> <A-!> :NERDTreeFind<CR>
 nnoremap <silent> <A-1> :NERDTreeToggle<CR>
 nnoremap <silent> <A-9> :call TogGitLog()<CR>
 nnoremap <silent> <A-S-a> :Git blame --date=short<CR>
