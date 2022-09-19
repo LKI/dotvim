@@ -175,8 +175,8 @@ nnoremap <silent> <Leader>eh   :edit C:\Windows\System32\drivers\etc\hosts<CR>
 nnoremap <silent> <Leader>ep   :edit ~/.lki/.profile<CR>
 nnoremap <silent> <Leader>es   :edit ~/.ssh/config<CR>
 nnoremap <silent> <Leader>ev   :edit ~/.vim/vimrc<CR>
-nnoremap <silent> <Leader>gca  :Git commit -a<CR>
-nnoremap <silent> <Leader>gcm  :Git commit -a --amend --no-edit<CR>
+nnoremap <silent> <Leader>gca  :Git commit -a -S<CR>
+nnoremap <silent> <Leader>gcm  :Git commit -a --amend --no-edit -S<CR>
 nnoremap <silent> <Leader>gf   :Git fetch o<CR>
 nnoremap <silent> <Leader>gld  :Git load<CR>
 nnoremap <silent> <Leader>glg  :silent Git log --all --graph --pretty=format:'%h - (%cr)%d %s <%an>' --abbrev-commit<CR>:setlocal filetype=gitlog<CR>
