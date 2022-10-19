@@ -120,7 +120,7 @@ if exists('g:neovide') || has('gui_running')
 endif
 
 if exists('g:neovide')
-  let g:neovide_transparency=0.8
+  let g:neovide_transparency=0.95
 endif
 
 " AirlineTheme nord
