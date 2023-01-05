@@ -68,7 +68,7 @@ if has('nvim')
   Plug 'nvim-lualine/lualine.nvim'
   Plug 'kyazdani42/nvim-web-devicons'
   " Session
-  Plug 'rmagatti/auto-session'
+  " Plug 'rmagatti/auto-session'
 endif
 
 call plug#end()
