@@ -420,7 +420,7 @@ func! GUISetup()
   let g:netrw_browsex_viewer='start'
   let g:netrw_gx='start'
   set autowrite
-  set! guifont=FiraCode\ NF:h11.8
+  set! guifont=FiraCode\ NF:h9
   set guioptions=c
   set langmenu=en_US
   if eval('@%') == ''
@@ -479,11 +479,14 @@ cmp.setup({
     ['<CR>'] = cmp.mapping.confirm({ select = true }), -- Accept currently selected item. Set `select` to `false` to only confirm explicitly selected items.
     ['<Tab>'] = cmp.mapping(function(fallback)
       if cmp.visible() then
-        cmp.select_next_item()
+        local entry = cmp.get_selected_entry()
+        if not entry then
+          cmp.select_next_item({ behavior = cmp.SelectBehavior.Select })
+        else
+          cmp.confirm()
+        end
       elseif vim.fn['vsnip#available'](1) == 1 then
         feedkey('<Plug>(vsnip-expand-or-jump)', '')
-      elseif has_words_before() then
-        cmp.complete()
       else
         fallback() -- The fallback function sends a already mapped key. In this case, it's probably `<Tab>`.
       end
