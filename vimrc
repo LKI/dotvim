@@ -115,12 +115,8 @@ set smarttab
 
 
 """ Section II. Appearance
-if exists('g:neovide') || has('gui_running')
+if has('gui_running')
   let g:has_gui=1
-endif
-
-if exists('g:neovide')
-  let g:neovide_transparency=0.95
 endif
 
 " AirlineTheme nord
@@ -424,7 +420,7 @@ func! GUISetup()
   let g:netrw_browsex_viewer='start'
   let g:netrw_gx='start'
   set autowrite
-  set guifont=FuraCode_NF:h11.8
+  set! guifont=FiraCode\ NF:h11.8
   set guioptions=c
   set langmenu=en_US
   if eval('@%') == ''
