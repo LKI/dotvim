@@ -50,7 +50,7 @@ Plug 'jmcantrell/vim-virtualenv', { 'for': 'python' }
 Plug 'LKI/vim-pipenv', { 'for': 'python' }
 
 " Others
-" Plug 'github/copilot.vim'
+Plug 'github/copilot.vim'
 
 " NVim
 if has('nvim')
