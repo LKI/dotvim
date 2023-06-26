@@ -63,7 +63,6 @@ if has('nvim')
   Plug 'hrsh7th/nvim-cmp'
   Plug 'hrsh7th/cmp-vsnip'
   Plug 'hrsh7th/vim-vsnip'
-  Plug 'williamboman/nvim-lsp-installer'
   " Display
   Plug 'nvim-lualine/lualine.nvim'
   Plug 'kyazdani42/nvim-web-devicons'
@@ -525,14 +524,6 @@ cmp.setup.cmdline(':', {
 
 -- setup lspconfig.
 local capabilities = require('cmp_nvim_lsp').default_capabilities()
-
--- setup nvim-lsp-installer
-require('nvim-lsp-installer').on_server_ready(function(server)
-  local opts = {
-    capabilities = capabilities
-  }
-  server:setup(opts)
-end)
 
 -- setup nvim python virtualenv
 local function get_python_path(workspace)
