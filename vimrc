@@ -54,6 +54,9 @@ Plug 'github/copilot.vim'
 
 " NVim
 if has('nvim')
+  " LSP Installer
+  Plug 'williamboman/mason.nvim'
+  Plug 'williamboman/mason-lspconfig.nvim'
   " Language Servers
   Plug 'neovim/nvim-lspconfig'
   Plug 'hrsh7th/cmp-nvim-lsp'
@@ -525,6 +528,9 @@ cmp.setup.cmdline(':', {
 -- setup lspconfig.
 local capabilities = require('cmp_nvim_lsp').default_capabilities()
 
+-- setup mason.
+require("mason").setup()
+
 -- setup nvim python virtualenv
 local function get_python_path(workspace)
   -- Use activated virtualenv if any
@@ -542,4 +548,5 @@ require('lspconfig').pyright.setup({
 })
 
 END
+
 endif
