@@ -20,7 +20,6 @@ Plug 'rhysd/committia.vim'
 Plug 'tpope/vim-fugitive'
 
 " Display
-Plug 'junegunn/goyo.vim'
 Plug 'vim-airline/vim-airline'
 Plug 'arcticicestudio/nord-vim'
 
@@ -245,9 +244,6 @@ let g:vim_markdown_new_list_item_indent = 2
 let g:user_emmet_install_global = 0
 let g:user_emmet_leader_key = '<C-Tab>'
 autocmd FileType html,css,js,jsx,ts,tsx EmmetInstall
-
-let g:goyo_width = '80%'
-let g:goyo_height = '85%'
 
 let g:wakatime_CLIPath=expand('$HOME/.wakatime/wakatime-cli')
 if has('win32')
