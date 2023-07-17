@@ -18,6 +18,9 @@ jobs:
       - name: Set up vim
         uses: rhysd/action-setup-vim@v1
       - name: Install dotvim
-        run: curl -s https://raw.githubusercontent.com/LKI/dotvim/master/install.sh | sh
+        run: |
+          git clone --recurse-submodules git://github.com/LKI/dotvim.git ~/.vim
+          ln -sf ~/.vim/vimrc ~/.vimrc
+          vim +PlugInstall +qall
       - name: Verification
         run: vim -c quit
