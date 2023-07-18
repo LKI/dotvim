@@ -39,8 +39,6 @@ Plug 'jaxbot/semantic-highlight.vim'
 " -> TypeScript
 Plug 'leafgarland/typescript-vim'
 Plug 'mattn/emmet-vim'
-" -> Golang
-Plug 'fatih/vim-go', { 'do': ':GoInstallBinaries' }
 " -> Markdown
 Plug 'plasticboy/vim-markdown', { 'for': 'markdown' }
 " -> Python
@@ -147,7 +145,6 @@ let mapleader="\<Space>"
 
 inoremap <silent> <S-Insert> <C-R>"
 nnoremap <A-s> :set<Space>
-nnoremap <F10> :Goyo<CR>
 nnoremap <Leader>gco  :Git checkout -b<Space>
 nnoremap <silent> <A-!> :NERDTreeFind<CR>
 nnoremap <silent> <A-1> :NERDTreeToggle<CR>
