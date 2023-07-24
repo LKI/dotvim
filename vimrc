@@ -531,11 +531,17 @@ local function get_python_path(workspace)
     return require('lspconfig/util').path.join(vim.env.VIRTUAL_ENV, 'bin', 'python')
   end
   -- Fallback to system Python
-  return exepath('python3') or exepath('python') or 'python'
+  return vim.fn.exepath('python3') or vim.fn.exepath('python') or 'python'
 end
+
 -- setup pyright with virtualenv
 require('lspconfig').pyright.setup({
-  before_init = function(_, config)
+  on_attach = function()
+    require('lsp_signature').on_attach {
+      hint_enable = false,
+    }
+  end,
+  on_init = function(_, config)
     config.settings.python.pythonPath = get_python_path(config.root_dir)
   end
 })
