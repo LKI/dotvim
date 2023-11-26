@@ -25,7 +25,7 @@ Plug 'arcticicestudio/nord-vim'
 
 " Editor
 Plug 'skywind3000/asyncrun.vim'
-" Plug 'wakatime/vim-wakatime'
+Plug 'wakatime/vim-wakatime'
 
 " Jumpping
 Plug 'junegunn/fzf', { 'do': './install --all' }
@@ -242,7 +242,6 @@ let g:user_emmet_install_global = 0
 let g:user_emmet_leader_key = '<C-Tab>'
 autocmd FileType html,css,js,jsx,ts,tsx EmmetInstall
 
-let g:wakatime_CLIPath=expand('$HOME/.wakatime/wakatime-cli')
 if has('win32')
   for p in split($PATH, ';')
     if filereadable(p . '/black.exe')
