@@ -105,7 +105,7 @@ set wrap
 " Write related
 set autoindent
 set backspace=2
-set clipboard=unnamed  " Use system clipboard
+set clipboard=unnamedplus  " Use system clipboard
 set expandtab
 set matchtime=2
 set showmatch
