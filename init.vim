@@ -1,1 +1,1 @@
-C:/Users/lirian/.vim/vimrc
+/home/lirian/code/src/github.com/LKI/dotvim/vimrc
