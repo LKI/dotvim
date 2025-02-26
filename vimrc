@@ -39,8 +39,6 @@ Plug 'jaxbot/semantic-highlight.vim'
 " -> TypeScript
 Plug 'leafgarland/typescript-vim'
 Plug 'mattn/emmet-vim'
-" -> Markdown
-Plug 'plasticboy/vim-markdown', { 'for': 'markdown' }
 " -> Python
 Plug 'psf/black', { 'for': 'python' }
 Plug 'jmcantrell/vim-virtualenv', { 'for': 'python' }
@@ -87,7 +85,6 @@ set fileencodings=utf-8,gb2313,gb18030,gbk,cp936,latin1
 set fileformats=unix,dos
 set nobackup
 set noswapfile
-set termencoding=utf-8
 set updatetime=250
 set wildignore+=.git,node_modules,dist,.idea,*.pyc,.pytest_cache,__pycache__,.coverage
 
