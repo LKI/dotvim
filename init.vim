@@ -375,6 +375,7 @@ func! GUISetup()
   let g:netrw_gx='start'
   set autowrite
   set guifont=CaskaydiaCove\ Nerd\ Font:h13
+  set guioptions=c
   set langmenu=en_US
   if eval('@%') == ''
     cd ~/.vim
