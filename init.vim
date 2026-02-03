@@ -486,23 +486,44 @@ require("mason").setup()
 local function get_python_path(workspace)
   -- Use activated virtualenv if any
   if vim.env.VIRTUAL_ENV then
-    return require('lspconfig/util').path.join(vim.env.VIRTUAL_ENV, 'bin', 'python')
+    return vim.fs.joinpath(vim.env.VIRTUAL_ENV, 'bin', 'python')
+  end
+  -- Find and use virtualenv in workspace directory
+  for _, pattern in ipairs({'*', '.*'}) do
+    local match = vim.fn.glob(vim.fs.joinpath(workspace, pattern, 'pyvenv.cfg'))
+    if match ~= '' then
+      return vim.fs.joinpath(vim.fs.dirname(match), 'bin', 'python')
+    end
   end
   -- Fallback to system Python
   return vim.fn.exepath('python3') or vim.fn.exepath('python') or 'python'
 end
 
 -- setup pyright with virtualenv
-require('lspconfig').pyright.setup({
-  on_attach = function()
-    require('lsp_signature').on_attach {
-      hint_enable = false,
-    }
+vim.lsp.config.pyright = {
+  cmd = { 'pyright-langserver', '--stdio' },
+  filetypes = { 'python' },
+  root_dir = function(fname)
+    return vim.fs.root(fname, { 'pyproject.toml', 'setup.py', 'setup.cfg', 'requirements.txt', 'Pipfile', 'pyrightconfig.json', '.git' })
   end,
-  on_init = function(_, config)
-    config.settings.python.pythonPath = get_python_path(config.root_dir)
-  end
-})
+  capabilities = capabilities,
+  on_init = function(client)
+    local root = client.workspace_folders and client.workspace_folders[1] and client.workspace_folders[1].name or vim.fn.getcwd()
+    local python_path = get_python_path(root)
+    client.settings = vim.tbl_deep_extend('force', client.settings or {}, {
+      python = {
+        pythonPath = python_path,
+        analysis = {
+          autoSearchPaths = true,
+          diagnosticMode = 'workspace',
+          useLibraryCodeForTypes = true
+        }
+      }
+    })
+  end,
+}
+
+vim.lsp.enable('pyright')
 
 END
 
